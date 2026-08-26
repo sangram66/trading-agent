@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trading Agent — Dashboard</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+    --bg: #0a0a0f;
+    --surface: #12121a;
+    --surface2: #1a1a26;
+    --border: #2a2a3a;
+    --text: #e0e0e8;
+    --text2: #8888a0;
+    --accent: #6366f1;
+    --accent2: #818cf8;
+    --green: #22c55e;
+    --red: #ef4444;
+    --amber: #f59e0b;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Inter', -apple-system, sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+.header {
+    border-bottom: 1px solid var(--border);
+    padding: 20px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header h1 {
+    font-family: var(--mono);
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--text);
+}
+
+.header h1 span { color: var(--accent2); }
+
+.header-meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text2);
+}
+
+.tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border);
+    padding: 0 32px;
+    gap: 0;
+}
+
+.tab {
+    padding: 12px 20px;
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text2);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+}
+
+.tab:hover { color: var(--text); }
+.tab.active { color: var(--accent2); border-bottom-color: var(--accent); }
+
+.panel { display: none; padding: 32px; }
+.panel.active { display: block; }
+
+/* ---- Volatility ---- */
+.vol-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.card-title {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text2);
+    margin-bottom: 12px;
+}
+
+.big-number {
+    font-family: var(--mono);
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.big-number.green { color: var(--green); }
+.big-number.red { color: var(--red); }
+.big-number.amber { color: var(--amber); }
+
+.sub-number {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--text2);
+    margin-top: 4px;
+}
+
+/* ---- Stats table ---- */
+.stats-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--mono);
+    font-size: 13px;
+}
+
+.stats-table th {
+    text-align: left;
+    padding: 8px 12px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text2);
+    border-bottom: 1px solid var(--border);
+}
+
+.stats-table td {
+    padding: 6px 12px;
+    border-bottom: 1px solid var(--border);
+}
+
+.stat-name { color: var(--text); }
+.stat-real { color: var(--text2); text-align: right; }
+.p-sig { color: var(--green); text-align: right; font-weight: 600; }
+.p-nosig { color: var(--text2); text-align: right; }
+
+/* ---- Findings ---- */
+.findings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.finding-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    border-left: 3px solid var(--border);
+}
+
+.card-signal { border-left-color: var(--green); }
+.card-nosignal { border-left-color: var(--text2); }
+
+.finding-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.finding-dataset {
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.finding-obs {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text2);
+}
+
+.finding-garch {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text2);
+    margin-bottom: 8px;
+}
+
+.finding-verdict {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 6px 0;
+}
+
+.card-signal .finding-verdict { color: var(--green); }
+.card-nosignal .finding-verdict { color: var(--text2); }
+
+.finding-survivors {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent2);
+    margin-top: 4px;
+}
+
+/* ---- Regime tape ---- */
+.tape-container {
+    display: flex;
+    gap: 1px;
+    height: 32px;
+    margin-top: 12px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.tape-bar {
+    flex: 1;
+    min-width: 2px;
+}
+
+/* ---- Pipeline ---- */
+.pipeline-flow {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    padding-bottom: 16px;
+}
+
+.layer {
+    min-width: 200px;
+    flex-shrink: 0;
+}
+
+.layer-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--accent2);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+}
+
+.node {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 8px;
+}
+
+.node-ok { border-left: 3px solid var(--green); }
+
+.node-name {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.node-meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text2);
+    margin-top: 2px;
+}
+
+/* ---- Budget ---- */
+.budget-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px;
+    max-width: 500px;
+}
+
+.budget-line {
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 4px 0;
+    color: var(--text2);
+}
+
+.budget-line strong { color: var(--text); }
+
+/* ---- Sparkline ---- */
+.sparkline-container {
+    height: 120px;
+    position: relative;
+    margin-top: 16px;
+}
+
+canvas { width: 100%; height: 100%; }
+
+/* ---- Stocks ---- */
+.stock-row:hover {{ background: var(--surface2); }}
+.stock-sym {{ font-weight: 600; color: var(--accent2); }}
+.stock-price {{ text-align: right; }}
+.stock-num {{ text-align: right; font-family: var(--mono); }}
+.stock-num.green {{ color: var(--green); }}
+.stock-num.red {{ color: var(--red); }}
+.stock-num.amber {{ color: var(--amber); }}
+.stock-signal {{ text-align: center; font-weight: 600; }}
+.stock-signal.green {{ color: var(--green); }}
+.badge {{
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 2px 6px;
+    margin: 2px;
+    border-radius: 3px;
+    background: var(--surface2);
+    color: var(--accent2);
+    border: 1px solid var(--border);
+}}
+.stock-stat-row {{
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 2px 0;
+    color: var(--text2);
+}}
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+    .vol-grid { grid-template-columns: 1fr; }
+    .findings-grid { grid-template-columns: 1fr; }
+    .pipeline-flow { flex-direction: column; }
+    .header { padding: 16px; }
+    .panel { padding: 16px; }
+    .tabs { padding: 0 16px; overflow-x: auto; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+    <h1><span>▲</span> TRADING AGENT</h1>
+    <div class="header-meta">2026-08-26 22:00 UTC · 5,030 obs</div>
+</div>
+
+<div class="tabs">
+    <div class="tab active" onclick="show('stocks')">STOCKS</div>
+    <div class="tab" onclick="show('volatility')">VOLATILITY</div>
+    <div class="tab" onclick="show('research')">RESEARCH</div>
+    <div class="tab" onclick="show('pipeline')">PIPELINE</div>
+    <div class="tab" onclick="show('budget')">BUDGET</div>
+</div>
+
+<!-- STOCKS -->
+<div id="stocks" class="panel active">
+    
+        <div class="card" style="margin-bottom:24px;overflow-x:auto">
+            <div class="card-title">STOCK SCREENER — 20 STOCKS ANALYZED</div>
+            <table class="stats-table">
+                <thead><tr>
+                    <th>Symbol</th><th>Price</th><th>Ann.Ret</th><th>Vol</th>
+                    <th>Sharpe</th><th>Kurt</th><th>GARCH P</th><th>Vol 20/60</th><th>Signal</th>
+                </tr></thead>
+                <tbody>
+            <tr class="stock-row">
+                <td class="stock-sym">MU</td>
+                <td class="stock-price">$938.40</td>
+                <td class="stock-num green">+51.6%</td>
+                <td class="stock-num">56.2%</td>
+                <td class="stock-num amber">0.92</td>
+                <td class="stock-num">3.4</td>
+                <td class="stock-num">0.9868</td>
+                <td class="stock-num green">0.80</td>
+                <td class="stock-signal ">—</td>
+            </tr>
+            <tr class="stock-row">
+                <td class="stock-sym">NVDA</td>
+                <td class="stock-price">$209.66</td>
+                <td class="stock-num green">+44.8%</td>
+                <td class="stock-num">51.4%</td>
+                <td class="stock-num amber">0.87</td>
+                <td class="stock-num">3.8</td>
+                <td class="stock-num">0.9648</td>
+                <td class="stock-num green">0.85</td>
+                <td class="stock-signal green">3</td>
+            </tr>
+            <tr class="stock-row">
+                <td class="stock-sym">NVDA</td>
+                <td class="stock-price">$209.66</td>
+                <td class="stock-num green">+44.8%</td>
+                <td class="stock-num">51.4%</td>
+                <td class="stock-num amber">0.87</td>
+                <td class="stock-num">3.8</td>
+                <td class="stock-num">0.9648</td>
+                <td class="stock-num green">0.85</td>
+                <td class="stock-signal green">3</td>
+            </tr>
+            <tr class="stock-row">
+                <td class="stock-sym">JPM</td>
+                <td class="stock-price">$356.50</td>
+                <td class="stock-num green">+18.2%</td>
+                <td class="stock-num">24.4%</td>
+                <td class="stock-num amber">0.75</td>
+                <td class="stock-num">4.7</td>
+                <td class="stock-num">0.7786</td>
+                <td class="stock-num green">0.68</td>
+                <td class="stock-signal ">—</td>
+            </tr>
+            <tr class="stock-row">
+                <td class="stock-sym">HPE</td>
+                <td class="stock-price">$55.23</td>
+                <td class="stock-num green">+28.5%</td>
+                <td class="stock-num">40.2%</td>
+                <td class="stock-num amber">0.71</td>
+                <td class="stock-num">6.6</td>
+                <td class="stock-num">0.8113</td>
+                <td class="stock-num green">0.74</td>
+                <td class="stock-signal green">1</td>
+            </tr>
+            <tr class="stock-row">
+                <td class="stock-sym">AAPL</td>
+                <td class="stock-price">$313.45</td>
+                <td class="stock-num green">+15.5%</td>
+                <td class="stock-num">28.0%</td>
+                <td class="stock-num amber">0.55</td>
+                <td class="stock-num">5.7</td>
+                <td class="stock-num">0.9675</td>
+                <td class="stock-num green">1.00</td>
+                <td class="stock-signal ">—</td>
+            </tr>
+            <tr class="stock-row">
+                <td class="stock-sym">GOOG</td>
+                <td class="stock-price">$339.10</td>
+                <td class="stock-num green">+17.3%</td>
+                <td class="stock-num">31.9%</td>
+                <td class="stock-num amber">0.54</td>
+                <td class="stock-num">3.1</td>
+                <td class="stock-num">0.9812</td>
+                <td class="stock-num green">0.98</td>
+                <td class="stock-signal green">1</td>
+            </tr>
+            <tr class="stock-row">
+                <td class="stock-sym">SMCI</td>
+                <td class="stock-price">$37.39</td>
+                <td class="stock-num green">+47.2%</td>
+                <td class="stock-num">88.5%</td>
+                <td class="stock-num amber">0.53</td>
+                <td class="stock-num">9.2</td>
+                <td class="stock-num">0.9859</td>
+                <td class="stock-num green">0.76</td>
+                <td class="stock-signal ">—</td>
+            </tr>
+            <tr class="stock-row">
+                <td class="stock-sym">AMD</td>
+                <td class="stock-price">$480.93</td>
+                <td class="stock-num green">+29.4%</td>
+                <td class="stock-num">56.6%</td>
+                <td class="stock-num amber">0.52</td>
+                <td class="stock-num">3.5</td>
+                <td class="stock-num">0.8765</td>
+                <td class="stock-num green">0.91</td>
+                <td class="stock-signal green">3</td>
+            </tr>
+            <tr class="stock-row">
+                <td class="stock-sym">UEC</td>
+                <td class="stock-price">$13.13</td>
+                <td class="stock-num green">+34.3%</td>
+                <td class="stock-num">74.0%</td>
+                <td class="stock-num red">0.46</td>
+                <td class="stock-num">1.6</td>
+                <td class="stock-num">0.9952</td>
+                <td class="stock-num green">0.77</td>
+                <td class="stock-signal ">—</td>
+            </tr>
+            <tr class="stock-row">
+                <td class="stock-sym">MSFT</td>
+                <td class="stock-price">$496.37</td>
+                <td class="stock-num green">+11.0%</td>
+                <td class="stock-num">28.0%</td>
+                <td class="stock-num red">0.39</td>
+                <td class="stock-num">6.2</td>
+                <td class="stock-num">0.9886</td>
+                <td class="stock-num amber">1.28</td>
+                <td class="stock-signal ">—</td>
+            </tr>
+            <tr class="stock-row">
+                <td class="stock-sym">NOK</td>
+                <td class="stock-price">$10.41</td>
+                <td class="stock-num green">+13.1%</td>
+                <td class="stock-num">38.6%</td>
+                <td class="stock-num red">0.34</td>
+                <td class="stock-num">7.2</td>
+                <td class="stock-num">0.9231</td>
+                <td class="stock-num green">0.80</td>
+                <td class="stock-signal green">2</td>
+            </tr>
+            <tr class="stock-row">
+                <td class="stock-sym">OKLO</td>
+                <td class="stock-price">$41.60</td>
+                <td class="stock-num green">+29.0%</td>
+                <td class="stock-num">88.0%</td>
+                <td class="stock-num red">0.33</td>
+                <td class="stock-num">34.4</td>
+                <td class="stock-num">0.9800</td>
+                <td class="stock-num amber">1.15</td>
+                <td class="stock-signal green">7</td>
+            </tr>
+            <tr class="stock-row">
+                <td class="stock-sym">AMZN</td>
+                <td class="stock-price">$260.28</td>
+                <td class="stock-num green">+8.9%</td>
+                <td class="stock-num">36.3%</td>
+                <td class="stock-num red">0.24</td>
+                <td class="stock-num">5.4</td>
+                <td class="stock-num">0.7847</td>
+                <td class="stock-num red">1.37</td>
+                <td class="stock-signal green">2</td>
+            </tr>
+            <tr class="stock-row">
+                <td class="stock-sym">META</td>
+                <td class="stock-price">$576.14</td>
+                <td class="stock-num green">+8.9%</td>
+                <td class="stock-num">45.3%</td>
+                <td class="stock-num red">0.20</td>
+                <td class="stock-num">23.3</td>
+                <td class="stock-num">0.8136</td>
+                <td class="stock-num green">1.01</td>
+                <td class="stock-signal green">1</td>
+            </tr>
+            <tr class="stock-row">
+                <td class="stock-sym">TSLA</td>
+                <td class="stock-price">$345.82</td>
+                <td class="stock-num green">+7.6%</td>
+                <td class="stock-num">59.6%</td>
+                <td class="stock-num red">0.13</td>
+                <td class="stock-num">2.6</td>
+                <td class="stock-num">0.9828</td>
+                <td class="stock-num green">0.66</td>
+                <td class="stock-signal ">—</td>
+            </tr>
+            <tr class="stock-row">
+                <td class="stock-sym">QBTS</td>
+                <td class="stock-price">$17.51</td>
+                <td class="stock-num green">+11.8%</td>
+                <td class="stock-num">125.1%</td>
+                <td class="stock-num red">0.09</td>
+                <td class="stock-num">10.5</td>
+                <td class="stock-num">0.9500</td>
+                <td class="stock-num green">0.98</td>
+                <td class="stock-signal green">2</td>
+            </tr>
+            <tr class="stock-row">
+                <td class="stock-sym">RGTI</td>
+                <td class="stock-price">$15.94</td>
+                <td class="stock-num green">+10.0%</td>
+                <td class="stock-num">126.7%</td>
+                <td class="stock-num red">0.08</td>
+                <td class="stock-num">7.4</td>
+                <td class="stock-num">0.9800</td>
+                <td class="stock-num green">0.99</td>
+                <td class="stock-signal ">—</td>
+            </tr>
+            <tr class="stock-row">
+                <td class="stock-sym">MXL</td>
+                <td class="stock-price">$63.00</td>
+                <td class="stock-num green">+3.5%</td>
+                <td class="stock-num">79.7%</td>
+                <td class="stock-num red">0.04</td>
+                <td class="stock-num">21.5</td>
+                <td class="stock-num">0.8936</td>
+                <td class="stock-num green">0.86</td>
+                <td class="stock-signal green">4</td>
+            </tr>
+            <tr class="stock-row">
+                <td class="stock-sym">SPCE</td>
+                <td class="stock-price">$2.89</td>
+                <td class="stock-num red">-104.5%</td>
+                <td class="stock-num">94.9%</td>
+                <td class="stock-num red">-1.10</td>
+                <td class="stock-num">7.4</td>
+                <td class="stock-num">0.7523</td>
+                <td class="stock-num green">0.41</td>
+                <td class="stock-signal green">1</td>
+            </tr></tbody>
+            </table>
+        </div>
+        <div class="card-title" style="margin-bottom:12px">DETAIL — NULL ENGINE RESULTS PER STOCK</div>
+        <div class="findings-grid">
+            <div class="finding-card card-signal">
+                <div class="finding-header">
+                    <span class="finding-dataset">OKLO</span>
+                    <span class="finding-obs">1,253 days · $41.60</span>
+                </div>
+                <div class="finding-garch">
+                    GARCH α=0.0800 β=0.9000
+                    persist=0.98000 HL=34d
+                </div>
+                <div class="finding-verdict">7/11 statistics survive every null</div>
+                <div style="margin-top:8px"><div class="stock-stat-row"><span>Ann. volatility</span><span class="p-nosig">0.4186</span></div><div class="stock-stat-row"><span>Excess kurtosis</span><span class="p-nosig">0.3920</span></div><div class="stock-stat-row"><span>ACF |r| lag 1</span><span class="p-sig">0.0066</span></div><div class="stock-stat-row"><span>ACF |r| lag 22</span><span class="p-sig">0.0066</span></div><div class="stock-stat-row"><span>ACF |r| lag 66</span><span class="p-sig">0.0066</span></div><div class="stock-stat-row"><span>ACF r lag 1</span><span class="p-nosig">0.1196</span></div><div class="stock-stat-row"><span>Ljung-Box Q(22) on |r|</span><span class="p-sig">0.0066</span></div><div class="stock-stat-row"><span>Same-band rate</span><span class="p-sig">0.0066</span></div><div class="stock-stat-row"><span>Lift over independence</span><span class="p-sig">0.0066</span></div><div class="stock-stat-row"><span>Cramer's V</span><span class="p-sig">0.0066</span></div><div class="stock-stat-row"><span>Regression R2</span><span class="p-sig">0.0066</span></div></div>
+            </div>
+            <div class="finding-card card-signal">
+                <div class="finding-header">
+                    <span class="finding-dataset">MXL</span>
+                    <span class="finding-obs">1,253 days · $63.00</span>
+                </div>
+                <div class="finding-garch">
+                    GARCH α=0.1946 β=0.6990
+                    persist=0.89360 HL=6d
+                </div>
+                <div class="finding-verdict">4/11 statistics survive every null</div>
+                <div style="margin-top:8px"><div class="stock-stat-row"><span>Ann. volatility</span><span class="p-nosig">0.5714</span></div><div class="stock-stat-row"><span>Excess kurtosis</span><span class="p-nosig">0.4518</span></div><div class="stock-stat-row"><span>ACF |r| lag 1</span><span class="p-nosig">0.4983</span></div><div class="stock-stat-row"><span>ACF |r| lag 22</span><span class="p-nosig">0.1196</span></div><div class="stock-stat-row"><span>ACF |r| lag 66</span><span class="p-sig">0.0332</span></div><div class="stock-stat-row"><span>ACF r lag 1</span><span class="p-nosig">0.9967</span></div><div class="stock-stat-row"><span>Ljung-Box Q(22) on |r|</span><span class="p-nosig">0.9900</span></div><div class="stock-stat-row"><span>Same-band rate</span><span class="p-sig">0.0133</span></div><div class="stock-stat-row"><span>Lift over independence</span><span class="p-sig">0.0133</span></div><div class="stock-stat-row"><span>Cramer's V</span><span class="p-sig">0.0133</span></div><div class="stock-stat-row"><span>Regression R2</span><span class="p-nosig">0.8704</span></div></div>
+            </div>
+            <div class="finding-card card-signal">
+                <div class="finding-header">
+                    <span class="finding-dataset">NVDA</span>
+                    <span class="finding-obs">1,253 days · $209.66</span>
+                </div>
+                <div class="finding-garch">
+                    GARCH α=0.0534 β=0.9114
+                    persist=0.96485 HL=19d
+                </div>
+                <div class="finding-verdict">3/11 statistics survive every null</div>
+                <div style="margin-top:8px"><div class="stock-stat-row"><span>Ann. volatility</span><span class="p-nosig">0.7774</span></div><div class="stock-stat-row"><span>Excess kurtosis</span><span class="p-nosig">0.6512</span></div><div class="stock-stat-row"><span>ACF |r| lag 1</span><span class="p-nosig">0.6445</span></div><div class="stock-stat-row"><span>ACF |r| lag 22</span><span class="p-nosig">0.0864</span></div><div class="stock-stat-row"><span>ACF |r| lag 66</span><span class="p-sig">0.0332</span></div><div class="stock-stat-row"><span>ACF r lag 1</span><span class="p-nosig">0.2591</span></div><div class="stock-stat-row"><span>Ljung-Box Q(22) on |r|</span><span class="p-nosig">0.6379</span></div><div class="stock-stat-row"><span>Same-band rate</span><span class="p-sig">0.0399</span></div><div class="stock-stat-row"><span>Lift over independence</span><span class="p-sig">0.0399</span></div><div class="stock-stat-row"><span>Cramer's V</span><span class="p-nosig">0.0930</span></div><div class="stock-stat-row"><span>Regression R2</span><span class="p-nosig">0.4053</span></div></div>
+            </div>
+            <div class="finding-card card-signal">
+                <div class="finding-header">
+                    <span class="finding-dataset">AMD</span>
+                    <span class="finding-obs">1,253 days · $480.93</span>
+                </div>
+                <div class="finding-garch">
+                    GARCH α=0.0566 β=0.8198
+                    persist=0.87646 HL=5d
+                </div>
+                <div class="finding-verdict">3/11 statistics survive every null</div>
+                <div style="margin-top:8px"><div class="stock-stat-row"><span>Ann. volatility</span><span class="p-nosig">0.8771</span></div><div class="stock-stat-row"><span>Excess kurtosis</span><span class="p-nosig">0.9767</span></div><div class="stock-stat-row"><span>ACF |r| lag 1</span><span class="p-nosig">0.7774</span></div><div class="stock-stat-row"><span>ACF |r| lag 22</span><span class="p-nosig">0.5449</span></div><div class="stock-stat-row"><span>ACF |r| lag 66</span><span class="p-nosig">0.0598</span></div><div class="stock-stat-row"><span>ACF r lag 1</span><span class="p-nosig">0.6445</span></div><div class="stock-stat-row"><span>Ljung-Box Q(22) on |r|</span><span class="p-nosig">0.2658</span></div><div class="stock-stat-row"><span>Same-band rate</span><span class="p-sig">0.0066</span></div><div class="stock-stat-row"><span>Lift over independence</span><span class="p-sig">0.0066</span></div><div class="stock-stat-row"><span>Cramer's V</span><span class="p-sig">0.0133</span></div><div class="stock-stat-row"><span>Regression R2</span><span class="p-nosig">0.5847</span></div></div>
+            </div>
+            <div class="finding-card card-signal">
+                <div class="finding-header">
+                    <span class="finding-dataset">NVDA</span>
+                    <span class="finding-obs">1,253 days · $209.66</span>
+                </div>
+                <div class="finding-garch">
+                    GARCH α=0.0534 β=0.9114
+                    persist=0.96485 HL=19d
+                </div>
+                <div class="finding-verdict">3/11 statistics survive every null</div>
+                <div style="margin-top:8px"><div class="stock-stat-row"><span>Ann. volatility</span><span class="p-nosig">0.7774</span></div><div class="stock-stat-row"><span>Excess kurtosis</span><span class="p-nosig">0.6512</span></div><div class="stock-stat-row"><span>ACF |r| lag 1</span><span class="p-nosig">0.6445</span></div><div class="stock-stat-row"><span>ACF |r| lag 22</span><span class="p-nosig">0.0864</span></div><div class="stock-stat-row"><span>ACF |r| lag 66</span><span class="p-sig">0.0332</span></div><div class="stock-stat-row"><span>ACF r lag 1</span><span class="p-nosig">0.2591</span></div><div class="stock-stat-row"><span>Ljung-Box Q(22) on |r|</span><span class="p-nosig">0.6379</span></div><div class="stock-stat-row"><span>Same-band rate</span><span class="p-sig">0.0399</span></div><div class="stock-stat-row"><span>Lift over independence</span><span class="p-sig">0.0399</span></div><div class="stock-stat-row"><span>Cramer's V</span><span class="p-nosig">0.0930</span></div><div class="stock-stat-row"><span>Regression R2</span><span class="p-nosig">0.4053</span></div></div>
+            </div>
+            <div class="finding-card card-signal">
+                <div class="finding-header">
+                    <span class="finding-dataset">AMZN</span>
+                    <span class="finding-obs">1,253 days · $260.28</span>
+                </div>
+                <div class="finding-garch">
+                    GARCH α=0.2583 β=0.5264
+                    persist=0.78472 HL=3d
+                </div>
+                <div class="finding-verdict">2/11 statistics survive every null</div>
+                <div style="margin-top:8px"><div class="stock-stat-row"><span>Ann. volatility</span><span class="p-nosig">0.8239</span></div><div class="stock-stat-row"><span>Excess kurtosis</span><span class="p-nosig">0.6910</span></div><div class="stock-stat-row"><span>ACF |r| lag 1</span><span class="p-nosig">0.1462</span></div><div class="stock-stat-row"><span>ACF |r| lag 22</span><span class="p-nosig">0.1196</span></div><div class="stock-stat-row"><span>ACF |r| lag 66</span><span class="p-sig">0.0066</span></div><div class="stock-stat-row"><span>ACF r lag 1</span><span class="p-nosig">0.7973</span></div><div class="stock-stat-row"><span>Ljung-Box Q(22) on |r|</span><span class="p-nosig">0.5449</span></div><div class="stock-stat-row"><span>Same-band rate</span><span class="p-sig">0.0066</span></div><div class="stock-stat-row"><span>Lift over independence</span><span class="p-sig">0.0066</span></div><div class="stock-stat-row"><span>Cramer's V</span><span class="p-sig">0.0066</span></div><div class="stock-stat-row"><span>Regression R2</span><span class="p-nosig">0.1860</span></div></div>
+            </div>
+            <div class="finding-card card-signal">
+                <div class="finding-header">
+                    <span class="finding-dataset">QBTS</span>
+                    <span class="finding-obs">1,253 days · $17.51</span>
+                </div>
+                <div class="finding-garch">
+                    GARCH α=0.1500 β=0.8000
+                    persist=0.95000 HL=14d
+                </div>
+                <div class="finding-verdict">2/11 statistics survive every null</div>
+                <div style="margin-top:8px"><div class="stock-stat-row"><span>Ann. volatility</span><span class="p-nosig">0.6711</span></div><div class="stock-stat-row"><span>Excess kurtosis</span><span class="p-nosig">0.6977</span></div><div class="stock-stat-row"><span>ACF |r| lag 1</span><span class="p-nosig">0.1528</span></div><div class="stock-stat-row"><span>ACF |r| lag 22</span><span class="p-nosig">0.1063</span></div><div class="stock-stat-row"><span>ACF |r| lag 66</span><span class="p-sig">0.0199</span></div><div class="stock-stat-row"><span>ACF r lag 1</span><span class="p-nosig">0.4252</span></div><div class="stock-stat-row"><span>Ljung-Box Q(22) on |r|</span><span class="p-nosig">0.0997</span></div><div class="stock-stat-row"><span>Same-band rate</span><span class="p-nosig">0.0664</span></div><div class="stock-stat-row"><span>Lift over independence</span><span class="p-nosig">0.0664</span></div><div class="stock-stat-row"><span>Cramer's V</span><span class="p-sig">0.0133</span></div><div class="stock-stat-row"><span>Regression R2</span><span class="p-sig">0.0066</span></div></div>
+            </div>
+            <div class="finding-card card-signal">
+                <div class="finding-header">
+                    <span class="finding-dataset">NOK</span>
+                    <span class="finding-obs">1,253 days · $10.41</span>
+                </div>
+                <div class="finding-garch">
+                    GARCH α=0.1066 β=0.8164
+                    persist=0.92306 HL=9d
+                </div>
+                <div class="finding-verdict">2/11 statistics survive every null</div>
+                <div style="margin-top:8px"><div class="stock-stat-row"><span>Ann. volatility</span><span class="p-nosig">0.7641</span></div><div class="stock-stat-row"><span>Excess kurtosis</span><span class="p-nosig">0.8040</span></div><div class="stock-stat-row"><span>ACF |r| lag 1</span><span class="p-nosig">0.8505</span></div><div class="stock-stat-row"><span>ACF |r| lag 22</span><span class="p-sig">0.0199</span></div><div class="stock-stat-row"><span>ACF |r| lag 66</span><span class="p-sig">0.0066</span></div><div class="stock-stat-row"><span>ACF r lag 1</span><span class="p-nosig">0.8771</span></div><div class="stock-stat-row"><span>Ljung-Box Q(22) on |r|</span><span class="p-nosig">0.1528</span></div><div class="stock-stat-row"><span>Same-band rate</span><span class="p-nosig">0.2857</span></div><div class="stock-stat-row"><span>Lift over independence</span><span class="p-nosig">0.2724</span></div><div class="stock-stat-row"><span>Cramer's V</span><span class="p-nosig">0.4053</span></div><div class="stock-stat-row"><span>Regression R2</span><span class="p-nosig">0.6578</span></div></div>
+            </div>
+            <div class="finding-card card-signal">
+                <div class="finding-header">
+                    <span class="finding-dataset">GOOG</span>
+                    <span class="finding-obs">1,253 days · $339.10</span>
+                </div>
+                <div class="finding-garch">
+                    GARCH α=0.0130 β=0.9683
+                    persist=0.98123 HL=37d
+                </div>
+                <div class="finding-verdict">1/11 statistics survive every null</div>
+                <div style="margin-top:8px"><div class="stock-stat-row"><span>Ann. volatility</span><span class="p-nosig">0.9302</span></div><div class="stock-stat-row"><span>Excess kurtosis</span><span class="p-nosig">0.7243</span></div><div class="stock-stat-row"><span>ACF |r| lag 1</span><span class="p-nosig">0.5449</span></div><div class="stock-stat-row"><span>ACF |r| lag 22</span><span class="p-nosig">0.3654</span></div><div class="stock-stat-row"><span>ACF |r| lag 66</span><span class="p-sig">0.0066</span></div><div class="stock-stat-row"><span>ACF r lag 1</span><span class="p-nosig">0.8439</span></div><div class="stock-stat-row"><span>Ljung-Box Q(22) on |r|</span><span class="p-nosig">0.0598</span></div><div class="stock-stat-row"><span>Same-band rate</span><span class="p-sig">0.0133</span></div><div class="stock-stat-row"><span>Lift over independence</span><span class="p-sig">0.0133</span></div><div class="stock-stat-row"><span>Cramer's V</span><span class="p-sig">0.0332</span></div><div class="stock-stat-row"><span>Regression R2</span><span class="p-nosig">0.5249</span></div></div>
+            </div>
+            <div class="finding-card card-signal">
+                <div class="finding-header">
+                    <span class="finding-dataset">META</span>
+                    <span class="finding-obs">1,253 days · $576.14</span>
+                </div>
+                <div class="finding-garch">
+                    GARCH α=0.1066 β=0.7071
+                    persist=0.81363 HL=3d
+                </div>
+                <div class="finding-verdict">1/11 statistics survive every null</div>
+                <div style="margin-top:8px"><div class="stock-stat-row"><span>Ann. volatility</span><span class="p-nosig">0.7243</span></div><div class="stock-stat-row"><span>Excess kurtosis</span><span class="p-nosig">0.7575</span></div><div class="stock-stat-row"><span>ACF |r| lag 1</span><span class="p-nosig">0.0864</span></div><div class="stock-stat-row"><span>ACF |r| lag 22</span><span class="p-nosig">0.4252</span></div><div class="stock-stat-row"><span>ACF |r| lag 66</span><span class="p-sig">0.0066</span></div><div class="stock-stat-row"><span>ACF r lag 1</span><span class="p-nosig">0.8439</span></div><div class="stock-stat-row"><span>Ljung-Box Q(22) on |r|</span><span class="p-nosig">0.7110</span></div><div class="stock-stat-row"><span>Same-band rate</span><span class="p-sig">0.0066</span></div><div class="stock-stat-row"><span>Lift over independence</span><span class="p-sig">0.0066</span></div><div class="stock-stat-row"><span>Cramer's V</span><span class="p-sig">0.0066</span></div><div class="stock-stat-row"><span>Regression R2</span><span class="p-nosig">0.4319</span></div></div>
+            </div>
+            <div class="finding-card card-signal">
+                <div class="finding-header">
+                    <span class="finding-dataset">SPCE</span>
+                    <span class="finding-obs">1,253 days · $2.89</span>
+                </div>
+                <div class="finding-garch">
+                    GARCH α=0.2463 β=0.5059
+                    persist=0.75226 HL=2d
+                </div>
+                <div class="finding-verdict">1/11 statistics survive every null</div>
+                <div style="margin-top:8px"><div class="stock-stat-row"><span>Ann. volatility</span><span class="p-nosig">0.7973</span></div><div class="stock-stat-row"><span>Excess kurtosis</span><span class="p-nosig">0.3721</span></div><div class="stock-stat-row"><span>ACF |r| lag 1</span><span class="p-nosig">0.9967</span></div><div class="stock-stat-row"><span>ACF |r| lag 22</span><span class="p-nosig">0.7243</span></div><div class="stock-stat-row"><span>ACF |r| lag 66</span><span class="p-sig">0.0199</span></div><div class="stock-stat-row"><span>ACF r lag 1</span><span class="p-nosig">0.9701</span></div><div class="stock-stat-row"><span>Ljung-Box Q(22) on |r|</span><span class="p-nosig">0.3056</span></div><div class="stock-stat-row"><span>Same-band rate</span><span class="p-nosig">0.0664</span></div><div class="stock-stat-row"><span>Lift over independence</span><span class="p-nosig">0.0664</span></div><div class="stock-stat-row"><span>Cramer's V</span><span class="p-nosig">0.0731</span></div><div class="stock-stat-row"><span>Regression R2</span><span class="p-nosig">0.0598</span></div></div>
+            </div>
+            <div class="finding-card card-signal">
+                <div class="finding-header">
+                    <span class="finding-dataset">HPE</span>
+                    <span class="finding-obs">1,253 days · $55.23</span>
+                </div>
+                <div class="finding-garch">
+                    GARCH α=0.1619 β=0.6494
+                    persist=0.81129 HL=3d
+                </div>
+                <div class="finding-verdict">1/11 statistics survive every null</div>
+                <div style="margin-top:8px"><div class="stock-stat-row"><span>Ann. volatility</span><span class="p-nosig">0.8173</span></div><div class="stock-stat-row"><span>Excess kurtosis</span><span class="p-nosig">0.8372</span></div><div class="stock-stat-row"><span>ACF |r| lag 1</span><span class="p-nosig">0.6844</span></div><div class="stock-stat-row"><span>ACF |r| lag 22</span><span class="p-sig">0.0066</span></div><div class="stock-stat-row"><span>ACF |r| lag 66</span><span class="p-nosig">0.2060</span></div><div class="stock-stat-row"><span>ACF r lag 1</span><span class="p-nosig">0.1927</span></div><div class="stock-stat-row"><span>Ljung-Box Q(22) on |r|</span><span class="p-nosig">0.3854</span></div><div class="stock-stat-row"><span>Same-band rate</span><span class="p-nosig">0.9701</span></div><div class="stock-stat-row"><span>Lift over independence</span><span class="p-nosig">0.9701</span></div><div class="stock-stat-row"><span>Cramer's V</span><span class="p-nosig">0.9635</span></div><div class="stock-stat-row"><span>Regression R2</span><span class="p-nosig">0.4120</span></div></div>
+            </div>
+            <div class="finding-card card-nosignal">
+                <div class="finding-header">
+                    <span class="finding-dataset">AAPL</span>
+                    <span class="finding-obs">1,253 days · $313.45</span>
+                </div>
+                <div class="finding-garch">
+                    GARCH α=0.0623 β=0.9053
+                    persist=0.96751 HL=21d
+                </div>
+                <div class="finding-verdict">NO SIGNAL — GARCH explains everything observed</div>
+                <div style="margin-top:8px"><div class="stock-stat-row"><span>Ann. volatility</span><span class="p-nosig">0.8173</span></div><div class="stock-stat-row"><span>Excess kurtosis</span><span class="p-nosig">0.3123</span></div><div class="stock-stat-row"><span>ACF |r| lag 1</span><span class="p-nosig">0.0731</span></div><div class="stock-stat-row"><span>ACF |r| lag 22</span><span class="p-nosig">0.0997</span></div><div class="stock-stat-row"><span>ACF |r| lag 66</span><span class="p-nosig">0.6512</span></div><div class="stock-stat-row"><span>ACF r lag 1</span><span class="p-nosig">0.4850</span></div><div class="stock-stat-row"><span>Ljung-Box Q(22) on |r|</span><span class="p-nosig">0.4319</span></div><div class="stock-stat-row"><span>Same-band rate</span><span class="p-nosig">0.5316</span></div><div class="stock-stat-row"><span>Lift over independence</span><span class="p-nosig">0.5249</span></div><div class="stock-stat-row"><span>Cramer's V</span><span class="p-nosig">0.6645</span></div><div class="stock-stat-row"><span>Regression R2</span><span class="p-nosig">0.6312</span></div></div>
+            </div>
+            <div class="finding-card card-nosignal">
+                <div class="finding-header">
+                    <span class="finding-dataset">MSFT</span>
+                    <span class="finding-obs">1,253 days · $496.37</span>
+                </div>
+                <div class="finding-garch">
+                    GARCH α=0.0305 β=0.9581
+                    persist=0.98862 HL=61d
+                </div>
+                <div class="finding-verdict">NO SIGNAL — GARCH explains everything observed</div>
+                <div style="margin-top:8px"><div class="stock-stat-row"><span>Ann. volatility</span><span class="p-nosig">0.8571</span></div><div class="stock-stat-row"><span>Excess kurtosis</span><span class="p-nosig">0.7243</span></div><div class="stock-stat-row"><span>ACF |r| lag 1</span><span class="p-nosig">0.6445</span></div><div class="stock-stat-row"><span>ACF |r| lag 22</span><span class="p-nosig">0.5249</span></div><div class="stock-stat-row"><span>ACF |r| lag 66</span><span class="p-nosig">0.4186</span></div><div class="stock-stat-row"><span>ACF r lag 1</span><span class="p-nosig">0.6379</span></div><div class="stock-stat-row"><span>Ljung-Box Q(22) on |r|</span><span class="p-nosig">0.6113</span></div><div class="stock-stat-row"><span>Same-band rate</span><span class="p-nosig">0.4784</span></div><div class="stock-stat-row"><span>Lift over independence</span><span class="p-nosig">0.4718</span></div><div class="stock-stat-row"><span>Cramer's V</span><span class="p-nosig">0.6445</span></div><div class="stock-stat-row"><span>Regression R2</span><span class="p-nosig">0.5980</span></div></div>
+            </div>
+            <div class="finding-card card-nosignal">
+                <div class="finding-header">
+                    <span class="finding-dataset">TSLA</span>
+                    <span class="finding-obs">1,253 days · $345.82</span>
+                </div>
+                <div class="finding-garch">
+                    GARCH α=0.0259 β=0.9568
+                    persist=0.98275 HL=40d
+                </div>
+                <div class="finding-verdict">NO SIGNAL — GARCH explains everything observed</div>
+                <div style="margin-top:8px"><div class="stock-stat-row"><span>Ann. volatility</span><span class="p-nosig">0.8505</span></div><div class="stock-stat-row"><span>Excess kurtosis</span><span class="p-nosig">0.8439</span></div><div class="stock-stat-row"><span>ACF |r| lag 1</span><span class="p-nosig">0.6977</span></div><div class="stock-stat-row"><span>ACF |r| lag 22</span><span class="p-nosig">0.2193</span></div><div class="stock-stat-row"><span>ACF |r| lag 66</span><span class="p-nosig">0.7375</span></div><div class="stock-stat-row"><span>ACF r lag 1</span><span class="p-nosig">0.5183</span></div><div class="stock-stat-row"><span>Ljung-Box Q(22) on |r|</span><span class="p-nosig">0.2658</span></div><div class="stock-stat-row"><span>Same-band rate</span><span class="p-nosig">0.2458</span></div><div class="stock-stat-row"><span>Lift over independence</span><span class="p-nosig">0.2458</span></div><div class="stock-stat-row"><span>Cramer's V</span><span class="p-nosig">0.1860</span></div><div class="stock-stat-row"><span>Regression R2</span><span class="p-nosig">0.5847</span></div></div>
+            </div>
+            <div class="finding-card card-nosignal">
+                <div class="finding-header">
+                    <span class="finding-dataset">JPM</span>
+                    <span class="finding-obs">1,253 days · $356.50</span>
+                </div>
+                <div class="finding-garch">
+                    GARCH α=0.0972 β=0.6814
+                    persist=0.77860 HL=3d
+                </div>
+                <div class="finding-verdict">NO SIGNAL — GARCH explains everything observed</div>
+                <div style="margin-top:8px"><div class="stock-stat-row"><span>Ann. volatility</span><span class="p-nosig">0.9435</span></div><div class="stock-stat-row"><span>Excess kurtosis</span><span class="p-nosig">0.7575</span></div><div class="stock-stat-row"><span>ACF |r| lag 1</span><span class="p-nosig">0.2791</span></div><div class="stock-stat-row"><span>ACF |r| lag 22</span><span class="p-sig">0.0066</span></div><div class="stock-stat-row"><span>ACF |r| lag 66</span><span class="p-nosig">0.2658</span></div><div class="stock-stat-row"><span>ACF r lag 1</span><span class="p-nosig">0.5914</span></div><div class="stock-stat-row"><span>Ljung-Box Q(22) on |r|</span><span class="p-nosig">0.1794</span></div><div class="stock-stat-row"><span>Same-band rate</span><span class="p-sig">0.0332</span></div><div class="stock-stat-row"><span>Lift over independence</span><span class="p-sig">0.0332</span></div><div class="stock-stat-row"><span>Cramer's V</span><span class="p-nosig">0.0532</span></div><div class="stock-stat-row"><span>Regression R2</span><span class="p-sig">0.0465</span></div></div>
+            </div>
+            <div class="finding-card card-nosignal">
+                <div class="finding-header">
+                    <span class="finding-dataset">MU</span>
+                    <span class="finding-obs">1,253 days · $938.40</span>
+                </div>
+                <div class="finding-garch">
+                    GARCH α=0.0643 β=0.9225
+                    persist=0.98679 HL=52d
+                </div>
+                <div class="finding-verdict">NO SIGNAL — GARCH explains everything observed</div>
+                <div style="margin-top:8px"><div class="stock-stat-row"><span>Ann. volatility</span><span class="p-nosig">0.6844</span></div><div class="stock-stat-row"><span>Excess kurtosis</span><span class="p-nosig">0.7907</span></div><div class="stock-stat-row"><span>ACF |r| lag 1</span><span class="p-nosig">0.5515</span></div><div class="stock-stat-row"><span>ACF |r| lag 22</span><span class="p-nosig">0.5515</span></div><div class="stock-stat-row"><span>ACF |r| lag 66</span><span class="p-nosig">0.6113</span></div><div class="stock-stat-row"><span>ACF r lag 1</span><span class="p-nosig">0.8372</span></div><div class="stock-stat-row"><span>Ljung-Box Q(22) on |r|</span><span class="p-nosig">0.5581</span></div><div class="stock-stat-row"><span>Same-band rate</span><span class="p-nosig">0.5714</span></div><div class="stock-stat-row"><span>Lift over independence</span><span class="p-nosig">0.5648</span></div><div class="stock-stat-row"><span>Cramer's V</span><span class="p-nosig">0.6113</span></div><div class="stock-stat-row"><span>Regression R2</span><span class="p-nosig">0.4917</span></div></div>
+            </div>
+            <div class="finding-card card-nosignal">
+                <div class="finding-header">
+                    <span class="finding-dataset">UEC</span>
+                    <span class="finding-obs">1,253 days · $13.13</span>
+                </div>
+                <div class="finding-garch">
+                    GARCH α=0.0208 β=0.9745
+                    persist=0.99523 HL=145d
+                </div>
+                <div class="finding-verdict">NO SIGNAL — GARCH explains everything observed</div>
+                <div style="margin-top:8px"><div class="stock-stat-row"><span>Ann. volatility</span><span class="p-nosig">0.7176</span></div><div class="stock-stat-row"><span>Excess kurtosis</span><span class="p-nosig">0.9169</span></div><div class="stock-stat-row"><span>ACF |r| lag 1</span><span class="p-nosig">0.7973</span></div><div class="stock-stat-row"><span>ACF |r| lag 22</span><span class="p-nosig">0.2126</span></div><div class="stock-stat-row"><span>ACF |r| lag 66</span><span class="p-nosig">0.2990</span></div><div class="stock-stat-row"><span>ACF r lag 1</span><span class="p-nosig">0.9103</span></div><div class="stock-stat-row"><span>Ljung-Box Q(22) on |r|</span><span class="p-nosig">0.3322</span></div><div class="stock-stat-row"><span>Same-band rate</span><span class="p-nosig">0.2326</span></div><div class="stock-stat-row"><span>Lift over independence</span><span class="p-nosig">0.2326</span></div><div class="stock-stat-row"><span>Cramer's V</span><span class="p-nosig">0.3322</span></div><div class="stock-stat-row"><span>Regression R2</span><span class="p-nosig">0.4120</span></div></div>
+            </div>
+            <div class="finding-card card-nosignal">
+                <div class="finding-header">
+                    <span class="finding-dataset">SMCI</span>
+                    <span class="finding-obs">1,253 days · $37.39</span>
+                </div>
+                <div class="finding-garch">
+                    GARCH α=0.0179 β=0.9681
+                    persist=0.98594 HL=49d
+                </div>
+                <div class="finding-verdict">NO SIGNAL — GARCH explains everything observed</div>
+                <div style="margin-top:8px"><div class="stock-stat-row"><span>Ann. volatility</span><span class="p-nosig">0.7774</span></div><div class="stock-stat-row"><span>Excess kurtosis</span><span class="p-nosig">0.5116</span></div><div class="stock-stat-row"><span>ACF |r| lag 1</span><span class="p-sig">0.0066</span></div><div class="stock-stat-row"><span>ACF |r| lag 22</span><span class="p-nosig">0.2259</span></div><div class="stock-stat-row"><span>ACF |r| lag 66</span><span class="p-nosig">0.1528</span></div><div class="stock-stat-row"><span>ACF r lag 1</span><span class="p-nosig">1.0000</span></div><div class="stock-stat-row"><span>Ljung-Box Q(22) on |r|</span><span class="p-sig">0.0266</span></div><div class="stock-stat-row"><span>Same-band rate</span><span class="p-nosig">0.2126</span></div><div class="stock-stat-row"><span>Lift over independence</span><span class="p-nosig">0.2060</span></div><div class="stock-stat-row"><span>Cramer's V</span><span class="p-nosig">0.2857</span></div><div class="stock-stat-row"><span>Regression R2</span><span class="p-nosig">0.2259</span></div></div>
+            </div>
+            <div class="finding-card card-nosignal">
+                <div class="finding-header">
+                    <span class="finding-dataset">RGTI</span>
+                    <span class="finding-obs">1,253 days · $15.94</span>
+                </div>
+                <div class="finding-garch">
+                    GARCH α=0.1625 β=0.8175
+                    persist=0.98001 HL=34d
+                </div>
+                <div class="finding-verdict">NO SIGNAL — GARCH explains everything observed</div>
+                <div style="margin-top:8px"><div class="stock-stat-row"><span>Ann. volatility</span><span class="p-nosig">0.5449</span></div><div class="stock-stat-row"><span>Excess kurtosis</span><span class="p-nosig">0.8173</span></div><div class="stock-stat-row"><span>ACF |r| lag 1</span><span class="p-nosig">0.6047</span></div><div class="stock-stat-row"><span>ACF |r| lag 22</span><span class="p-nosig">0.9302</span></div><div class="stock-stat-row"><span>ACF |r| lag 66</span><span class="p-nosig">0.6379</span></div><div class="stock-stat-row"><span>ACF r lag 1</span><span class="p-nosig">0.7375</span></div><div class="stock-stat-row"><span>Ljung-Box Q(22) on |r|</span><span class="p-nosig">0.9767</span></div><div class="stock-stat-row"><span>Same-band rate</span><span class="p-nosig">0.1993</span></div><div class="stock-stat-row"><span>Lift over independence</span><span class="p-nosig">0.1927</span></div><div class="stock-stat-row"><span>Cramer's V</span><span class="p-nosig">0.1462</span></div><div class="stock-stat-row"><span>Regression R2</span><span class="p-nosig">0.7043</span></div></div>
+            </div></div>
+        
+</div>
+
+<!-- VOLATILITY -->
+<div id="volatility" class="panel">
+    <div class="vol-grid">
+        <div class="card">
+            <div class="card-title">SAME-BAND RATE</div>
+            <div class="big-number amber">70.2%</div>
+            <div class="sub-number">vs 20.0% independence baseline</div>
+            <div class="sub-number">lift +50.2 pts</div>
+        </div>
+        <div class="card">
+            <div class="card-title">GARCH(1,1) FIT</div>
+            <div class="big-number" style="font-size:22px">
+                α=0.1004 β=0.8878
+            </div>
+            <div class="sub-number">persistence 0.98815 · half-life 58d</div>
+        </div>
+        <div class="card">
+            <div class="card-title">ANNUALISED VOL</div>
+            <div class="big-number">19.1%</div>
+            <div class="sub-number">5,030 daily returns</div>
+        </div>
+        <div class="card">
+            <div class="card-title">EXCESS KURTOSIS</div>
+            <div class="big-number red">8.2</div>
+            <div class="sub-number">Gaussian = 0 · this is not Gaussian</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-title">REGIME TAPE — LAST 200 DAYS, COLOURED BY VOL BAND</div>
+        <div style="display:flex;gap:12px;margin-bottom:8px;font-family:var(--mono);font-size:11px;color:var(--text2)">
+            <span>◼ <span style="color:#1a1a2e">▊</span> low</span>
+            <span>◼ <span style="color:#16213e">▊</span></span>
+            <span>◼ <span style="color:#0f3460">▊</span></span>
+            <span>◼ <span style="color:#e94560">▊</span></span>
+            <span>◼ <span style="color:#ff6b6b">▊</span> high</span>
+        </div>
+        <div class="tape-container"><div class="tape-bar" style="background:#0f3460"></div><div class="tape-bar" style="background:#0f3460"></div><div class="tape-bar" style="background:#0f3460"></div><div class="tape-bar" style="background:#0f3460"></div><div class="tape-bar" style="background:#e94560"></div><div class="tape-bar" style="background:#e94560"></div><div class="tape-bar" style="background:#e94560"></div><div class="tape-bar" style="background:#e94560"></div><div class="tape-bar" style="background:#e94560"></div><div class="tape-bar" style="background:#e94560"></div><div class="tape-bar" style="background:#e94560"></div><div class="tape-bar" style="background:#ff6b6b"></div><div class="tape-bar" style="background:#ff6b6b"></div><div class="tape-bar" style="background:#ff6b6b"></div><div class="tape-bar" style="background:#ff6b6b"></div><div class="tape-bar" style="background:#ff6b6b"></div><div class="tape-bar" style="background:#ff6b6b"></div><div class="tape-bar" style="background:#ff6b6b"></div><div class="tape-bar" style="background:#ff6b6b"></div><div class="tape-bar" style="background:#ff6b6b"></div><div class="tape-bar" style="background:#ff6b6b"></div><div class="tape-bar" style="background:#ff6b6b"></div><div class="tape-bar" style="background:#ff6b6b"></div><div class="tape-bar" style="background:#ff6b6b"></div><div class="tape-bar" style="background:#ff6b6b"></div><div class="tape-bar" style="background:#e94560"></div><div class="tape-bar" style="background:#e94560"></div><div class="tape-bar" style="background:#e94560"></div><div class="tape-bar" style="background:#e94560"></div><div class="tape-bar" style="background:#e94560"></div><div class="tape-bar" style="background:#0f3460"></div><div class="tape-bar" style="background:#0f3460"></div><div class="tape-bar" style="background:#0f3460"></div><div class="tape-bar" style="background:#0f3460"></div><div class="tape-bar" style="background:#0f3460"></div><div class="tape-bar" style="background:#0f3460"></div><div class="tape-bar" style="background:#16213e"></div><div class="tape-bar" style="background:#16213e"></div><div class="tape-bar" style="background:#16213e"></div><div class="tape-bar" style="background:#16213e"></div><div class="tape-bar" style="background:#16213e"></div><div class="tape-bar" style="background:#16213e"></div><div class="tape-bar" style="background:#16213e"></div><div class="tape-bar" style="background:#16213e"></div><div class="tape-bar" style="background:#16213e"></div><div class="tape-bar" style="background:#16213e"></div><div class="tape-bar" style="background:#16213e"></div><div class="tape-bar" style="background:#16213e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#16213e"></div><div class="tape-bar" style="background:#16213e"></div><div class="tape-bar" style="background:#16213e"></div><div class="tape-bar" style="background:#16213e"></div><div class="tape-bar" style="background:#16213e"></div><div class="tape-bar" style="background:#16213e"></div><div class="tape-bar" style="background:#16213e"></div><div class="tape-bar" style="background:#16213e"></div><div class="tape-bar" style="background:#16213e"></div><div class="tape-bar" style="background:#16213e"></div><div class="tape-bar" style="background:#16213e"></div><div class="tape-bar" style="background:#16213e"></div><div class="tape-bar" style="background:#16213e"></div><div class="tape-bar" style="background:#16213e"></div><div class="tape-bar" style="background:#16213e"></div><div class="tape-bar" style="background:#16213e"></div><div class="tape-bar" style="background:#16213e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#16213e"></div><div class="tape-bar" style="background:#16213e"></div><div class="tape-bar" style="background:#16213e"></div><div class="tape-bar" style="background:#16213e"></div><div class="tape-bar" style="background:#16213e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#16213e"></div><div class="tape-bar" style="background:#16213e"></div><div class="tape-bar" style="background:#16213e"></div><div class="tape-bar" style="background:#16213e"></div><div class="tape-bar" style="background:#16213e"></div><div class="tape-bar" style="background:#16213e"></div><div class="tape-bar" style="background:#16213e"></div><div class="tape-bar" style="background:#16213e"></div><div class="tape-bar" style="background:#16213e"></div><div class="tape-bar" style="background:#16213e"></div><div class="tape-bar" style="background:#16213e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#1a1a2e"></div><div class="tape-bar" style="background:#0f3460"></div><div class="tape-bar" style="background:#0f3460"></div><div class="tape-bar" style="background:#0f3460"></div><div class="tape-bar" style="background:#0f3460"></div><div class="tape-bar" style="background:#e94560"></div><div class="tape-bar" style="background:#e94560"></div><div class="tape-bar" style="background:#e94560"></div><div class="tape-bar" style="background:#e94560"></div><div class="tape-bar" style="background:#e94560"></div><div class="tape-bar" style="background:#e94560"></div><div class="tape-bar" style="background:#e94560"></div><div class="tape-bar" style="background:#ff6b6b"></div><div class="tape-bar" style="background:#ff6b6b"></div><div class="tape-bar" style="background:#ff6b6b"></div><div class="tape-bar" style="background:#ff6b6b"></div><div class="tape-bar" style="background:#ff6b6b"></div><div class="tape-bar" style="background:#ff6b6b"></div><div class="tape-bar" style="background:#ff6b6b"></div><div class="tape-bar" style="background:#ff6b6b"></div><div class="tape-bar" style="background:#ff6b6b"></div><div class="tape-bar" style="background:#ff6b6b"></div><div class="tape-bar" style="background:#ff6b6b"></div><div class="tape-bar" style="background:#ff6b6b"></div><div class="tape-bar" style="background:#ff6b6b"></div><div class="tape-bar" style="background:#e94560"></div><div class="tape-bar" style="background:#e94560"></div><div class="tape-bar" style="background:#e94560"></div><div class="tape-bar" style="background:#e94560"></div><div class="tape-bar" style="background:#ff6b6b"></div><div class="tape-bar" style="background:#ff6b6b"></div><div class="tape-bar" style="background:#e94560"></div><div class="tape-bar" style="background:#e94560"></div><div class="tape-bar" style="background:#e94560"></div><div class="tape-bar" style="background:#e94560"></div><div class="tape-bar" style="background:#e94560"></div><div class="tape-bar" style="background:#e94560"></div><div class="tape-bar" style="background:#e94560"></div><div class="tape-bar" style="background:#e94560"></div><div class="tape-bar" style="background:#ff6b6b"></div><div class="tape-bar" style="background:#ff6b6b"></div><div class="tape-bar" style="background:#ff6b6b"></div><div class="tape-bar" style="background:#ff6b6b"></div><div class="tape-bar" style="background:#ff6b6b"></div><div class="tape-bar" style="background:#e94560"></div><div class="tape-bar" style="background:#e94560"></div><div class="tape-bar" style="background:#ff6b6b"></div><div class="tape-bar" style="background:#ff6b6b"></div><div class="tape-bar" style="background:#ff6b6b"></div><div class="tape-bar" style="background:#ff6b6b"></div><div class="tape-bar" style="background:#ff6b6b"></div><div class="tape-bar" style="background:#ff6b6b"></div><div class="tape-bar" style="background:#ff6b6b"></div><div class="tape-bar" style="background:#ff6b6b"></div><div class="tape-bar" style="background:#ff6b6b"></div><div class="tape-bar" style="background:#ff6b6b"></div><div class="tape-bar" style="background:#ff6b6b"></div></div>
+    </div>
+
+    <div class="card" style="margin-top:24px">
+        <div class="card-title">EQUITY CURVE — S&P 500</div>
+        <div class="sparkline-container"><canvas id="sparkCanvas"></canvas></div>
+    </div>
+</div>
+
+<!-- RESEARCH -->
+<div id="research" class="panel">
+    <div class="findings-grid">
+        <div class="finding-card card-nosignal">
+            <div class="finding-header">
+                <span class="finding-dataset">sp500_daily</span>
+                <span class="finding-obs">5,030 obs</span>
+            </div>
+            <div class="finding-garch">
+                GARCH(1,1) α=0.1004 β=0.8878
+                persistence=0.98815 half-life=58d
+            </div>
+            <div class="finding-verdict">NO SIGNAL — every statistic is reproducible by at least one null</div>
+            
+        </div>
+        <div class="finding-card card-signal">
+            <div class="finding-header">
+                <span class="finding-dataset">vix_daily</span>
+                <span class="finding-obs">9,257 obs</span>
+            </div>
+            <div class="finding-garch">
+                GARCH(1,1) α=0.1443 β=0.7267
+                persistence=0.87106 half-life=5d
+            </div>
+            <div class="finding-verdict">4 statistics survive every null</div>
+            <div class='finding-survivors'>ACF |r| lag 66, Same-band rate, Lift over independence, Cramer's V</div>
+        </div></div>
+    <div class="card">
+        <div class="card-title">THREE WORLDS, ONE PIPELINE — P-VALUES VS GARCH NULL</div>
+        <table class="stats-table">
+            <thead><tr><th>Statistic</th><th>Real</th><th>p (GARCH)</th></tr></thead>
+            <tbody>
+            <tr class="stat-row" data-dataset="sp500_daily">
+                <td class="stat-name">Ann. volatility</td>
+                <td class="stat-real">0.1911</td>
+                <td class="p-nosig">0.6068</td>
+            </tr>
+            <tr class="stat-row" data-dataset="sp500_daily">
+                <td class="stat-name">Excess kurtosis</td>
+                <td class="stat-real">8.169</td>
+                <td class="p-nosig">0.6826</td>
+            </tr>
+            <tr class="stat-row" data-dataset="sp500_daily">
+                <td class="stat-name">ACF |r| lag 1</td>
+                <td class="stat-real">0.2443</td>
+                <td class="p-nosig">0.9301</td>
+            </tr>
+            <tr class="stat-row" data-dataset="sp500_daily">
+                <td class="stat-name">ACF |r| lag 22</td>
+                <td class="stat-real">0.2249</td>
+                <td class="p-nosig">0.3473</td>
+            </tr>
+            <tr class="stat-row" data-dataset="sp500_daily">
+                <td class="stat-name">ACF |r| lag 66</td>
+                <td class="stat-real">0.1531</td>
+                <td class="p-nosig">0.1876</td>
+            </tr>
+            <tr class="stat-row" data-dataset="sp500_daily">
+                <td class="stat-name">ACF r lag 1</td>
+                <td class="stat-real">-0.07008</td>
+                <td class="p-sig">0.0120</td>
+            </tr>
+            <tr class="stat-row" data-dataset="sp500_daily">
+                <td class="stat-name">Ljung-Box Q(22) on |r|</td>
+                <td class="stat-real">8417</td>
+                <td class="p-nosig">0.3034</td>
+            </tr>
+            <tr class="stat-row" data-dataset="sp500_daily">
+                <td class="stat-name">Same-band rate</td>
+                <td class="stat-real">0.7022</td>
+                <td class="p-nosig">0.1517</td>
+            </tr>
+            <tr class="stat-row" data-dataset="sp500_daily">
+                <td class="stat-name">Lift over independence</td>
+                <td class="stat-real">50.22</td>
+                <td class="p-nosig">0.1517</td>
+            </tr>
+            <tr class="stat-row" data-dataset="sp500_daily">
+                <td class="stat-name">Cramer's V</td>
+                <td class="stat-real">0.6607</td>
+                <td class="p-nosig">0.2435</td>
+            </tr>
+            <tr class="stat-row" data-dataset="sp500_daily">
+                <td class="stat-name">Regression R2</td>
+                <td class="stat-real">0.8905</td>
+                <td class="p-nosig">0.4990</td>
+            </tr>
+            <tr class="stat-row" data-dataset="vix_daily">
+                <td class="stat-name">Ann. volatility</td>
+                <td class="stat-real">1.081</td>
+                <td class="p-nosig">0.8583</td>
+            </tr>
+            <tr class="stat-row" data-dataset="vix_daily">
+                <td class="stat-name">Excess kurtosis</td>
+                <td class="stat-real">6.707</td>
+                <td class="p-nosig">0.4431</td>
+            </tr>
+            <tr class="stat-row" data-dataset="vix_daily">
+                <td class="stat-name">ACF |r| lag 1</td>
+                <td class="stat-real">0.2006</td>
+                <td class="p-nosig">0.5868</td>
+            </tr>
+            <tr class="stat-row" data-dataset="vix_daily">
+                <td class="stat-name">ACF |r| lag 22</td>
+                <td class="stat-real">0.04072</td>
+                <td class="p-nosig">0.0838</td>
+            </tr>
+            <tr class="stat-row" data-dataset="vix_daily">
+                <td class="stat-name">ACF |r| lag 66</td>
+                <td class="stat-real">0.02812</td>
+                <td class="p-sig">0.0240</td>
+            </tr>
+            <tr class="stat-row" data-dataset="vix_daily">
+                <td class="stat-name">ACF r lag 1</td>
+                <td class="stat-real">-0.08333</td>
+                <td class="p-sig">0.0040</td>
+            </tr>
+            <tr class="stat-row" data-dataset="vix_daily">
+                <td class="stat-name">Ljung-Box Q(22) on |r|</td>
+                <td class="stat-real">1706</td>
+                <td class="p-nosig">0.4910</td>
+            </tr>
+            <tr class="stat-row" data-dataset="vix_daily">
+                <td class="stat-name">Same-band rate</td>
+                <td class="stat-real">0.6028</td>
+                <td class="p-sig">0.0040</td>
+            </tr>
+            <tr class="stat-row" data-dataset="vix_daily">
+                <td class="stat-name">Lift over independence</td>
+                <td class="stat-real">40.28</td>
+                <td class="p-sig">0.0040</td>
+            </tr>
+            <tr class="stat-row" data-dataset="vix_daily">
+                <td class="stat-name">Cramer's V</td>
+                <td class="stat-real">0.5543</td>
+                <td class="p-sig">0.0040</td>
+            </tr>
+            <tr class="stat-row" data-dataset="vix_daily">
+                <td class="stat-name">Regression R2</td>
+                <td class="stat-real">0.7293</td>
+                <td class="p-nosig">0.0559</td>
+            </tr></tbody>
+        </table>
+    </div>
+</div>
+
+<!-- PIPELINE -->
+<div id="pipeline" class="panel">
+    <div class="card" style="margin-bottom:24px">
+        <div class="card-title">DATA LINEAGE</div>
+        <div class="pipeline-flow"><div class="layer"><div class="layer-label">BRONZE</div>
+            <div class="node node-ok">
+                <div class="node-name">cftc_cot</div>
+                <div class="node-meta">11,804 rows · 2007 KB</div>
+                <div class="node-meta">1 partition · 1a8c06f5</div>
+            </div>
+            <div class="node node-ok">
+                <div class="node-name">edgar_tickers</div>
+                <div class="node-meta">10,388 rows · 204 KB</div>
+                <div class="node-meta">1 partition · 287d0703</div>
+            </div>
+            <div class="node node-ok">
+                <div class="node-name">sp500_daily</div>
+                <div class="node-meta">5,031 rows · 261 KB</div>
+                <div class="node-meta">1 partition · e66841c2</div>
+            </div>
+            <div class="node node-ok">
+                <div class="node-name">stock_aapl</div>
+                <div class="node-meta">1,254 rows · 69 KB</div>
+                <div class="node-meta">1 partition · 0ccae01c</div>
+            </div>
+            <div class="node node-ok">
+                <div class="node-name">stock_amd</div>
+                <div class="node-meta">1,254 rows · 54 KB</div>
+                <div class="node-meta">1 partition · bcaa8a9f</div>
+            </div>
+            <div class="node node-ok">
+                <div class="node-name">stock_amzn</div>
+                <div class="node-meta">1,254 rows · 53 KB</div>
+                <div class="node-meta">1 partition · 90f7eeec</div>
+            </div>
+            <div class="node node-ok">
+                <div class="node-name">stock_goog</div>
+                <div class="node-meta">1,254 rows · 69 KB</div>
+                <div class="node-meta">1 partition · 4bdf52d9</div>
+            </div>
+            <div class="node node-ok">
+                <div class="node-name">stock_hpe</div>
+                <div class="node-meta">1,254 rows · 68 KB</div>
+                <div class="node-meta">1 partition · ec563186</div>
+            </div>
+            <div class="node node-ok">
+                <div class="node-name">stock_jpm</div>
+                <div class="node-meta">1,254 rows · 69 KB</div>
+                <div class="node-meta">1 partition · 97568a10</div>
+            </div>
+            <div class="node node-ok">
+                <div class="node-name">stock_meta</div>
+                <div class="node-meta">1,254 rows · 69 KB</div>
+                <div class="node-meta">1 partition · db4c37a1</div>
+            </div>
+            <div class="node node-ok">
+                <div class="node-name">stock_msft</div>
+                <div class="node-meta">1,254 rows · 69 KB</div>
+                <div class="node-meta">1 partition · bfc78184</div>
+            </div>
+            <div class="node node-ok">
+                <div class="node-name">stock_mu</div>
+                <div class="node-meta">1,254 rows · 69 KB</div>
+                <div class="node-meta">1 partition · 32460ce8</div>
+            </div>
+            <div class="node node-ok">
+                <div class="node-name">stock_mxl</div>
+                <div class="node-meta">1,254 rows · 51 KB</div>
+                <div class="node-meta">1 partition · 95ddf618</div>
+            </div>
+            <div class="node node-ok">
+                <div class="node-name">stock_nok</div>
+                <div class="node-meta">1,254 rows · 63 KB</div>
+                <div class="node-meta">1 partition · e5b477ac</div>
+            </div>
+            <div class="node node-ok">
+                <div class="node-name">stock_nvda</div>
+                <div class="node-meta">1,254 rows · 70 KB</div>
+                <div class="node-meta">1 partition · 92b16072</div>
+            </div>
+            <div class="node node-ok">
+                <div class="node-name">stock_oklo</div>
+                <div class="node-meta">1,254 rows · 46 KB</div>
+                <div class="node-meta">1 partition · 5ec40f91</div>
+            </div>
+            <div class="node node-ok">
+                <div class="node-name">stock_qbts</div>
+                <div class="node-meta">1,254 rows · 47 KB</div>
+                <div class="node-meta">1 partition · 2dba6435</div>
+            </div>
+            <div class="node node-ok">
+                <div class="node-name">stock_rgti</div>
+                <div class="node-meta">1,254 rows · 49 KB</div>
+                <div class="node-meta">1 partition · 774f011c</div>
+            </div>
+            <div class="node node-ok">
+                <div class="node-name">stock_smci</div>
+                <div class="node-meta">1,254 rows · 54 KB</div>
+                <div class="node-meta">1 partition · 2c58ce88</div>
+            </div>
+            <div class="node node-ok">
+                <div class="node-name">stock_spce</div>
+                <div class="node-meta">1,254 rows · 47 KB</div>
+                <div class="node-meta">1 partition · 6315ac05</div>
+            </div>
+            <div class="node node-ok">
+                <div class="node-name">stock_tsla</div>
+                <div class="node-meta">1,254 rows · 54 KB</div>
+                <div class="node-meta">1 partition · b27fa1aa</div>
+            </div>
+            <div class="node node-ok">
+                <div class="node-name">stock_uec</div>
+                <div class="node-meta">1,254 rows · 45 KB</div>
+                <div class="node-meta">1 partition · 11314ed0</div>
+            </div>
+            <div class="node node-ok">
+                <div class="node-name">vix_daily</div>
+                <div class="node-meta">9,258 rows · 303 KB</div>
+                <div class="node-meta">1 partition · 3f310dd3</div>
+            </div></div></div>
+    </div>
+</div>
+
+<!-- BUDGET -->
+<div id="budget" class="panel">
+    <div class="budget-card">
+        <div class="card-title">TRIAL LEDGER</div>
+        <pre class="budget-line">trials used: 0
+current bar: annualised Sharpe 0.00 (trial #1)
+per agent:</pre>
+    </div>
+</div>
+
+<script>
+// Tab switching
+function show(id) {
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    event.target.classList.add('active');
+    if (id === 'volatility') drawSparkline();
+}
+
+// Sparkline
+const prices = [1841.069946, 1848.359985, 1831.97998, 1831.369995, 1826.77002, 1837.880005, 1837.48999, 1838.130005, 1842.369995, 1819.199951, 1838.880005, 1848.380005, 1845.890015, 1838.699951, 1843.800049, 1844.859985, 1828.459961, 1790.290039, 1781.560059, 1792.5, 1774.199951, 1794.189941, 1782.589966, 1741.890015, 1755.199951, 1751.640015, 1773.430054, 1797.02002, 1799.839966, 1819.75, 1819.26001, 1829.829956, 1838.630005, 1840.76001, 1828.75, 1839.780029, 1836.25, 1847.609985, 1845.119995, 1845.160034, 1854.290039, 1859.449951, 1845.72998, 1873.910034, 1873.810059, 1877.030029, 1878.040039, 1877.170044, 1867.630005, 1868.199951, 1846.339966, 1841.130005, 1858.829956, 1872.25, 1860.77002, 1872.01001, 1866.52002, 1857.439941, 1865.619995, 1852.560059, 1849.040039, 1857.619995, 1872.339966, 1885.52002, 1890.900024, 1888.77002, 1865.089966, 1845.040039, 1851.959961, 1872.180054, 1833.079956, 1815.689941, 1830.609985, 1842.97998, 1862.310059, 1864.849976, 1871.890015, 1879.550049, 1875.390015, 1878.609985, 1863.400024, 1869.430054, 1878.329956, 1883.949951, 1883.680054, 1881.140015, 1884.660034, 1867.719971, 1878.209961, 1875.630005, 1878.47998, 1896.650024, 1897.449951, 1888.530029, 1870.849976, 1877.859985, 1885.079956, 1872.829956, 1888.030029, 1892.48999, 1900.530029, 1911.910034, 1909.780029, 1920.030029, 1923.569946, 1924.969971, 1924.23999, 1927.880005, 1940.459961, 1949.439941, 1951.27002, 1950.790039, 1943.890015, 1930.109985, 1936.160034, 1937.780029, 1941.98999, 1956.97998, 1959.47998, 1962.869995, 1962.609985, 1949.97998, 1959.530029, 1957.219971, 1960.959961, 1960.22998, 1973.319946, 1974.619995, 1985.439941, 1977.650024, 1963.709961, 1972.829956, 1964.680054, 1967.569946, 1977.099976, 1973.280029, 1981.569946, 1958.119995, 1978.219971, 1973.630005, 1983.530029, 1987.01001, 1987.97998, 1978.339966, 1978.910034, 1969.949951, 1970.069946, 1930.670044, 1925.150024, 1938.98999, 1920.209961, 1920.23999, 1909.569946, 1931.589966, 1936.920044, 1933.75, 1946.719971, 1955.180054, 1955.060059, 1971.73999, 1981.599976, 1986.51001, 1992.369995, 1988.400024, 1997.920044, 2000.02002, 2000.119995, 1996.73999, 2003.369995, 2002.280029, 2000.719971, 1997.650024, 2007.709961, 2001.540039, 1988.439941, 1995.689941, 1997.449951, 1985.540039, 1984.130005, 1998.97998, 2001.569946, 2011.359985, 2010.400024, 1994.290039, 1982.77002, 1998.300049, 1965.98999, 1982.849976, 1977.800049, 1972.290039, 1946.160034, 1946.170044, 1967.900024, 1964.819946, 1935.099976, 1968.890015, 1928.209961, 1906.130005, 1874.73999, 1877.699951, 1862.48999, 1862.76001, 1886.76001, 1904.01001, 1941.280029, 1927.109985, 1950.819946, 1964.579956, 1961.630005, 1985.050049, 1982.300049, 1994.650024, 2018.050049, 2017.810059, 2012.099976, 2023.569946, 2031.209961, 2031.920044, 2038.26001, 2039.680054, 2038.25, 2039.329956, 2039.819946, 2041.319946, 2051.800049, 2048.719971, 2052.75, 2063.5, 2069.409912, 2067.030029, 2072.830078, 2067.560059, 2053.439941, 2066.550049, 2074.330078, 2071.919922, 2075.370117, 2060.310059, 2059.820068, 2026.140015, 2035.329956, 2002.329956, 1989.630005, 1972.73999, 2012.890015, 2061.22998, 2070.649902, 2078.540039, 2082.169922, 2081.879883, 2088.77002, 2090.570068, 2080.350098, 2058.899902, 2058.199951, 2020.579956, 2002.609985, 2025.900024, 2062.139893, 2044.810059, 2028.26001, 2023.030029, 2011.27002, 1992.670044, 2019.420044, 2022.550049, 2032.119995, 2063.149902, 2051.820068, 2057.090088, 2029.550049, 2002.160034, 2021.25, 1994.98999, 2020.849976, 2050.030029, 2041.51001, 2062.52002, 2055.469971, 2046.73999, 2068.590088, 2068.530029, 2088.47998, 2096.98999, 2100.340088, 2099.679932, 2097.449951, 2110.300049, 2109.659912, 2115.47998, 2113.860107, 2110.73999, 2104.5, 2117.389893, 2107.780029, 2098.530029, 2101.040039, 2071.26001, 2079.429932, 2044.160034, 2040.23999, 2065.949951, 2053.399902, 2081.189941, 2074.280029, 2099.5, 2089.27002, 2108.100098, 2104.419922, 2091.5, 2061.050049, 2056.149902, 2061.02002, 2086.23999, 2067.889893, 2059.689941, 2066.959961, 2080.620117, 2076.330078, 2081.899902, 2091.179932, 2102.060059, 2092.429932, 2095.840088, 2106.629883, 2104.98999, 2081.179932, 2100.399902, 2097.290039, 2107.959961, 2112.929932, 2117.689941, 2108.919922, 2114.76001, 2106.850098, 2085.51001, 2108.290039, 2114.48999, 2089.459961, 2080.149902, 2088.0, 2116.100098, 2105.330078, 2099.120117, 2098.47998, 2121.100098, 2122.72998, 2129.199951, 2127.830078, 2125.850098, 2130.820068, 2126.060059, 2104.199951, 2123.47998, 2120.790039, 2107.389893, 2111.72998, 2109.600098, 2114.070068, 2095.840088, 2092.830078, 2079.280029, 2080.149902, 2105.199951, 2108.860107, 2094.110107, 2084.429932, 2096.290039, 2100.439941, 2121.23999, 2109.98999, 2122.850098, 2124.199951, 2108.580078, 2102.310059, 2101.48999, 2057.639893, 2063.110107, 2077.419922, 2076.780029, 2068.76001, 2081.340088, 2046.680054, 2051.310059, 2076.620117, 2099.600098, 2108.949951, 2107.399902, 2124.290039, 2126.639893, 2128.280029, 2119.209961, 2114.149902, 2102.149902, 2079.649902, 2067.639893, 2093.25, 2108.570068, 2108.629883, 2103.840088, 2098.040039, 2093.320068, 2099.840088, 2083.560059, 2077.570068, 2104.179932, 2084.070068, 2086.050049, 2083.389893, 2091.540039, 2102.439941, 2096.919922, 2079.610107, 2035.72998, 1970.890015, 1893.209961, 1867.609985, 1940.51001, 1987.660034, 1988.869995, 1972.180054, 1913.849976, 1948.859985, 1951.130005, 1921.219971, 1969.410034, 1942.040039, 1952.290039, 1961.050049, 1953.030029, 1978.089966, 1995.310059, 1990.199951, 1958.030029, 1966.969971, 1942.73999, 1938.76001, 1932.23999, 1931.339966, 1881.77002, 1884.089966, 1920.030029, 1923.819946, 1951.359985, 1987.050049, 1979.920044, 1995.829956, 2013.430054, 2014.890015, 2017.459961, 2003.689941, 1994.23999, 2023.859985, 2033.109985, 2033.660034, 2030.77002, 2018.939941, 2052.51001, 2075.149902, 2071.179932, 2065.889893, 2090.350098, 2089.409912, 2079.360107, 2104.050049, 2109.790039, 2102.310059, 2099.929932, 2099.199951, 2078.580078, 2081.719971, 2075.0, 2045.969971, 2023.040039, 2053.189941, 2050.439941, 2083.580078, 2081.23999, 2089.169922, 2086.590088, 2089.139893, 2088.870117, 2090.110107, 2080.409912, 2102.629883, 2079.51001, 2049.620117, 2091.689941, 2077.070068, 2063.590088, 2047.619995, 2052.22998, 2012.369995, 2021.939941, 2043.410034, 2073.070068, 2041.890015, 2005.550049, 2021.150024, 2038.969971, 2064.290039, 2060.98999, 2056.5, 2078.360107, 2063.360107, 2043.939941, 2012.660034, 2016.709961, 1990.26001, 1943.089966, 1922.030029, 1923.670044, 1938.680054, 1890.280029, 1921.839966, 1880.329956, 1881.329956, 1859.329956, 1868.98999, 1906.900024, 1877.079956, 1903.630005, 1882.949951, 1893.359985, 1940.23999, 1939.380005, 1903.030029, 1912.530029, 1915.449951, 1880.050049, 1853.439941, 1852.209961, 1851.859985, 1829.079956, 1864.780029, 1895.579956, 1926.819946, 1917.829956, 1917.780029, 1945.5, 1921.27002, 1929.800049, 1951.699951, 1948.050049, 1932.22998, 1978.349976, 1986.449951, 1993.400024, 1999.98999, 2001.76001, 1979.26001, 1989.26001, 1989.569946, 2022.189941, 2019.640015, 2015.930054, 2027.219971, 2040.589966, 2049.580078, 2051.600098, 2049.800049, 2036.709961, 2035.939941, 2037.050049, 2055.01001, 2063.949951, 2059.73999, 2072.780029, 2066.129883, 2045.170044, 2066.659912, 2041.910034, 2047.599976, 2041.98999, 2061.719971, 2082.419922, 2082.780029, 2080.72998, 2094.340088, 2100.800049, 2102.399902, 2091.47998, 2091.580078, 2087.790039, 2091.699951, 2095.149902, 2075.810059, 2065.300049, 2081.429932, 2063.370117, 2051.120117, 2050.629883, 2057.139893, 2058.689941, 2084.389893, 2064.459961, 2064.110107, 2046.609985, 2066.659912, 2047.209961, 2047.630005, 2040.040039, 2052.320068, 2048.040039, 2076.060059, 2090.540039, 2090.100098, 2099.060059, 2096.949951, 2099.330078, 2105.26001, 2099.129883, 2109.409912, 2112.129883, 2119.120117, 2115.47998, 2096.070068, 2079.060059, 2075.320068, 2071.5, 2077.98999, 2071.219971, 2083.25, 2088.899902, 2085.449951, 2113.320068, 2037.410034, 2000.540039, 2036.089966, 2070.77002, 2098.860107, 2102.949951, 2088.550049, 2099.72998, 2097.899902, 2129.899902, 2137.159912, 2152.139893, 2152.429932, 2163.75, 2161.73999, 2166.889893, 2163.780029, 2173.02002, 2165.169922, 2175.030029, 2168.47998, 2169.179932, 2166.580078, 2170.060059, 2173.600098, 2170.840088, 2157.030029, 2163.790039, 2164.25, 2182.870117, 2180.889893, 2181.73999, 2175.48999, 2185.790039, 2184.050049, 2190.149902, 2178.149902, 2182.219971, 2187.02002, 2183.870117, 2182.639893, 2186.899902, 2175.439941, 2172.469971, 2169.040039, 2180.379883, 2176.120117, 2170.949951, 2170.860107, 2179.97998, 2186.47998, 2186.159912, 2181.300049, 2127.810059, 2159.040039, 2127.02002, 2125.77002, 2147.26001, 2139.159912, 2139.120117, 2139.76001, 2163.120117, 2177.179932, 2164.689941, 2146.100098, 2159.929932, 2171.370117, 2151.129883, 2168.27002, 2161.199951, 2150.48999, 2159.72998, 2160.77002, 2153.73999, 2163.659912, 2136.72998, 2139.179932, 2132.550049, 2132.97998, 2126.5, 2139.600098, 2144.290039, 2141.340088, 2141.159912, 2151.330078, 2143.159912, 2139.429932, 2133.040039, 2126.409912, 2126.149902, 2111.719971, 2097.939941, 2088.659912, 2085.179932, 2131.52002, 2139.560059, 2163.26001, 2167.47998, 2164.449951, 2164.199951, 2180.389893, 2176.939941, 2187.120117, 2181.899902, 2198.179932, 2202.939941, 2204.719971, 2213.350098, 2201.719971, 2204.659912, 2198.810059, 2191.080078, 2191.949951, 2204.709961, 2212.22998, 2241.350098, 2246.189941, 2259.530029, 2256.959961, 2271.719971, 2253.280029, 2262.030029, 2258.070068, 2262.530029, 2270.76001, 2265.179932, 2260.959961, 2263.790039, 2268.879883, 2249.919922, 2249.26001, 2238.830078, 2257.830078, 2270.75, 2269.0, 2276.97998, 2268.899902, 2268.899902, 2275.320068, 2270.439941, 2274.639893, 2267.889893, 2271.889893, 2263.689941, 2271.310059, 2265.199951, 2280.070068, 2298.370117, 2296.679932, 2294.689941, 2280.899902, 2278.870117, 2279.550049, 2280.850098, 2297.419922, 2292.560059, 2293.080078, 2294.669922, 2307.870117, 2316.100098, 2328.25, 2337.580078, 2349.25, 2347.219971, 2351.159912, 2365.379883, 2362.820068, 2363.810059, 2367.340088, 2369.75, 2363.639893, 2395.959961, 2381.919922, 2383.120117, 2375.310059, 2368.389893, 2362.97998, 2364.870117, 2372.600098, 2373.469971, 2365.449951, 2385.26001, 2381.379883, 2378.25, 2373.469971, 2344.02002, 2348.449951, 2345.959961, 2343.97998, 2341.590088, 2358.570068, 2361.129883, 2368.060059, 2362.719971, 2358.840088, 2360.159912, 2352.949951, 2357.48999, 2355.540039, 2357.159912, 2353.780029, 2344.929932, 2328.949951, 2349.01001, 2342.189941, 2338.169922, 2355.840088, 2348.689941, 2374.149902, 2388.610107, 2387.449951, 2388.77002, 2384.199951, 2388.330078, 2391.169922, 2388.129883, 2389.52002, 2399.290039, 2399.379883, 2396.919922, 2399.629883, 2394.439941, 2390.899902, 2402.320068, 2400.669922, 2357.030029, 2365.719971, 2381.72998, 2394.02002, 2398.419922, 2404.389893, 2415.070068, 2415.820068, 2412.909912, 2411.800049, 2430.060059, 2439.070068, 2436.100098, 2429.330078, 2433.139893, 2433.790039, 2431.77002, 2429.389893, 2440.350098, 2437.919922, 2432.459961, 2433.149902, 2453.459961, 2437.030029, 2435.610107, 2434.5, 2438.300049, 2439.070068, 2419.379883, 2440.689941, 2419.699951, 2423.409912, 2429.01001, 2432.540039, 2409.75, 2425.179932, 2427.429932, 2425.530029, 2443.25, 2447.830078, 2459.27002, 2459.139893, 2460.610107, 2473.830078, 2473.449951, 2472.540039, 2469.909912, 2477.129883, 2477.830078, 2475.419922, 2472.100098, 2470.300049, 2476.350098, 2477.570068, 2472.159912, 2476.830078, 2480.909912, 2474.919922, 2474.02002, 2438.209961, 2441.320068, 2465.840088, 2464.610107, 2468.110107, 2430.01001, 2425.550049, 2428.370117, 2452.51001, 2444.040039, 2438.969971, 2443.050049, 2444.23999, 2446.300049, 2457.590088, 2471.649902, 2476.550049, 2457.850098, 2465.540039, 2465.100098, 2461.429932, 2488.110107, 2496.47998, 2498.370117, 2495.620117, 2500.22998, 2503.870117, 2506.649902, 2508.23999, 2500.600098, 2502.219971, 2496.659912, 2496.840088, 2507.040039, 2510.060059, 2519.360107, 2529.120117, 2534.580078, 2537.73999, 2552.070068, 2549.330078, 2544.72998, 2550.639893, 2555.23999, 2550.929932, 2553.169922, 2557.639893, 2559.360107, 2561.26001, 2562.100098, 2575.209961, 2564.97998, 2569.129883, 2557.149902, 2560.399902, 2581.070068, 2572.830078, 2575.26001, 2579.360107, 2579.850098, 2587.840088, 2591.129883, 2590.639893, 2594.379883, 2584.620117, 2582.300049, 2584.840088, 2578.870117, 2564.620117, 2585.639893, 2578.850098, 2582.139893, 2599.030029, 2597.080078, 2602.419922, 2601.419922, 2627.040039, 2626.070068, 2647.580078, 2642.219971, 2639.439941, 2629.570068, 2629.27002, 2636.97998, 2651.5, 2659.98999, 2664.110107, 2662.850098, 2652.01001, 2675.810059, 2690.159912, 2681.469971, 2679.25, 2684.570068, 2683.340088, 2680.5, 2682.620117, 2687.540039, 2673.610107, 2695.810059, 2713.060059, 2723.98999, 2743.149902, 2747.709961, 2751.290039, 2748.22998, 2767.560059, 2786.23999, 2776.419922, 2802.560059, 2798.030029, 2810.300049, 2832.969971, 2839.129883, 2837.540039, 2839.25, 2872.870117, 2853.530029, 2822.429932, 2823.810059, 2821.97998, 2762.129883, 2648.939941, 2695.139893, 2681.659912, 2581.0, 2619.550049, 2656.0, 2662.939941, 2698.629883, 2731.199951, 2732.219971, 2716.26001, 2701.330078, 2703.959961, 2747.300049, 2779.600098, 2744.280029, 2713.830078, 2677.669922, 2691.25, 2720.939941, 2728.120117, 2726.800049, 2738.969971, 2786.570068, 2783.02002, 2765.310059, 2749.47998, 2747.330078, 2752.01001, 2712.919922, 2716.939941, 2711.929932, 2643.689941, 2588.26001, 2658.550049, 2612.620117, 2605.0, 2640.870117, 2581.879883, 2614.449951, 2644.689941, 2662.840088, 2604.469971, 2613.159912, 2656.870117, 2642.189941, 2663.98999, 2656.300049, 2677.840088, 2706.389893, 2708.639893, 2693.129883, 2670.139893, 2670.290039, 2634.560059, 2639.399902, 2666.939941, 2669.909912, 2648.050049, 2654.800049, 2635.669922, 2629.72998, 2663.419922, 2672.629883, 2671.919922, 2697.790039, 2723.070068, 2727.719971, 2730.129883, 2711.449951, 2722.459961, 2720.129883, 2712.969971, 2733.01001, 2724.439941, 2733.290039, 2727.76001, 2721.330078, 2689.860107, 2724.01001, 2705.27002, 2734.620117, 2746.870117, 2748.800049, 2772.350098, 2770.370117, 2779.030029, 2782.0, 2786.850098, 2775.629883, 2782.48999, 2779.659912, 2773.75, 2762.590088, 2767.320068, 2749.76001, 2754.879883, 2717.070068, 2723.060059, 2699.629883, 2716.310059, 2718.370117, 2726.709961, 2713.219971, 2736.610107, 2759.820068, 2784.169922, 2793.840088, 2774.02002, 2798.290039, 2801.310059, 2798.429932, 2809.550049, 2815.620117, 2804.48999, 2801.830078, 2806.97998, 2820.399902, 2846.070068, 2837.439941, 2818.820068, 2802.600098, 2816.290039, 2813.360107, 2827.219971, 2840.350098, 2850.399902, 2858.449951, 2857.699951, 2853.580078, 2833.280029, 2821.929932, 2839.959961, 2818.370117, 2840.689941, 2850.129883, 2857.050049, 2862.959961, 2861.820068, 2856.97998, 2874.689941, 2896.73999, 2897.52002, 2914.040039, 2901.129883, 2901.52002, 2896.719971, 2888.600098, 2878.050049, 2871.679932, 2877.129883, 2887.889893, 2888.919922, 2904.179932, 2904.97998, 2888.800049, 2904.310059, 2907.949951, 2930.75, 2929.669922, 2919.370117, 2915.560059, 2905.969971, 2914.0, 2913.97998, 2924.590088, 2923.429932, 2925.51001, 2901.610107, 2885.570068, 2884.429932, 2880.340088, 2785.679932, 2728.370117, 2767.129883, 2750.790039, 2809.919922, 2809.209961, 2768.780029, 2767.780029, 2755.879883, 2740.689941, 2656.100098, 2705.570068, 2658.689941, 2641.25, 2682.629883, 2711.73999, 2740.370117, 2723.060059, 2738.310059, 2755.449951, 2813.889893, 2806.830078, 2781.01001, 2726.219971, 2722.179932, 2701.580078, 2730.199951, 2736.27002, 2690.72998, 2641.889893, 2649.929932, 2632.560059, 2673.449951, 2682.169922, 2743.790039, 2737.800049, 2760.169922, 2790.370117, 2700.060059, 2695.949951, 2633.080078, 2637.719971, 2636.780029, 2651.070068, 2650.540039, 2599.949951, 2545.939941, 2546.159912, 2506.959961, 2467.419922, 2416.620117, 2351.100098, 2467.699951, 2488.830078, 2485.73999, 2506.850098];
+function drawSparkline() {
+    const canvas = document.getElementById('sparkCanvas');
+    if (!canvas || !prices.length) return;
+    const ctx = canvas.getContext('2d');
+    const dpr = window.devicePixelRatio || 1;
+    const rect = canvas.getBoundingClientRect();
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    ctx.scale(dpr, dpr);
+
+    const w = rect.width, h = rect.height;
+    const mn = Math.min(...prices), mx = Math.max(...prices);
+    const pad = 4;
+
+    ctx.strokeStyle = '#6366f1';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    prices.forEach((p, i) => {
+        const x = pad + (i / (prices.length - 1)) * (w - 2 * pad);
+        const y = h - pad - ((p - mn) / (mx - mn)) * (h - 2 * pad);
+        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    });
+    ctx.stroke();
+
+    // Gradient fill
+    const grad = ctx.createLinearGradient(0, 0, 0, h);
+    grad.addColorStop(0, 'rgba(99,102,241,0.15)');
+    grad.addColorStop(1, 'rgba(99,102,241,0)');
+    ctx.lineTo(w - pad, h); ctx.lineTo(pad, h); ctx.closePath();
+    ctx.fillStyle = grad; ctx.fill();
+}
+
+window.addEventListener('load', drawSparkline);
+window.addEventListener('resize', drawSparkline);
+</script>
+</body>
+</html>

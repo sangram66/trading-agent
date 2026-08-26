@@ -35,6 +35,16 @@ def load_findings():
     return json.loads(files[0].read_text())["findings"]
 
 
+def load_stock_findings():
+    findings_dir = Path("research/findings")
+    if not findings_dir.exists():
+        return []
+    files = sorted(findings_dir.glob("stocks-*.json"), reverse=True)
+    if not files:
+        return []
+    return json.loads(files[0].read_text()).get("stocks", [])
+
+
 def load_returns(store, dataset="sp500_daily"):
     for key in store.manifest:
         if dataset in key:
@@ -86,8 +96,8 @@ def build_pipeline_data(store):
     return nodes
 
 
-def build_html(findings, vol_data, pipeline_nodes, garch_params, ledger_summary,
-               n_obs, sp500_prices):
+def build_html(findings, stock_findings, vol_data, pipeline_nodes, garch_params,
+               ledger_summary, n_obs, sp500_prices):
     """Generate the dashboard HTML."""
 
     # Price series for the sparkline (last 5 years or all available)
@@ -165,6 +175,104 @@ def build_html(findings, vol_data, pipeline_nodes, garch_params, ledger_summary,
             tape_html += f'<div class="tape-bar" style="background:{c}"></div>'
 
     now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+
+
+    # Build stocks panel
+    if stock_findings:
+        stocks_table_rows = ""
+        for st in sorted(stock_findings, key=lambda x: -x.get("sharpe", 0)):
+            sym = st["symbol"]
+            ret = st.get("ann_return", 0) * 100
+            vol = st.get("ann_vol", 0) * 100
+            sr = st.get("sharpe", 0)
+            kurt = st.get("excess_kurtosis", 0)
+            vr = st.get("vol_ratio") or 0
+            price = st.get("last_close", 0)
+            n = st.get("n_obs", 0)
+            nsurv = st.get("n_survivors", 0)
+            persist = st.get("garch", {}).get("persistence", 0)
+            hl = st.get("garch", {}).get("half_life", 0)
+
+            ret_class = "green" if ret > 0 else "red"
+            sr_class = "green" if sr > 1 else ("amber" if sr > 0.5 else "red")
+            vr_class = "red" if vr > 1.3 else ("amber" if vr > 1.1 else "green")
+            sig_class = "green" if nsurv > 0 else ""
+
+            # Survivor badges
+            surv_html = ""
+            for sv in st.get("survives_all_nulls", []):
+                surv_html += f'<span class="badge">{sv}</span>'
+
+            stocks_table_rows += f"""
+            <tr class="stock-row">
+                <td class="stock-sym">{sym}</td>
+                <td class="stock-price">${price:,.2f}</td>
+                <td class="stock-num {ret_class}">{ret:+.1f}%</td>
+                <td class="stock-num">{vol:.1f}%</td>
+                <td class="stock-num {sr_class}">{sr:.2f}</td>
+                <td class="stock-num">{kurt:.1f}</td>
+                <td class="stock-num">{persist:.4f}</td>
+                <td class="stock-num {vr_class}">{vr:.2f}</td>
+                <td class="stock-signal {sig_class}">{nsurv if nsurv else '—'}</td>
+            </tr>"""
+
+        # Stock detail cards
+        stock_cards = ""
+        for st in sorted(stock_findings, key=lambda x: -x.get("n_survivors", 0)):
+            sym = st["symbol"]
+            g = st.get("garch", {})
+            survivors = st.get("survives_all_nulls", [])
+            verdict = st.get("verdict", "")
+            v_class = "card-signal" if survivors else "card-nosignal"
+
+            stats_mini = ""
+            for name, sv in st.get("statistics", {}).items():
+                p_g = sv.get("p_garch", 1)
+                pc = "p-sig" if p_g < 0.05 else "p-nosig"
+                stats_mini += f'<div class="stock-stat-row"><span>{name}</span><span class="{pc}">{p_g:.4f}</span></div>'
+
+            stock_cards += f"""
+            <div class="finding-card {v_class}">
+                <div class="finding-header">
+                    <span class="finding-dataset">{sym}</span>
+                    <span class="finding-obs">{st.get('n_obs',0):,} days · ${st.get('last_close',0):,.2f}</span>
+                </div>
+                <div class="finding-garch">
+                    GARCH α={g.get('alpha',0):.4f} β={g.get('beta',0):.4f}
+                    persist={g.get('persistence',0):.5f} HL={g.get('half_life',0):.0f}d
+                </div>
+                <div class="finding-verdict">{verdict}</div>
+                <div style="margin-top:8px">{stats_mini}</div>
+            </div>"""
+
+        stocks_html = f"""
+        <div class="card" style="margin-bottom:24px;overflow-x:auto">
+            <div class="card-title">STOCK SCREENER — {len(stock_findings)} STOCKS ANALYZED</div>
+            <table class="stats-table">
+                <thead><tr>
+                    <th>Symbol</th><th>Price</th><th>Ann.Ret</th><th>Vol</th>
+                    <th>Sharpe</th><th>Kurt</th><th>GARCH P</th><th>Vol 20/60</th><th>Signal</th>
+                </tr></thead>
+                <tbody>{stocks_table_rows}</tbody>
+            </table>
+        </div>
+        <div class="card-title" style="margin-bottom:12px">DETAIL — NULL ENGINE RESULTS PER STOCK</div>
+        <div class="findings-grid">{stock_cards}</div>
+        """
+    else:
+        stocks_html = """
+        <div class="card">
+            <div class="card-title">NO STOCK DATA YET</div>
+            <div style="padding:20px;color:var(--text2);font-family:var(--mono);font-size:13px">
+                Run the stock analyzer first:<br><br>
+                <code style="color:var(--accent2)">.venv/bin/python3 analyze_stocks.py AAPL MSFT NVDA TSLA GOOG AMZN</code><br><br>
+                Or use the default mega-cap watchlist:<br><br>
+                <code style="color:var(--accent2)">.venv/bin/python3 analyze_stocks.py --watchlist default</code><br><br>
+                Then rebuild: <code style="color:var(--accent2)">.venv/bin/python3 build_dashboard.py</code>
+            </div>
+        </div>
+        """
+
 
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -474,6 +582,36 @@ body {{
 
 canvas {{ width: 100%; height: 100%; }}
 
+/* ---- Stocks ---- */
+.stock-row:hover {{{{ background: var(--surface2); }}}}
+.stock-sym {{{{ font-weight: 600; color: var(--accent2); }}}}
+.stock-price {{{{ text-align: right; }}}}
+.stock-num {{{{ text-align: right; font-family: var(--mono); }}}}
+.stock-num.green {{{{ color: var(--green); }}}}
+.stock-num.red {{{{ color: var(--red); }}}}
+.stock-num.amber {{{{ color: var(--amber); }}}}
+.stock-signal {{{{ text-align: center; font-weight: 600; }}}}
+.stock-signal.green {{{{ color: var(--green); }}}}
+.badge {{{{
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 2px 6px;
+    margin: 2px;
+    border-radius: 3px;
+    background: var(--surface2);
+    color: var(--accent2);
+    border: 1px solid var(--border);
+}}}}
+.stock-stat-row {{{{
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 2px 0;
+    color: var(--text2);
+}}}}
+
 /* ---- Responsive ---- */
 @media (max-width: 768px) {{
     .vol-grid {{ grid-template-columns: 1fr; }}
@@ -493,14 +631,20 @@ canvas {{ width: 100%; height: 100%; }}
 </div>
 
 <div class="tabs">
-    <div class="tab active" onclick="show('volatility')">VOLATILITY</div>
+    <div class="tab active" onclick="show('stocks')">STOCKS</div>
+    <div class="tab" onclick="show('volatility')">VOLATILITY</div>
     <div class="tab" onclick="show('research')">RESEARCH</div>
     <div class="tab" onclick="show('pipeline')">PIPELINE</div>
     <div class="tab" onclick="show('budget')">BUDGET</div>
 </div>
 
+<!-- STOCKS -->
+<div id="stocks" class="panel active">
+    {stocks_html}
+</div>
+
 <!-- VOLATILITY -->
-<div id="volatility" class="panel active">
+<div id="volatility" class="panel">
     <div class="vol-grid">
         <div class="card">
             <div class="card-title">SAME-BAND RATE</div>
@@ -635,6 +779,7 @@ def main():
     r_global = r
 
     findings = load_findings()
+    stock_findings = load_stock_findings()
     vol_data = build_vol_data(r)
     pipeline_nodes = build_pipeline_data(store)
     garch_params = fit_garch11(r)
@@ -644,6 +789,7 @@ def main():
 
     html = build_html(
         findings=findings,
+        stock_findings=stock_findings,
         vol_data=vol_data,
         pipeline_nodes=pipeline_nodes,
         garch_params=garch_params,

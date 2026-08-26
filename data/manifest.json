@@ -184,6 +184,481 @@
     "source": "arch package (bundled)",
     "written_at": "2026-08-26T21:24:56.396789+00:00"
   },
+  "bronze/stock_aapl": {
+    "bytes": 70889,
+    "columns": [
+      "date",
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume",
+      "dividends",
+      "stock_splits",
+      "symbol",
+      "event_time",
+      "knowable_at",
+      "retrieved_at"
+    ],
+    "hash": "0ccae01c2abb2d6a",
+    "note": "partitioned \u00b7 1 partitions",
+    "partitions": [
+      "2026-08-26.parquet"
+    ],
+    "rows": 1254,
+    "source": "yfinance AAPL",
+    "written_at": "2026-08-26T21:58:35.151425+00:00"
+  },
+  "bronze/stock_amd": {
+    "bytes": 55067,
+    "columns": [
+      "date",
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume",
+      "dividends",
+      "stock_splits",
+      "symbol",
+      "event_time",
+      "knowable_at",
+      "retrieved_at"
+    ],
+    "hash": "bcaa8a9ff8cecd80",
+    "note": "partitioned \u00b7 1 partitions",
+    "partitions": [
+      "2026-08-26.parquet"
+    ],
+    "rows": 1254,
+    "source": "yfinance AMD",
+    "written_at": "2026-08-26T21:58:55.090982+00:00"
+  },
+  "bronze/stock_amzn": {
+    "bytes": 54500,
+    "columns": [
+      "date",
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume",
+      "dividends",
+      "stock_splits",
+      "symbol",
+      "event_time",
+      "knowable_at",
+      "retrieved_at"
+    ],
+    "hash": "90f7eeecd11dade7",
+    "note": "partitioned \u00b7 1 partitions",
+    "partitions": [
+      "2026-08-26.parquet"
+    ],
+    "rows": 1254,
+    "source": "yfinance AMZN",
+    "written_at": "2026-08-26T21:58:46.340771+00:00"
+  },
+  "bronze/stock_goog": {
+    "bytes": 70651,
+    "columns": [
+      "date",
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume",
+      "dividends",
+      "stock_splits",
+      "symbol",
+      "event_time",
+      "knowable_at",
+      "retrieved_at"
+    ],
+    "hash": "4bdf52d9809a460f",
+    "note": "partitioned \u00b7 1 partitions",
+    "partitions": [
+      "2026-08-26.parquet"
+    ],
+    "rows": 1254,
+    "source": "yfinance GOOG",
+    "written_at": "2026-08-26T21:58:44.279418+00:00"
+  },
+  "bronze/stock_hpe": {
+    "bytes": 70098,
+    "columns": [
+      "date",
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume",
+      "dividends",
+      "stock_splits",
+      "symbol",
+      "event_time",
+      "knowable_at",
+      "retrieved_at"
+    ],
+    "hash": "ec563186c5f3492a",
+    "note": "partitioned \u00b7 1 partitions",
+    "partitions": [
+      "2026-08-26.parquet"
+    ],
+    "rows": 1254,
+    "source": "yfinance HPE",
+    "written_at": "2026-08-26T21:59:03.822270+00:00"
+  },
+  "bronze/stock_jpm": {
+    "bytes": 70198,
+    "columns": [
+      "date",
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume",
+      "dividends",
+      "stock_splits",
+      "symbol",
+      "event_time",
+      "knowable_at",
+      "retrieved_at"
+    ],
+    "hash": "97568a10b497573a",
+    "note": "partitioned \u00b7 1 partitions",
+    "partitions": [
+      "2026-08-26.parquet"
+    ],
+    "rows": 1254,
+    "source": "yfinance JPM",
+    "written_at": "2026-08-26T21:58:50.760649+00:00"
+  },
+  "bronze/stock_meta": {
+    "bytes": 70778,
+    "columns": [
+      "date",
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume",
+      "dividends",
+      "stock_splits",
+      "symbol",
+      "event_time",
+      "knowable_at",
+      "retrieved_at"
+    ],
+    "hash": "db4c37a112f3b82b",
+    "note": "partitioned \u00b7 1 partitions",
+    "partitions": [
+      "2026-08-26.parquet"
+    ],
+    "rows": 1254,
+    "source": "yfinance META",
+    "written_at": "2026-08-26T21:58:48.485699+00:00"
+  },
+  "bronze/stock_msft": {
+    "bytes": 70775,
+    "columns": [
+      "date",
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume",
+      "dividends",
+      "stock_splits",
+      "symbol",
+      "event_time",
+      "knowable_at",
+      "retrieved_at"
+    ],
+    "hash": "bfc781848315d10b",
+    "note": "partitioned \u00b7 1 partitions",
+    "partitions": [
+      "2026-08-26.parquet"
+    ],
+    "rows": 1254,
+    "source": "yfinance MSFT",
+    "written_at": "2026-08-26T21:58:37.447179+00:00"
+  },
+  "bronze/stock_mu": {
+    "bytes": 71108,
+    "columns": [
+      "date",
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume",
+      "dividends",
+      "stock_splits",
+      "symbol",
+      "event_time",
+      "knowable_at",
+      "retrieved_at"
+    ],
+    "hash": "32460ce890b60175",
+    "note": "partitioned \u00b7 1 partitions",
+    "partitions": [
+      "2026-08-26.parquet"
+    ],
+    "rows": 1254,
+    "source": "yfinance MU",
+    "written_at": "2026-08-26T21:58:52.976597+00:00"
+  },
+  "bronze/stock_mxl": {
+    "bytes": 51797,
+    "columns": [
+      "date",
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume",
+      "dividends",
+      "stock_splits",
+      "symbol",
+      "event_time",
+      "knowable_at",
+      "retrieved_at"
+    ],
+    "hash": "95ddf6181bf5434f",
+    "note": "partitioned \u00b7 1 partitions",
+    "partitions": [
+      "2026-08-26.parquet"
+    ],
+    "rows": 1254,
+    "source": "yfinance MXL",
+    "written_at": "2026-08-26T21:59:01.692803+00:00"
+  },
+  "bronze/stock_nok": {
+    "bytes": 64073,
+    "columns": [
+      "date",
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume",
+      "dividends",
+      "stock_splits",
+      "symbol",
+      "event_time",
+      "knowable_at",
+      "retrieved_at"
+    ],
+    "hash": "e5b477ac483891c7",
+    "note": "partitioned \u00b7 1 partitions",
+    "partitions": [
+      "2026-08-26.parquet"
+    ],
+    "rows": 1254,
+    "source": "yfinance NOK",
+    "written_at": "2026-08-26T21:59:17.330862+00:00"
+  },
+  "bronze/stock_nvda": {
+    "bytes": 71570,
+    "columns": [
+      "date",
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume",
+      "dividends",
+      "stock_splits",
+      "symbol",
+      "event_time",
+      "knowable_at",
+      "retrieved_at"
+    ],
+    "hash": "92b16072a2539059",
+    "note": "partitioned \u00b7 1 partitions",
+    "partitions": [
+      "2026-08-26.parquet"
+    ],
+    "rows": 1254,
+    "source": "yfinance NVDA",
+    "written_at": "2026-08-26T21:58:57.482535+00:00"
+  },
+  "bronze/stock_oklo": {
+    "bytes": 46810,
+    "columns": [
+      "date",
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume",
+      "dividends",
+      "stock_splits",
+      "symbol",
+      "event_time",
+      "knowable_at",
+      "retrieved_at"
+    ],
+    "hash": "5ec40f9163ab07cc",
+    "note": "partitioned \u00b7 1 partitions",
+    "partitions": [
+      "2026-08-26.parquet"
+    ],
+    "rows": 1254,
+    "source": "yfinance OKLO",
+    "written_at": "2026-08-26T21:59:05.950431+00:00"
+  },
+  "bronze/stock_qbts": {
+    "bytes": 48611,
+    "columns": [
+      "date",
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume",
+      "dividends",
+      "stock_splits",
+      "symbol",
+      "event_time",
+      "knowable_at",
+      "retrieved_at"
+    ],
+    "hash": "2dba6435609d6e3e",
+    "note": "partitioned \u00b7 1 partitions",
+    "partitions": [
+      "2026-08-26.parquet"
+    ],
+    "rows": 1254,
+    "source": "yfinance QBTS",
+    "written_at": "2026-08-26T21:59:15.153827+00:00"
+  },
+  "bronze/stock_rgti": {
+    "bytes": 49836,
+    "columns": [
+      "date",
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume",
+      "dividends",
+      "stock_splits",
+      "symbol",
+      "event_time",
+      "knowable_at",
+      "retrieved_at"
+    ],
+    "hash": "774f011c6c7cde20",
+    "note": "partitioned \u00b7 1 partitions",
+    "partitions": [
+      "2026-08-26.parquet"
+    ],
+    "rows": 1254,
+    "source": "yfinance RGTI",
+    "written_at": "2026-08-26T21:59:12.825145+00:00"
+  },
+  "bronze/stock_smci": {
+    "bytes": 55454,
+    "columns": [
+      "date",
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume",
+      "dividends",
+      "stock_splits",
+      "symbol",
+      "event_time",
+      "knowable_at",
+      "retrieved_at"
+    ],
+    "hash": "2c58ce888cb2ae20",
+    "note": "partitioned \u00b7 1 partitions",
+    "partitions": [
+      "2026-08-26.parquet"
+    ],
+    "rows": 1254,
+    "source": "yfinance SMCI",
+    "written_at": "2026-08-26T21:59:10.410799+00:00"
+  },
+  "bronze/stock_spce": {
+    "bytes": 48449,
+    "columns": [
+      "date",
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume",
+      "dividends",
+      "stock_splits",
+      "symbol",
+      "event_time",
+      "knowable_at",
+      "retrieved_at"
+    ],
+    "hash": "6315ac05c6f48dd7",
+    "note": "partitioned \u00b7 1 partitions",
+    "partitions": [
+      "2026-08-26.parquet"
+    ],
+    "rows": 1254,
+    "source": "yfinance SPCE",
+    "written_at": "2026-08-26T21:58:59.588686+00:00"
+  },
+  "bronze/stock_tsla": {
+    "bytes": 55673,
+    "columns": [
+      "date",
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume",
+      "dividends",
+      "stock_splits",
+      "symbol",
+      "event_time",
+      "knowable_at",
+      "retrieved_at"
+    ],
+    "hash": "b27fa1aac2c29d7a",
+    "note": "partitioned \u00b7 1 partitions",
+    "partitions": [
+      "2026-08-26.parquet"
+    ],
+    "rows": 1254,
+    "source": "yfinance TSLA",
+    "written_at": "2026-08-26T21:58:42.020668+00:00"
+  },
+  "bronze/stock_uec": {
+    "bytes": 46135,
+    "columns": [
+      "date",
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume",
+      "dividends",
+      "stock_splits",
+      "symbol",
+      "event_time",
+      "knowable_at",
+      "retrieved_at"
+    ],
+    "hash": "11314ed0b8ad530a",
+    "note": "partitioned \u00b7 1 partitions",
+    "partitions": [
+      "2026-08-26.parquet"
+    ],
+    "rows": 1254,
+    "source": "yfinance UEC",
+    "written_at": "2026-08-26T21:59:08.096467+00:00"
+  },
   "bronze/vix_daily": {
     "bytes": 309969,
     "columns": [
