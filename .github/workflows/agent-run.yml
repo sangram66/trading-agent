@@ -1,12 +1,8 @@
 name: agent-run
 
-# The research loop. Separate from ingest because it has completely different
-# economics: ingest is 2 free minutes a day that must never be missed, this is
-# an occasional burst that costs LLM tokens and must never run unsupervised
-# without a budget cap.
 on:
   schedule:
-    - cron: '0 3 * * 6'          # Saturday 03:00 UTC — weekly, off-market
+    - cron: '0 3 * * 6'
   workflow_dispatch:
     inputs:
       max_trials:
@@ -15,20 +11,13 @@ on:
       agents:
         description: 'Comma-separated agent roles to run'
         default: 'athena'
+      stocks:
+        description: 'Comma-separated tickers to analyze (blank = default watchlist)'
+        default: ''
 
 permissions:
   contents: write
 
-# THE LOCK.
-#
-# research/trial_budget.json is the only shared mutable state in the whole
-# system, and two concurrent runs would last-write-wins away a trial charge —
-# silently lowering the bar, which is the exact failure the ledger exists to
-# prevent. This group name is shared with the ingest workflow on purpose: every
-# job that writes to the repo is serialised through one queue.
-#
-# cancel-in-progress MUST stay false. Cancelling a run mid-write is how you get
-# a truncated ledger.
 concurrency:
   group: repo-writer
   cancel-in-progress: false
@@ -47,37 +36,37 @@ jobs:
 
       - run: pip install -r requirements.txt
 
-      # Never run the loop against a broken engine. A statistics bug plus an
-      # autonomous agent is how you get a confidently wrong verdict committed
-      # to the permanent record.
       - name: Gate check
         run: |
           python3 -m tests.test_engine | tail -2
           python3 -m tests.test_agent  | tail -2
 
-      - name: Budget status before
-        run: python3 -c "from agent.ledger import TrialLedger; print(TrialLedger().summary())"
+      - name: Stock analysis
+        run: |
+          TICKERS="${{ inputs.stocks }}"
+          if [ -z "$TICKERS" ]; then
+            python3 analyze_stocks.py --watchlist default --n-sim 300
+          else
+            python3 analyze_stocks.py $(echo "$TICKERS" | tr ',' ' ') --n-sim 300
+          fi
 
-      - name: Run agents
+      - name: Agent run
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           MAX_TRIALS: ${{ inputs.max_trials || '5' }}
           AGENTS: ${{ inputs.agents || 'athena' }}
         run: python3 -m agent.run --max-trials "$MAX_TRIALS" --agents "$AGENTS"
 
-      - name: Budget status after
-        run: python3 -c "from agent.ledger import TrialLedger; print(TrialLedger().summary())"
+      - name: Build dashboard
+        run: python3 build_dashboard.py
 
-      - name: Commit ledger and verdicts
+      - name: Commit results
         run: |
           git config user.name  "agent-bot"
           git config user.email "agent-bot@users.noreply.github.com"
-          git add research/ data/
+          git add research/ data/ dashboard.html
           git diff --staged --quiet && echo "no changes" && exit 0
-          git commit -m "research: $(date -u +%Y-%m-%d) agent run"
-          # Rebase before pushing: the ingest job may have landed a data commit
-          # while this run was working. Retry because the queue is not a
-          # guarantee against a manually-dispatched run.
+          git commit -m "research: $(date -u +%Y-%m-%d) stocks + agent run"
           for i in 1 2 3; do
             git pull --rebase --autostash && git push && exit 0
             echo "push attempt $i failed, retrying"; sleep $((i * 5))
