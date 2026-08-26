@@ -3,9 +3,41 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 
+# Pick an interpreter. `python3` is not reliable: on macOS it often resolves to
+# Apple's stub in /usr/bin (3.9.x) even when a newer build sits in
+# /usr/local/bin, and a venv built on the wrong one fails later in confusing
+# ways. Override explicitly with:  PYTHON=/usr/local/bin/python3.12 ./setup.sh
+pick_python() {
+  if [ -n "${PYTHON:-}" ]; then echo "$PYTHON"; return; fi
+  for c in python3.13 python3.12 python3.11 python3.10 python3; do
+    p=$(command -v "$c" 2>/dev/null) || continue
+    "$p" -c 'import sys; sys.exit(0 if sys.version_info[:2] >= (3,10) else 1)' \
+      2>/dev/null && { echo "$p"; return; }
+  done
+  echo ""
+}
+
+PY_BIN="$(pick_python)"
+if [ -z "$PY_BIN" ]; then
+  echo "No Python 3.10+ found." >&2
+  echo "Install one, or point at yours:  PYTHON=/usr/local/bin/python3.12 ./setup.sh" >&2
+  exit 1
+fi
+
+PY_VER="$("$PY_BIN" -c 'import sys;print(".".join(map(str,sys.version_info[:3])))')"
+echo "==> using $PY_BIN (Python $PY_VER)"
+
 echo "==> creating virtualenv"
-python3 -m venv .venv
+rm -rf .venv
+"$PY_BIN" -m venv .venv
 source .venv/bin/activate
+
+# The venv must actually be the interpreter we chose. A stale .venv from a
+# previous run with a different Python is a classic source of "it worked
+# yesterday".
+ACTUAL="$(python3 -c 'import sys;print(".".join(map(str,sys.version_info[:3])))')"
+[ "$ACTUAL" = "$PY_VER" ] || {
+  echo "venv reports Python $ACTUAL but $PY_BIN is $PY_VER — aborting" >&2; exit 1; }
 
 echo "==> installing dependencies"
 pip install -q --upgrade pip

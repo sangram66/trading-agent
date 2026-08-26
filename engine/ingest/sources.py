@@ -124,9 +124,15 @@ def cftc_cot(year: int) -> pd.DataFrame:
     df.columns = [c.strip().lower().replace(" ", "_") for c in df.columns]
     date_col = next(c for c in df.columns if "as_of_date_in_form" in c
                     or c.startswith("report_date"))
-    df["event_time"] = pd.to_datetime(df[date_col], errors="coerce")
-    df["knowable_at"] = df["event_time"] + pd.Timedelta(days=3)
-    df["retrieved_at"] = pd.Timestamp.utcnow()
+    # Assign all PIT columns in one shot. The COT file has ~200 columns, and
+    # pandas warns (correctly) about inserting into a wide frame one column at
+    # a time — each insert copies the whole block map.
+    event = pd.to_datetime(df[date_col], errors="coerce")
+    df = df.assign(
+        event_time=event,
+        knowable_at=event + pd.Timedelta(days=3),
+        retrieved_at=pd.Timestamp.utcnow(),
+    )
     return df.dropna(subset=["event_time"])
 
 
