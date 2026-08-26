@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.pyc
+
+# The HTTP response cache is a local speed optimisation, not data. It can be
+# large and is fully reconstructible.
+data/.cache/
+
+# Everything else under data/ IS tracked on purpose. The point-in-time store is
+# the irreplaceable asset: versioning it in git gives free history, free diffs
+# ("what changed in the ETF basket yesterday?") and a free offsite backup.
+# Same for research/ — trial_budget.json is the shared multi-agent state and
+# must never be lost or silently reset.

@@ -1,0 +1,92 @@
+name: agent-run
+
+# The research loop. Separate from ingest because it has completely different
+# economics: ingest is 2 free minutes a day that must never be missed, this is
+# an occasional burst that costs LLM tokens and must never run unsupervised
+# without a budget cap.
+on:
+  schedule:
+    - cron: '0 3 * * 6'          # Saturday 03:00 UTC — weekly, off-market
+  workflow_dispatch:
+    inputs:
+      max_trials:
+        description: 'Trials this run may charge to the shared budget'
+        default: '5'
+      agents:
+        description: 'Comma-separated agent roles to run'
+        default: 'athena'
+
+permissions:
+  contents: write
+
+# THE LOCK.
+#
+# research/trial_budget.json is the only shared mutable state in the whole
+# system, and two concurrent runs would last-write-wins away a trial charge —
+# silently lowering the bar, which is the exact failure the ledger exists to
+# prevent. This group name is shared with the ingest workflow on purpose: every
+# job that writes to the repo is serialised through one queue.
+#
+# cancel-in-progress MUST stay false. Cancelling a run mid-write is how you get
+# a truncated ledger.
+concurrency:
+  group: repo-writer
+  cancel-in-progress: false
+
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      # Never run the loop against a broken engine. A statistics bug plus an
+      # autonomous agent is how you get a confidently wrong verdict committed
+      # to the permanent record.
+      - name: Gate check
+        run: |
+          python3 -m tests.test_engine | tail -2
+          python3 -m tests.test_agent  | tail -2
+
+      - name: Budget status before
+        run: python3 -c "from agent.ledger import TrialLedger; print(TrialLedger().summary())"
+
+      - name: Run agents
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          MAX_TRIALS: ${{ inputs.max_trials || '5' }}
+          AGENTS: ${{ inputs.agents || 'athena' }}
+        run: python3 -m agent.run --max-trials "$MAX_TRIALS" --agents "$AGENTS"
+
+      - name: Budget status after
+        run: python3 -c "from agent.ledger import TrialLedger; print(TrialLedger().summary())"
+
+      - name: Commit ledger and verdicts
+        run: |
+          git config user.name  "agent-bot"
+          git config user.email "agent-bot@users.noreply.github.com"
+          git add research/ data/
+          git diff --staged --quiet && echo "no changes" && exit 0
+          git commit -m "research: $(date -u +%Y-%m-%d) agent run"
+          # Rebase before pushing: the ingest job may have landed a data commit
+          # while this run was working. Retry because the queue is not a
+          # guarantee against a manually-dispatched run.
+          for i in 1 2 3; do
+            git pull --rebase --autostash && git push && exit 0
+            echo "push attempt $i failed, retrying"; sleep $((i * 5))
+          done
+          echo "could not push after 3 attempts" >&2; exit 1
+
+      - name: Alert on failure
+        if: failure()
+        run: |
+          curl -fsS -X POST "${{ secrets.ALERT_WEBHOOK }}" \
+            -d "text=agent-run FAILED: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" \
+            || echo "alert webhook not configured"

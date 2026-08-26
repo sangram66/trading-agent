@@ -1,0 +1,15 @@
+# Core numerics
+numpy>=1.24
+pandas>=2.0
+scipy>=1.10
+
+# Storage: parquet + local SQL
+pyarrow>=14.0
+duckdb>=0.10
+
+# Ingest
+requests>=2.31
+
+# Real S&P 500 data ships inside this package, and its GARCH estimator is
+# used as an independent cross-check of our from-scratch fit in test V5.
+arch>=6.0
