@@ -1,0 +1,1580 @@
+{
+  "run_at": "2026-08-29T09:43:30.060006+00:00",
+  "n_sim": 300,
+  "period": "5y",
+  "stocks": [
+    {
+      "symbol": "AAPL",
+      "n_obs": 1253,
+      "ann_return": 0.1498230813648808,
+      "ann_vol": 0.2795119560920285,
+      "sharpe": 0.5360167180668006,
+      "excess_kurtosis": 5.721886653464697,
+      "acf_abs_lag1": 0.20568237444252635,
+      "acf_signed_lag1": 0.027070377324525094,
+      "same_band_rate": 0.5565500406834825,
+      "current_vol_20d": 0.3287518520150017,
+      "current_vol_60d": 0.3235778624825865,
+      "vol_ratio": 1.02,
+      "garch": {
+        "alpha": 0.0624,
+        "beta": 0.9049,
+        "persistence": 0.96729,
+        "half_life": 20.8
+      },
+      "survives_all_nulls": [],
+      "n_survivors": 0,
+      "statistics": {
+        "Ann. volatility": {
+          "real": 0.279512,
+          "p_garch": 0.8372,
+          "p_shuffle": 1.0
+        },
+        "Excess kurtosis": {
+          "real": 5.721887,
+          "p_garch": 0.3123,
+          "p_shuffle": 1.0
+        },
+        "ACF |r| lag 1": {
+          "real": 0.205682,
+          "p_garch": 0.0598,
+          "p_shuffle": 0.0066
+        },
+        "ACF |r| lag 22": {
+          "real": 0.111553,
+          "p_garch": 0.1063,
+          "p_shuffle": 0.0066
+        },
+        "ACF |r| lag 66": {
+          "real": 0.019942,
+          "p_garch": 0.6578,
+          "p_shuffle": 0.4452
+        },
+        "ACF r lag 1": {
+          "real": 0.02707,
+          "p_garch": 0.4452,
+          "p_shuffle": 0.412
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 275.106306,
+          "p_garch": 0.4053,
+          "p_shuffle": 0.0066
+        },
+        "Same-band rate": {
+          "real": 0.55655,
+          "p_garch": 0.5449,
+          "p_shuffle": 0.0066
+        },
+        "Lift over independence": {
+          "real": 35.655415,
+          "p_garch": 0.5449,
+          "p_shuffle": 0.0066
+        },
+        "Cramer's V": {
+          "real": 0.524222,
+          "p_garch": 0.6578,
+          "p_shuffle": 0.0066
+        },
+        "Regression R2": {
+          "real": 0.769702,
+          "p_garch": 0.6711,
+          "p_shuffle": 0.0066
+        }
+      },
+      "verdict": "NO SIGNAL \u2014 GARCH explains everything observed",
+      "last_close": NaN,
+      "last_date": "2026-08-28"
+    },
+    {
+      "symbol": "MSFT",
+      "n_obs": 1253,
+      "ann_return": 0.11063568255319944,
+      "ann_vol": 0.28029606109300426,
+      "sharpe": 0.39471008661976786,
+      "excess_kurtosis": 6.212997327800629,
+      "acf_abs_lag1": 0.08653186193361652,
+      "acf_signed_lag1": 0.015614846819991935,
+      "same_band_rate": 0.613506916192026,
+      "current_vol_20d": 0.276266890361582,
+      "current_vol_60d": 0.4320218371661046,
+      "vol_ratio": 0.64,
+      "garch": {
+        "alpha": 0.0305,
+        "beta": 0.9581,
+        "persistence": 0.98859,
+        "half_life": 60.4
+      },
+      "survives_all_nulls": [],
+      "n_survivors": 0,
+      "statistics": {
+        "Ann. volatility": {
+          "real": 0.280296,
+          "p_garch": 0.7973,
+          "p_shuffle": 0.3389
+        },
+        "Excess kurtosis": {
+          "real": 6.212997,
+          "p_garch": 0.8638,
+          "p_shuffle": 0.3123
+        },
+        "ACF |r| lag 1": {
+          "real": 0.086532,
+          "p_garch": 0.6578,
+          "p_shuffle": 0.0066
+        },
+        "ACF |r| lag 22": {
+          "real": 0.067581,
+          "p_garch": 0.5249,
+          "p_shuffle": 0.0332
+        },
+        "ACF |r| lag 66": {
+          "real": 0.052378,
+          "p_garch": 0.3787,
+          "p_shuffle": 0.0997
+        },
+        "ACF r lag 1": {
+          "real": 0.015615,
+          "p_garch": 0.5847,
+          "p_shuffle": 0.4585
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 162.715638,
+          "p_garch": 0.5914,
+          "p_shuffle": 0.0066
+        },
+        "Same-band rate": {
+          "real": 0.613507,
+          "p_garch": 0.4186,
+          "p_shuffle": 0.0066
+        },
+        "Lift over independence": {
+          "real": 41.351036,
+          "p_garch": 0.4186,
+          "p_shuffle": 0.0066
+        },
+        "Cramer's V": {
+          "real": 0.564136,
+          "p_garch": 0.5914,
+          "p_shuffle": 0.0066
+        },
+        "Regression R2": {
+          "real": 0.766555,
+          "p_garch": 0.598,
+          "p_shuffle": 0.0066
+        }
+      },
+      "verdict": "NO SIGNAL \u2014 GARCH explains everything observed",
+      "last_close": NaN,
+      "last_date": "2026-08-28"
+    },
+    {
+      "symbol": "NVDA",
+      "n_obs": 1253,
+      "ann_return": 0.4647569028330025,
+      "ann_vol": 0.515662204222285,
+      "sharpe": 0.9012816898883307,
+      "excess_kurtosis": 3.7266242866072616,
+      "acf_abs_lag1": 0.06682144094403941,
+      "acf_signed_lag1": -0.0429690494230608,
+      "same_band_rate": 0.6419853539462979,
+      "current_vol_20d": 0.4291525596100845,
+      "current_vol_60d": 0.42546225698544365,
+      "vol_ratio": 1.01,
+      "garch": {
+        "alpha": 0.051,
+        "beta": 0.9133,
+        "persistence": 0.96424,
+        "half_life": 19.0
+      },
+      "survives_all_nulls": [
+        "ACF |r| lag 66",
+        "Same-band rate",
+        "Lift over independence"
+      ],
+      "n_survivors": 3,
+      "statistics": {
+        "Ann. volatility": {
+          "real": 0.515662,
+          "p_garch": 0.7973,
+          "p_shuffle": 1.0
+        },
+        "Excess kurtosis": {
+          "real": 3.726624,
+          "p_garch": 0.6179,
+          "p_shuffle": 0.3787
+        },
+        "ACF |r| lag 1": {
+          "real": 0.066821,
+          "p_garch": 0.6711,
+          "p_shuffle": 0.0266
+        },
+        "ACF |r| lag 22": {
+          "real": 0.113475,
+          "p_garch": 0.093,
+          "p_shuffle": 0.0066
+        },
+        "ACF |r| lag 66": {
+          "real": 0.070799,
+          "p_garch": 0.0332,
+          "p_shuffle": 0.0266
+        },
+        "ACF r lag 1": {
+          "real": -0.042969,
+          "p_garch": 0.2126,
+          "p_shuffle": 0.1927
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 187.339232,
+          "p_garch": 0.485,
+          "p_shuffle": 0.0066
+        },
+        "Same-band rate": {
+          "real": 0.641985,
+          "p_garch": 0.0266,
+          "p_shuffle": 0.0066
+        },
+        "Lift over independence": {
+          "real": 44.198416,
+          "p_garch": 0.0266,
+          "p_shuffle": 0.0066
+        },
+        "Cramer's V": {
+          "real": 0.592281,
+          "p_garch": 0.0731,
+          "p_shuffle": 0.0066
+        },
+        "Regression R2": {
+          "real": 0.778493,
+          "p_garch": 0.3056,
+          "p_shuffle": 0.0066
+        }
+      },
+      "verdict": "3/11 statistics survive every null",
+      "last_close": NaN,
+      "last_date": "2026-08-28"
+    },
+    {
+      "symbol": "GOOG",
+      "n_obs": 1253,
+      "ann_return": 0.17115063851003123,
+      "ann_vol": 0.3193264978516619,
+      "sharpe": 0.5359738063126118,
+      "excess_kurtosis": 3.144844829077879,
+      "acf_abs_lag1": 0.032318416391680115,
+      "acf_signed_lag1": 0.008108484594485842,
+      "same_band_rate": 0.5890968266883645,
+      "current_vol_20d": 0.3675171134918504,
+      "current_vol_60d": 0.369001467977652,
+      "vol_ratio": 1.0,
+      "garch": {
+        "alpha": 0.0129,
+        "beta": 0.9682,
+        "persistence": 0.98106,
+        "half_life": 36.3
+      },
+      "survives_all_nulls": [
+        "ACF |r| lag 66"
+      ],
+      "n_survivors": 1,
+      "statistics": {
+        "Ann. volatility": {
+          "real": 0.319326,
+          "p_garch": 0.9302,
+          "p_shuffle": 1.0
+        },
+        "Excess kurtosis": {
+          "real": 3.144845,
+          "p_garch": 0.6512,
+          "p_shuffle": 1.0
+        },
+        "ACF |r| lag 1": {
+          "real": 0.032318,
+          "p_garch": 0.6179,
+          "p_shuffle": 0.2326
+        },
+        "ACF |r| lag 22": {
+          "real": 0.036157,
+          "p_garch": 0.3588,
+          "p_shuffle": 0.1993
+        },
+        "ACF |r| lag 66": {
+          "real": 0.09297,
+          "p_garch": 0.0066,
+          "p_shuffle": 0.0066
+        },
+        "ACF r lag 1": {
+          "real": 0.008108,
+          "p_garch": 0.6977,
+          "p_shuffle": 0.7841
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 66.847079,
+          "p_garch": 0.0465,
+          "p_shuffle": 0.0066
+        },
+        "Same-band rate": {
+          "real": 0.589097,
+          "p_garch": 0.0332,
+          "p_shuffle": 0.0066
+        },
+        "Lift over independence": {
+          "real": 38.910093,
+          "p_garch": 0.0266,
+          "p_shuffle": 0.0066
+        },
+        "Cramer's V": {
+          "real": 0.536216,
+          "p_garch": 0.0399,
+          "p_shuffle": 0.0066
+        },
+        "Regression R2": {
+          "real": 0.640461,
+          "p_garch": 0.505,
+          "p_shuffle": 0.0266
+        }
+      },
+      "verdict": "1/11 statistics survive every null",
+      "last_close": NaN,
+      "last_date": "2026-08-28"
+    },
+    {
+      "symbol": "AMZN",
+      "n_obs": 1253,
+      "ann_return": 0.08126548267978628,
+      "ann_vol": 0.3630036140309889,
+      "sharpe": 0.22386962426453638,
+      "excess_kurtosis": 5.3647223353386355,
+      "acf_abs_lag1": 0.16295463643535604,
+      "acf_signed_lag1": 0.007715545694722952,
+      "same_band_rate": 0.6110659072416599,
+      "current_vol_20d": 0.5829376054517125,
+      "current_vol_60d": 0.430706353136453,
+      "vol_ratio": 1.35,
+      "garch": {
+        "alpha": 0.2585,
+        "beta": 0.5256,
+        "persistence": 0.78415,
+        "half_life": 2.9
+      },
+      "survives_all_nulls": [
+        "ACF |r| lag 66"
+      ],
+      "n_survivors": 1,
+      "statistics": {
+        "Ann. volatility": {
+          "real": 0.363004,
+          "p_garch": 0.7907,
+          "p_shuffle": 1.0
+        },
+        "Excess kurtosis": {
+          "real": 5.364722,
+          "p_garch": 0.7442,
+          "p_shuffle": 1.0
+        },
+        "ACF |r| lag 1": {
+          "real": 0.162955,
+          "p_garch": 0.1196,
+          "p_shuffle": 0.0066
+        },
+        "ACF |r| lag 22": {
+          "real": 0.050869,
+          "p_garch": 0.1196,
+          "p_shuffle": 0.0399
+        },
+        "ACF |r| lag 66": {
+          "real": 0.08734,
+          "p_garch": 0.0133,
+          "p_shuffle": 0.0066
+        },
+        "ACF r lag 1": {
+          "real": 0.007716,
+          "p_garch": 0.8106,
+          "p_shuffle": 0.804
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 153.109895,
+          "p_garch": 0.4983,
+          "p_shuffle": 0.0066
+        },
+        "Same-band rate": {
+          "real": 0.611066,
+          "p_garch": 0.0133,
+          "p_shuffle": 0.0066
+        },
+        "Lift over independence": {
+          "real": 41.107001,
+          "p_garch": 0.0133,
+          "p_shuffle": 0.0066
+        },
+        "Cramer's V": {
+          "real": 0.564569,
+          "p_garch": 0.0066,
+          "p_shuffle": 0.0066
+        },
+        "Regression R2": {
+          "real": 0.708815,
+          "p_garch": 0.1927,
+          "p_shuffle": 0.0066
+        }
+      },
+      "verdict": "1/11 statistics survive every null",
+      "last_close": NaN,
+      "last_date": "2026-08-28"
+    },
+    {
+      "symbol": "META",
+      "n_obs": 1253,
+      "ann_return": 0.08334321679500113,
+      "ann_vol": 0.453047160937659,
+      "sharpe": 0.18396145916135537,
+      "excess_kurtosis": 23.286262106527857,
+      "acf_abs_lag1": 0.035991996302470054,
+      "acf_signed_lag1": -0.01009930214119686,
+      "same_band_rate": 0.6395443449959316,
+      "current_vol_20d": 0.37671759882613637,
+      "current_vol_60d": 0.47722359268753295,
+      "vol_ratio": 0.79,
+      "garch": {
+        "alpha": 0.1068,
+        "beta": 0.7065,
+        "persistence": 0.81328,
+        "half_life": 3.4
+      },
+      "survives_all_nulls": [
+        "ACF |r| lag 66",
+        "Same-band rate",
+        "Lift over independence",
+        "Cramer's V"
+      ],
+      "n_survivors": 4,
+      "statistics": {
+        "Ann. volatility": {
+          "real": 0.453047,
+          "p_garch": 0.8239,
+          "p_shuffle": 1.0
+        },
+        "Excess kurtosis": {
+          "real": 23.286262,
+          "p_garch": 0.8638,
+          "p_shuffle": 1.0
+        },
+        "ACF |r| lag 1": {
+          "real": 0.035992,
+          "p_garch": 0.0532,
+          "p_shuffle": 0.2259
+        },
+        "ACF |r| lag 22": {
+          "real": 0.022358,
+          "p_garch": 0.3189,
+          "p_shuffle": 0.3654
+        },
+        "ACF |r| lag 66": {
+          "real": 0.144847,
+          "p_garch": 0.0066,
+          "p_shuffle": 0.0066
+        },
+        "ACF r lag 1": {
+          "real": -0.010099,
+          "p_garch": 0.8439,
+          "p_shuffle": 0.7309
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 96.696419,
+          "p_garch": 0.7176,
+          "p_shuffle": 0.0066
+        },
+        "Same-band rate": {
+          "real": 0.639544,
+          "p_garch": 0.0066,
+          "p_shuffle": 0.0066
+        },
+        "Lift over independence": {
+          "real": 43.954779,
+          "p_garch": 0.0066,
+          "p_shuffle": 0.0066
+        },
+        "Cramer's V": {
+          "real": 0.579197,
+          "p_garch": 0.0066,
+          "p_shuffle": 0.0066
+        },
+        "Regression R2": {
+          "real": 0.657445,
+          "p_garch": 0.4585,
+          "p_shuffle": 0.0133
+        }
+      },
+      "verdict": "4/11 statistics survive every null",
+      "last_close": NaN,
+      "last_date": "2026-08-28"
+    },
+    {
+      "symbol": "TSLA",
+      "n_obs": 1253,
+      "ann_return": 0.07560087640423842,
+      "ann_vol": 0.5960237164272595,
+      "sharpe": 0.12684206067740425,
+      "excess_kurtosis": 2.633137471722404,
+      "acf_abs_lag1": 0.028085252738749886,
+      "acf_signed_lag1": -0.01856037375327852,
+      "same_band_rate": 0.5907241659886087,
+      "current_vol_20d": 0.37259928912185447,
+      "current_vol_60d": 0.5807501682758542,
+      "vol_ratio": 0.64,
+      "garch": {
+        "alpha": 0.0258,
+        "beta": 0.9571,
+        "persistence": 0.98292,
+        "half_life": 40.2
+      },
+      "survives_all_nulls": [],
+      "n_survivors": 0,
+      "statistics": {
+        "Ann. volatility": {
+          "real": 0.596024,
+          "p_garch": 0.9435,
+          "p_shuffle": 1.0
+        },
+        "Excess kurtosis": {
+          "real": 2.633137,
+          "p_garch": 0.8239,
+          "p_shuffle": 0.3056
+        },
+        "ACF |r| lag 1": {
+          "real": 0.028085,
+          "p_garch": 0.8306,
+          "p_shuffle": 0.3189
+        },
+        "ACF |r| lag 22": {
+          "real": 0.074016,
+          "p_garch": 0.1728,
+          "p_shuffle": 0.0266
+        },
+        "ACF |r| lag 66": {
+          "real": -0.000331,
+          "p_garch": 0.8638,
+          "p_shuffle": 0.9834
+        },
+        "ACF r lag 1": {
+          "real": -0.01856,
+          "p_garch": 0.6312,
+          "p_shuffle": 0.5515
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 104.92049,
+          "p_garch": 0.3189,
+          "p_shuffle": 0.0066
+        },
+        "Same-band rate": {
+          "real": 0.590724,
+          "p_garch": 0.2126,
+          "p_shuffle": 0.0066
+        },
+        "Lift over independence": {
+          "real": 39.071172,
+          "p_garch": 0.2126,
+          "p_shuffle": 0.0066
+        },
+        "Cramer's V": {
+          "real": 0.552539,
+          "p_garch": 0.1927,
+          "p_shuffle": 0.0066
+        },
+        "Regression R2": {
+          "real": 0.720377,
+          "p_garch": 0.5382,
+          "p_shuffle": 0.0066
+        }
+      },
+      "verdict": "NO SIGNAL \u2014 GARCH explains everything observed",
+      "last_close": NaN,
+      "last_date": "2026-08-28"
+    },
+    {
+      "symbol": "JPM",
+      "n_obs": 1253,
+      "ann_return": 0.18444484983293033,
+      "ann_vol": 0.24392914064346977,
+      "sharpe": 0.756141104528866,
+      "excess_kurtosis": 4.675620190000068,
+      "acf_abs_lag1": 0.14921989795427262,
+      "acf_signed_lag1": 0.018846016919134404,
+      "same_band_rate": 0.5785191212367778,
+      "current_vol_20d": 0.13210331065070022,
+      "current_vol_60d": 0.2105043538720372,
+      "vol_ratio": 0.63,
+      "garch": {
+        "alpha": 0.0974,
+        "beta": 0.6815,
+        "persistence": 0.77891,
+        "half_life": 2.8
+      },
+      "survives_all_nulls": [],
+      "n_survivors": 0,
+      "statistics": {
+        "Ann. volatility": {
+          "real": 0.243929,
+          "p_garch": 0.9037,
+          "p_shuffle": 1.0
+        },
+        "Excess kurtosis": {
+          "real": 4.67562,
+          "p_garch": 0.8106,
+          "p_shuffle": 1.0
+        },
+        "ACF |r| lag 1": {
+          "real": 0.14922,
+          "p_garch": 0.2525,
+          "p_shuffle": 0.0066
+        },
+        "ACF |r| lag 22": {
+          "real": 0.078546,
+          "p_garch": 0.0133,
+          "p_shuffle": 0.0199
+        },
+        "ACF |r| lag 66": {
+          "real": 0.026466,
+          "p_garch": 0.2924,
+          "p_shuffle": 0.3322
+        },
+        "ACF r lag 1": {
+          "real": 0.018846,
+          "p_garch": 0.5316,
+          "p_shuffle": 0.5449
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 120.159566,
+          "p_garch": 0.1196,
+          "p_shuffle": 0.0066
+        },
+        "Same-band rate": {
+          "real": 0.578519,
+          "p_garch": 0.0465,
+          "p_shuffle": 0.0066
+        },
+        "Lift over independence": {
+          "real": 37.852124,
+          "p_garch": 0.0465,
+          "p_shuffle": 0.0066
+        },
+        "Cramer's V": {
+          "real": 0.52667,
+          "p_garch": 0.0399,
+          "p_shuffle": 0.0066
+        },
+        "Regression R2": {
+          "real": 0.696957,
+          "p_garch": 0.0465,
+          "p_shuffle": 0.0066
+        }
+      },
+      "verdict": "NO SIGNAL \u2014 GARCH explains everything observed",
+      "last_close": NaN,
+      "last_date": "2026-08-28"
+    },
+    {
+      "symbol": "V",
+      "n_obs": 1253,
+      "ann_return": 0.10734572681923808,
+      "ann_vol": 0.22921921030714,
+      "sharpe": 0.46831034220648987,
+      "excess_kurtosis": 5.479446363978903,
+      "acf_abs_lag1": 0.0850473224815382,
+      "acf_signed_lag1": -0.021956291125880833,
+      "same_band_rate": 0.6183889340927583,
+      "current_vol_20d": 0.18897882619435244,
+      "current_vol_60d": 0.21106614093310652,
+      "vol_ratio": 0.9,
+      "garch": {
+        "alpha": 0.0245,
+        "beta": 0.9701,
+        "persistence": 0.99462,
+        "half_life": 128.6
+      },
+      "survives_all_nulls": [],
+      "n_survivors": 0,
+      "statistics": {
+        "Ann. volatility": {
+          "real": 0.229219,
+          "p_garch": 0.6445,
+          "p_shuffle": 1.0
+        },
+        "Excess kurtosis": {
+          "real": 5.479446,
+          "p_garch": 0.9369,
+          "p_shuffle": 0.0664
+        },
+        "ACF |r| lag 1": {
+          "real": 0.085047,
+          "p_garch": 0.5449,
+          "p_shuffle": 0.0199
+        },
+        "ACF |r| lag 22": {
+          "real": 0.051924,
+          "p_garch": 0.8704,
+          "p_shuffle": 0.0997
+        },
+        "ACF |r| lag 66": {
+          "real": 0.104427,
+          "p_garch": 0.093,
+          "p_shuffle": 0.0066
+        },
+        "ACF r lag 1": {
+          "real": -0.021956,
+          "p_garch": 0.5714,
+          "p_shuffle": 0.4718
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 194.32406,
+          "p_garch": 0.4651,
+          "p_shuffle": 0.0066
+        },
+        "Same-band rate": {
+          "real": 0.618389,
+          "p_garch": 0.505,
+          "p_shuffle": 0.0066
+        },
+        "Lift over independence": {
+          "real": 41.838046,
+          "p_garch": 0.505,
+          "p_shuffle": 0.0066
+        },
+        "Cramer's V": {
+          "real": 0.574078,
+          "p_garch": 0.505,
+          "p_shuffle": 0.0066
+        },
+        "Regression R2": {
+          "real": 0.753426,
+          "p_garch": 0.7176,
+          "p_shuffle": 0.0066
+        }
+      },
+      "verdict": "NO SIGNAL \u2014 GARCH explains everything observed",
+      "last_close": NaN,
+      "last_date": "2026-08-28"
+    },
+    {
+      "symbol": "UNH",
+      "n_obs": 1253,
+      "ann_return": 0.006143206016212275,
+      "ann_vol": 0.33006253754894205,
+      "sharpe": 0.018612248641823984,
+      "excess_kurtosis": 35.19057694576074,
+      "acf_abs_lag1": 0.11097773740397376,
+      "acf_signed_lag1": 0.03975088907307132,
+      "same_band_rate": 0.6094385679414158,
+      "current_vol_20d": 0.21095193087344355,
+      "current_vol_60d": 0.2564074968819485,
+      "vol_ratio": 0.82,
+      "garch": {
+        "alpha": 0.02,
+        "beta": 0.97,
+        "persistence": 0.99,
+        "half_life": 69.0
+      },
+      "survives_all_nulls": [],
+      "n_survivors": 0,
+      "statistics": {
+        "Ann. volatility": {
+          "real": 0.330063,
+          "p_garch": 0.711,
+          "p_shuffle": 1.0
+        },
+        "Excess kurtosis": {
+          "real": 35.190577,
+          "p_garch": 0.4186,
+          "p_shuffle": 0.9967
+        },
+        "ACF |r| lag 1": {
+          "real": 0.110978,
+          "p_garch": 0.2658,
+          "p_shuffle": 0.0066
+        },
+        "ACF |r| lag 22": {
+          "real": 0.030486,
+          "p_garch": 0.7841,
+          "p_shuffle": 0.206
+        },
+        "ACF |r| lag 66": {
+          "real": 0.040056,
+          "p_garch": 0.5581,
+          "p_shuffle": 0.1528
+        },
+        "ACF r lag 1": {
+          "real": 0.039751,
+          "p_garch": 0.2392,
+          "p_shuffle": 0.1528
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 128.860949,
+          "p_garch": 0.6777,
+          "p_shuffle": 0.0066
+        },
+        "Same-band rate": {
+          "real": 0.609439,
+          "p_garch": 0.6844,
+          "p_shuffle": 0.0066
+        },
+        "Lift over independence": {
+          "real": 40.943407,
+          "p_garch": 0.6777,
+          "p_shuffle": 0.0066
+        },
+        "Cramer's V": {
+          "real": 0.555441,
+          "p_garch": 0.7708,
+          "p_shuffle": 0.0066
+        },
+        "Regression R2": {
+          "real": 0.710594,
+          "p_garch": 0.8505,
+          "p_shuffle": 0.0066
+        }
+      },
+      "verdict": "NO SIGNAL \u2014 GARCH explains everything observed",
+      "last_close": NaN,
+      "last_date": "2026-08-28"
+    },
+    {
+      "symbol": "XOM",
+      "n_obs": 1253,
+      "ann_return": 0.24490222217621252,
+      "ann_vol": 0.2667679831968131,
+      "sharpe": 0.9180345378835485,
+      "excess_kurtosis": 1.5110209955420837,
+      "acf_abs_lag1": 0.058724451317388356,
+      "acf_signed_lag1": 0.019355097117721203,
+      "same_band_rate": 0.6029292107404394,
+      "current_vol_20d": 0.2519927891980214,
+      "current_vol_60d": 0.2598256475343192,
+      "vol_ratio": 0.97,
+      "garch": {
+        "alpha": 0.0349,
+        "beta": 0.9562,
+        "persistence": 0.99118,
+        "half_life": 78.3
+      },
+      "survives_all_nulls": [],
+      "n_survivors": 0,
+      "statistics": {
+        "Ann. volatility": {
+          "real": 0.266768,
+          "p_garch": 0.7774,
+          "p_shuffle": 0.7907
+        },
+        "Excess kurtosis": {
+          "real": 1.511021,
+          "p_garch": 0.7575,
+          "p_shuffle": 0.3522
+        },
+        "ACF |r| lag 1": {
+          "real": 0.058724,
+          "p_garch": 0.8638,
+          "p_shuffle": 0.0266
+        },
+        "ACF |r| lag 22": {
+          "real": 0.098894,
+          "p_garch": 0.2791,
+          "p_shuffle": 0.0066
+        },
+        "ACF |r| lag 66": {
+          "real": 0.028234,
+          "p_garch": 1.0,
+          "p_shuffle": 0.2658
+        },
+        "ACF r lag 1": {
+          "real": 0.019355,
+          "p_garch": 0.5316,
+          "p_shuffle": 0.5382
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 153.780633,
+          "p_garch": 0.711,
+          "p_shuffle": 0.0066
+        },
+        "Same-band rate": {
+          "real": 0.602929,
+          "p_garch": 0.4983,
+          "p_shuffle": 0.0066
+        },
+        "Lift over independence": {
+          "real": 40.293001,
+          "p_garch": 0.4983,
+          "p_shuffle": 0.0066
+        },
+        "Cramer's V": {
+          "real": 0.562109,
+          "p_garch": 0.6312,
+          "p_shuffle": 0.0066
+        },
+        "Regression R2": {
+          "real": 0.786366,
+          "p_garch": 0.6645,
+          "p_shuffle": 0.0066
+        }
+      },
+      "verdict": "NO SIGNAL \u2014 GARCH explains everything observed",
+      "last_close": NaN,
+      "last_date": "2026-08-28"
+    },
+    {
+      "symbol": "LLY",
+      "n_obs": 1253,
+      "ann_return": 0.31089120713181567,
+      "ann_vol": 0.3274209011123478,
+      "sharpe": 0.9495154587737811,
+      "excess_kurtosis": 7.717785095104185,
+      "acf_abs_lag1": 0.11645837616952465,
+      "acf_signed_lag1": 0.020736134861661308,
+      "same_band_rate": 0.5394629780309195,
+      "current_vol_20d": 0.38519537168862167,
+      "current_vol_60d": 0.3468318203076125,
+      "vol_ratio": 1.11,
+      "garch": {
+        "alpha": 0.0611,
+        "beta": 0.8018,
+        "persistence": 0.86295,
+        "half_life": 4.7
+      },
+      "survives_all_nulls": [
+        "ACF |r| lag 66"
+      ],
+      "n_survivors": 1,
+      "statistics": {
+        "Ann. volatility": {
+          "real": 0.327421,
+          "p_garch": 0.8571,
+          "p_shuffle": 0.5249
+        },
+        "Excess kurtosis": {
+          "real": 7.717785,
+          "p_garch": 0.9635,
+          "p_shuffle": 0.5249
+        },
+        "ACF |r| lag 1": {
+          "real": 0.116458,
+          "p_garch": 0.2857,
+          "p_shuffle": 0.0066
+        },
+        "ACF |r| lag 22": {
+          "real": -0.003577,
+          "p_garch": 0.8439,
+          "p_shuffle": 0.9967
+        },
+        "ACF |r| lag 66": {
+          "real": 0.125393,
+          "p_garch": 0.0066,
+          "p_shuffle": 0.0066
+        },
+        "ACF r lag 1": {
+          "real": 0.020736,
+          "p_garch": 0.5581,
+          "p_shuffle": 0.4186
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 57.188567,
+          "p_garch": 0.7176,
+          "p_shuffle": 0.0066
+        },
+        "Same-band rate": {
+          "real": 0.539463,
+          "p_garch": 0.8638,
+          "p_shuffle": 0.186
+        },
+        "Lift over independence": {
+          "real": 33.946443,
+          "p_garch": 0.8505,
+          "p_shuffle": 0.186
+        },
+        "Cramer's V": {
+          "real": 0.488525,
+          "p_garch": 0.8704,
+          "p_shuffle": 0.1329
+        },
+        "Regression R2": {
+          "real": 0.615018,
+          "p_garch": 0.8704,
+          "p_shuffle": 0.093
+        }
+      },
+      "verdict": "1/11 statistics survive every null",
+      "last_close": NaN,
+      "last_date": "2026-08-28"
+    },
+    {
+      "symbol": "AVGO",
+      "n_obs": 1253,
+      "ann_return": 0.4226975467154841,
+      "ann_vol": 0.4391783446000345,
+      "sharpe": 0.9624735643567316,
+      "excess_kurtosis": 7.595813535700758,
+      "acf_abs_lag1": 0.16480227139137246,
+      "acf_signed_lag1": -0.002574568091523457,
+      "same_band_rate": 0.597233523189585,
+      "current_vol_20d": 0.440943703966272,
+      "current_vol_60d": 0.5525132398191859,
+      "vol_ratio": 0.8,
+      "garch": {
+        "alpha": 0.0512,
+        "beta": 0.9254,
+        "persistence": 0.97658,
+        "half_life": 29.3
+      },
+      "survives_all_nulls": [],
+      "n_survivors": 0,
+      "statistics": {
+        "Ann. volatility": {
+          "real": 0.439178,
+          "p_garch": 0.7641,
+          "p_shuffle": 1.0
+        },
+        "Excess kurtosis": {
+          "real": 7.595814,
+          "p_garch": 0.6379,
+          "p_shuffle": 0.9502
+        },
+        "ACF |r| lag 1": {
+          "real": 0.164802,
+          "p_garch": 0.2193,
+          "p_shuffle": 0.0066
+        },
+        "ACF |r| lag 22": {
+          "real": 0.079004,
+          "p_garch": 0.4585,
+          "p_shuffle": 0.0133
+        },
+        "ACF |r| lag 66": {
+          "real": 0.015905,
+          "p_garch": 0.8306,
+          "p_shuffle": 0.5116
+        },
+        "ACF r lag 1": {
+          "real": -0.002575,
+          "p_garch": 0.9967,
+          "p_shuffle": 0.9236
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 125.822475,
+          "p_garch": 0.7841,
+          "p_shuffle": 0.0066
+        },
+        "Same-band rate": {
+          "real": 0.597234,
+          "p_garch": 0.9169,
+          "p_shuffle": 0.0066
+        },
+        "Lift over independence": {
+          "real": 39.723763,
+          "p_garch": 0.9169,
+          "p_shuffle": 0.0066
+        },
+        "Cramer's V": {
+          "real": 0.542171,
+          "p_garch": 0.8106,
+          "p_shuffle": 0.0066
+        },
+        "Regression R2": {
+          "real": 0.714617,
+          "p_garch": 0.5515,
+          "p_shuffle": 0.0066
+        }
+      },
+      "verdict": "NO SIGNAL \u2014 GARCH explains everything observed",
+      "last_close": NaN,
+      "last_date": "2026-08-28"
+    },
+    {
+      "symbol": "COST",
+      "n_obs": 1253,
+      "ann_return": 0.15518004330049098,
+      "ann_vol": 0.230994213297593,
+      "sharpe": 0.6717919080534299,
+      "excess_kurtosis": 8.345503348401058,
+      "acf_abs_lag1": 0.06990660151681112,
+      "acf_signed_lag1": 0.024349803691988515,
+      "same_band_rate": 0.5850284784377543,
+      "current_vol_20d": 0.18952952264201248,
+      "current_vol_60d": 0.20753254717686498,
+      "vol_ratio": 0.91,
+      "garch": {
+        "alpha": 0.0407,
+        "beta": 0.9345,
+        "persistence": 0.97522,
+        "half_life": 27.6
+      },
+      "survives_all_nulls": [],
+      "n_survivors": 0,
+      "statistics": {
+        "Ann. volatility": {
+          "real": 0.230994,
+          "p_garch": 0.897,
+          "p_shuffle": 1.0
+        },
+        "Excess kurtosis": {
+          "real": 8.345503,
+          "p_garch": 0.3123,
+          "p_shuffle": 0.505
+        },
+        "ACF |r| lag 1": {
+          "real": 0.069907,
+          "p_garch": 0.9502,
+          "p_shuffle": 0.0199
+        },
+        "ACF |r| lag 22": {
+          "real": 0.054874,
+          "p_garch": 0.6777,
+          "p_shuffle": 0.0664
+        },
+        "ACF |r| lag 66": {
+          "real": 0.071235,
+          "p_garch": 0.0731,
+          "p_shuffle": 0.0133
+        },
+        "ACF r lag 1": {
+          "real": 0.02435,
+          "p_garch": 0.4917,
+          "p_shuffle": 0.3654
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 101.860932,
+          "p_garch": 0.9834,
+          "p_shuffle": 0.0066
+        },
+        "Same-band rate": {
+          "real": 0.585028,
+          "p_garch": 0.711,
+          "p_shuffle": 0.0066
+        },
+        "Lift over independence": {
+          "real": 38.501338,
+          "p_garch": 0.711,
+          "p_shuffle": 0.0066
+        },
+        "Cramer's V": {
+          "real": 0.543062,
+          "p_garch": 0.7309,
+          "p_shuffle": 0.0066
+        },
+        "Regression R2": {
+          "real": 0.708606,
+          "p_garch": 0.804,
+          "p_shuffle": 0.0066
+        }
+      },
+      "verdict": "NO SIGNAL \u2014 GARCH explains everything observed",
+      "last_close": NaN,
+      "last_date": "2026-08-28"
+    },
+    {
+      "symbol": "SPY",
+      "n_obs": 1253,
+      "ann_return": 0.12091794468088371,
+      "ann_vol": 0.17177187895327145,
+      "sharpe": 0.7039449380057026,
+      "excess_kurtosis": 7.874689537342109,
+      "acf_abs_lag1": 0.16720099743706782,
+      "acf_signed_lag1": -0.025542829777708425,
+      "same_band_rate": 0.6379170056956875,
+      "current_vol_20d": 0.10491502879359431,
+      "current_vol_60d": 0.14028092278114995,
+      "vol_ratio": 0.75,
+      "garch": {
+        "alpha": 0.1078,
+        "beta": 0.8589,
+        "persistence": 0.9667,
+        "half_life": 20.5
+      },
+      "survives_all_nulls": [],
+      "n_survivors": 0,
+      "statistics": {
+        "Ann. volatility": {
+          "real": 0.171772,
+          "p_garch": 0.7442,
+          "p_shuffle": 1.0
+        },
+        "Excess kurtosis": {
+          "real": 7.87469,
+          "p_garch": 0.1794,
+          "p_shuffle": 1.0
+        },
+        "ACF |r| lag 1": {
+          "real": 0.167201,
+          "p_garch": 0.9834,
+          "p_shuffle": 0.0066
+        },
+        "ACF |r| lag 22": {
+          "real": 0.144418,
+          "p_garch": 0.1661,
+          "p_shuffle": 0.0066
+        },
+        "ACF |r| lag 66": {
+          "real": 0.062982,
+          "p_garch": 0.1329,
+          "p_shuffle": 0.0266
+        },
+        "ACF r lag 1": {
+          "real": -0.025543,
+          "p_garch": 0.5316,
+          "p_shuffle": 0.392
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 554.372514,
+          "p_garch": 0.5515,
+          "p_shuffle": 0.0066
+        },
+        "Same-band rate": {
+          "real": 0.637917,
+          "p_garch": 0.3588,
+          "p_shuffle": 0.0066
+        },
+        "Lift over independence": {
+          "real": 43.790721,
+          "p_garch": 0.3588,
+          "p_shuffle": 0.0066
+        },
+        "Cramer's V": {
+          "real": 0.611566,
+          "p_garch": 0.2392,
+          "p_shuffle": 0.0066
+        },
+        "Regression R2": {
+          "real": 0.82159,
+          "p_garch": 0.5781,
+          "p_shuffle": 0.0066
+        }
+      },
+      "verdict": "NO SIGNAL \u2014 GARCH explains everything observed",
+      "last_close": NaN,
+      "last_date": "2026-08-28"
+    },
+    {
+      "symbol": "QQQ",
+      "n_obs": 1253,
+      "ann_return": 0.13472672977478453,
+      "ann_vol": 0.22958738397406536,
+      "sharpe": 0.5868211373060618,
+      "excess_kurtosis": 4.194197640298545,
+      "acf_abs_lag1": 0.12591179721148585,
+      "acf_signed_lag1": -0.02973275156148173,
+      "same_band_rate": 0.6541903986981286,
+      "current_vol_20d": 0.18008185178453265,
+      "current_vol_60d": 0.26219578612521527,
+      "vol_ratio": 0.69,
+      "garch": {
+        "alpha": 0.0871,
+        "beta": 0.8889,
+        "persistence": 0.97606,
+        "half_life": 28.6
+      },
+      "survives_all_nulls": [],
+      "n_survivors": 0,
+      "statistics": {
+        "Ann. volatility": {
+          "real": 0.229587,
+          "p_garch": 0.7375,
+          "p_shuffle": 1.0
+        },
+        "Excess kurtosis": {
+          "real": 4.194198,
+          "p_garch": 0.2724,
+          "p_shuffle": 0.5515
+        },
+        "ACF |r| lag 1": {
+          "real": 0.125912,
+          "p_garch": 0.7641,
+          "p_shuffle": 0.0066
+        },
+        "ACF |r| lag 22": {
+          "real": 0.153875,
+          "p_garch": 0.1728,
+          "p_shuffle": 0.0066
+        },
+        "ACF |r| lag 66": {
+          "real": 0.068267,
+          "p_garch": 0.1728,
+          "p_shuffle": 0.0199
+        },
+        "ACF r lag 1": {
+          "real": -0.029733,
+          "p_garch": 0.4452,
+          "p_shuffle": 0.2525
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 508.86453,
+          "p_garch": 0.5249,
+          "p_shuffle": 0.0066
+        },
+        "Same-band rate": {
+          "real": 0.65419,
+          "p_garch": 0.1595,
+          "p_shuffle": 0.0066
+        },
+        "Lift over independence": {
+          "real": 45.419318,
+          "p_garch": 0.1528,
+          "p_shuffle": 0.0066
+        },
+        "Cramer's V": {
+          "real": 0.619548,
+          "p_garch": 0.1595,
+          "p_shuffle": 0.0066
+        },
+        "Regression R2": {
+          "real": 0.838836,
+          "p_garch": 0.412,
+          "p_shuffle": 0.0066
+        }
+      },
+      "verdict": "NO SIGNAL \u2014 GARCH explains everything observed",
+      "last_close": NaN,
+      "last_date": "2026-08-28"
+    },
+    {
+      "symbol": "IWM",
+      "n_obs": 1253,
+      "ann_return": 0.06981883420819321,
+      "ann_vol": 0.22414065901071592,
+      "sharpe": 0.311495622955473,
+      "excess_kurtosis": 1.7680189010365854,
+      "acf_abs_lag1": 0.09953430144974801,
+      "acf_signed_lag1": -0.02104333452977041,
+      "same_band_rate": 0.5516680227827502,
+      "current_vol_20d": 0.13756431786613446,
+      "current_vol_60d": 0.16754441784340865,
+      "vol_ratio": 0.82,
+      "garch": {
+        "alpha": 0.0624,
+        "beta": 0.8846,
+        "persistence": 0.94702,
+        "half_life": 12.7
+      },
+      "survives_all_nulls": [],
+      "n_survivors": 0,
+      "statistics": {
+        "Ann. volatility": {
+          "real": 0.224141,
+          "p_garch": 0.9369,
+          "p_shuffle": 1.0
+        },
+        "Excess kurtosis": {
+          "real": 1.768019,
+          "p_garch": 0.6711,
+          "p_shuffle": 1.0
+        },
+        "ACF |r| lag 1": {
+          "real": 0.099534,
+          "p_garch": 0.7575,
+          "p_shuffle": 0.0066
+        },
+        "ACF |r| lag 22": {
+          "real": 0.053996,
+          "p_garch": 0.2724,
+          "p_shuffle": 0.0266
+        },
+        "ACF |r| lag 66": {
+          "real": 0.024932,
+          "p_garch": 0.3322,
+          "p_shuffle": 0.3455
+        },
+        "ACF r lag 1": {
+          "real": -0.021043,
+          "p_garch": 0.4718,
+          "p_shuffle": 0.4718
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 111.734433,
+          "p_garch": 0.7243,
+          "p_shuffle": 0.0066
+        },
+        "Same-band rate": {
+          "real": 0.551668,
+          "p_garch": 0.8306,
+          "p_shuffle": 0.0066
+        },
+        "Lift over independence": {
+          "real": 35.167147,
+          "p_garch": 0.8306,
+          "p_shuffle": 0.0066
+        },
+        "Cramer's V": {
+          "real": 0.531272,
+          "p_garch": 0.4983,
+          "p_shuffle": 0.0066
+        },
+        "Regression R2": {
+          "real": 0.724886,
+          "p_garch": 0.7375,
+          "p_shuffle": 0.0066
+        }
+      },
+      "verdict": "NO SIGNAL \u2014 GARCH explains everything observed",
+      "last_close": NaN,
+      "last_date": "2026-08-28"
+    },
+    {
+      "symbol": "GLD",
+      "n_obs": 1253,
+      "ann_return": 0.1839134422096314,
+      "ann_vol": 0.18747222479553619,
+      "sharpe": 0.9810170141748407,
+      "excess_kurtosis": 7.914866141162184,
+      "acf_abs_lag1": 0.1591615049412614,
+      "acf_signed_lag1": -0.022628364514350168,
+      "same_band_rate": 0.6037428803905615,
+      "current_vol_20d": 0.2515623473859329,
+      "current_vol_60d": 0.266737708421742,
+      "vol_ratio": 0.94,
+      "garch": {
+        "alpha": 0.1002,
+        "beta": 0.872,
+        "persistence": 0.97224,
+        "half_life": 24.6
+      },
+      "survives_all_nulls": [],
+      "n_survivors": 0,
+      "statistics": {
+        "Ann. volatility": {
+          "real": 0.187472,
+          "p_garch": 0.7641,
+          "p_shuffle": 1.0
+        },
+        "Excess kurtosis": {
+          "real": 7.914866,
+          "p_garch": 0.1395,
+          "p_shuffle": 1.0
+        },
+        "ACF |r| lag 1": {
+          "real": 0.159162,
+          "p_garch": 0.9369,
+          "p_shuffle": 0.0066
+        },
+        "ACF |r| lag 22": {
+          "real": 0.126448,
+          "p_garch": 0.3455,
+          "p_shuffle": 0.0066
+        },
+        "ACF |r| lag 66": {
+          "real": 0.069578,
+          "p_garch": 0.1728,
+          "p_shuffle": 0.0066
+        },
+        "ACF r lag 1": {
+          "real": -0.022628,
+          "p_garch": 0.5382,
+          "p_shuffle": 0.4385
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 593.566382,
+          "p_garch": 0.5847,
+          "p_shuffle": 0.0066
+        },
+        "Same-band rate": {
+          "real": 0.603743,
+          "p_garch": 0.99,
+          "p_shuffle": 0.0066
+        },
+        "Lift over independence": {
+          "real": 40.374367,
+          "p_garch": 0.9701,
+          "p_shuffle": 0.0066
+        },
+        "Cramer's V": {
+          "real": 0.566949,
+          "p_garch": 0.8904,
+          "p_shuffle": 0.0066
+        },
+        "Regression R2": {
+          "real": 0.813818,
+          "p_garch": 0.8704,
+          "p_shuffle": 0.0066
+        }
+      },
+      "verdict": "NO SIGNAL \u2014 GARCH explains everything observed",
+      "last_close": NaN,
+      "last_date": "2026-08-28"
+    },
+    {
+      "symbol": "TLT",
+      "n_obs": 1253,
+      "ann_return": -0.08354637744663122,
+      "ann_vol": 0.15753039611060934,
+      "sharpe": -0.5303508371042848,
+      "excess_kurtosis": 0.5225573433927364,
+      "acf_abs_lag1": 0.11793238385574259,
+      "acf_signed_lag1": -0.04944988943828238,
+      "same_band_rate": 0.7046379170056957,
+      "current_vol_20d": 0.11028108593464653,
+      "current_vol_60d": 0.09895963250868355,
+      "vol_ratio": 1.11,
+      "garch": {
+        "alpha": 0.0284,
+        "beta": 0.97,
+        "persistence": 0.99843,
+        "half_life": 440.1
+      },
+      "survives_all_nulls": [],
+      "n_survivors": 0,
+      "statistics": {
+        "Ann. volatility": {
+          "real": 0.15753,
+          "p_garch": 0.6977,
+          "p_shuffle": 1.0
+        },
+        "Excess kurtosis": {
+          "real": 0.522557,
+          "p_garch": 0.9103,
+          "p_shuffle": 1.0
+        },
+        "ACF |r| lag 1": {
+          "real": 0.117932,
+          "p_garch": 0.4784,
+          "p_shuffle": 0.0066
+        },
+        "ACF |r| lag 22": {
+          "real": 0.087365,
+          "p_garch": 0.7243,
+          "p_shuffle": 0.0066
+        },
+        "ACF |r| lag 66": {
+          "real": 0.098955,
+          "p_garch": 0.3256,
+          "p_shuffle": 0.0066
+        },
+        "ACF r lag 1": {
+          "real": -0.04945,
+          "p_garch": 0.1262,
+          "p_shuffle": 0.113
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 386.20958,
+          "p_garch": 0.3455,
+          "p_shuffle": 0.0066
+        },
+        "Same-band rate": {
+          "real": 0.704638,
+          "p_garch": 0.0731,
+          "p_shuffle": 0.0066
+        },
+        "Lift over independence": {
+          "real": 50.463871,
+          "p_garch": 0.0731,
+          "p_shuffle": 0.0066
+        },
+        "Cramer's V": {
+          "real": 0.661245,
+          "p_garch": 0.113,
+          "p_shuffle": 0.0066
+        },
+        "Regression R2": {
+          "real": 0.843386,
+          "p_garch": 0.4585,
+          "p_shuffle": 0.0066
+        }
+      },
+      "verdict": "NO SIGNAL \u2014 GARCH explains everything observed",
+      "last_close": NaN,
+      "last_date": "2026-08-28"
+    }
+  ]
+}
