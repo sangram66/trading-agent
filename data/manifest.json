@@ -224,7 +224,7 @@
     "written_at": "2026-09-12T00:25:37.919838+00:00"
   },
   "bronze/stock_aapl": {
-    "bytes": 212692,
+    "bytes": 283580,
     "columns": [
       "date",
       "open",
@@ -239,16 +239,17 @@
       "knowable_at",
       "retrieved_at"
     ],
-    "hash": "05a40838808ecdf0",
-    "note": "partitioned \u00b7 3 partitions",
+    "hash": "16dc24fc500d9b32",
+    "note": "partitioned \u00b7 4 partitions",
     "partitions": [
       "2026-08-26.parquet",
       "2026-08-29.parquet",
-      "2026-09-05.parquet"
+      "2026-09-05.parquet",
+      "2026-09-12.parquet"
     ],
-    "rows": 3764,
+    "rows": 5019,
     "source": "yfinance AAPL",
-    "written_at": "2026-09-05T07:24:02.746188+00:00"
+    "written_at": "2026-09-12T07:41:01.623726+00:00"
   },
   "bronze/stock_amd": {
     "bytes": 55067,
@@ -276,7 +277,7 @@
     "written_at": "2026-08-26T22:08:04.184010+00:00"
   },
   "bronze/stock_amzn": {
-    "bytes": 163515,
+    "bytes": 218014,
     "columns": [
       "date",
       "open",
@@ -291,19 +292,20 @@
       "knowable_at",
       "retrieved_at"
     ],
-    "hash": "468c2d33f50c5d63",
-    "note": "partitioned \u00b7 3 partitions",
+    "hash": "01c5d85938825055",
+    "note": "partitioned \u00b7 4 partitions",
     "partitions": [
       "2026-08-26.parquet",
       "2026-08-29.parquet",
-      "2026-09-05.parquet"
+      "2026-09-05.parquet",
+      "2026-09-12.parquet"
     ],
-    "rows": 3764,
+    "rows": 5019,
     "source": "yfinance AMZN",
-    "written_at": "2026-09-05T07:24:10.716620+00:00"
+    "written_at": "2026-09-12T07:41:10.713696+00:00"
   },
   "bronze/stock_avgo": {
-    "bytes": 142111,
+    "bytes": 213189,
     "columns": [
       "date",
       "open",
@@ -318,18 +320,19 @@
       "knowable_at",
       "retrieved_at"
     ],
-    "hash": "b0b77b13639fc93c",
-    "note": "partitioned \u00b7 2 partitions",
+    "hash": "ab1507859acbf24f",
+    "note": "partitioned \u00b7 3 partitions",
     "partitions": [
       "2026-08-29.parquet",
-      "2026-09-05.parquet"
+      "2026-09-05.parquet",
+      "2026-09-12.parquet"
     ],
-    "rows": 2510,
+    "rows": 3765,
     "source": "yfinance AVGO",
-    "written_at": "2026-09-05T07:24:27.040192+00:00"
+    "written_at": "2026-09-12T07:41:29.681428+00:00"
   },
   "bronze/stock_cost": {
-    "bytes": 139369,
+    "bytes": 209190,
     "columns": [
       "date",
       "open",
@@ -344,18 +347,19 @@
       "knowable_at",
       "retrieved_at"
     ],
-    "hash": "8e27b9d5e956cf41",
-    "note": "partitioned \u00b7 2 partitions",
+    "hash": "8ccce7f4c85fef5f",
+    "note": "partitioned \u00b7 3 partitions",
     "partitions": [
       "2026-08-29.parquet",
-      "2026-09-05.parquet"
+      "2026-09-05.parquet",
+      "2026-09-12.parquet"
     ],
-    "rows": 2510,
+    "rows": 3765,
     "source": "yfinance COST",
-    "written_at": "2026-09-05T07:24:28.953867+00:00"
+    "written_at": "2026-09-12T07:41:31.875283+00:00"
   },
   "bronze/stock_gld": {
-    "bytes": 105862,
+    "bytes": 158841,
     "columns": [
       "date",
       "open",
@@ -371,18 +375,19 @@
       "knowable_at",
       "retrieved_at"
     ],
-    "hash": "15264cb5ac81608b",
-    "note": "partitioned \u00b7 2 partitions",
+    "hash": "f7494e448f204ed8",
+    "note": "partitioned \u00b7 3 partitions",
     "partitions": [
       "2026-08-29.parquet",
-      "2026-09-05.parquet"
+      "2026-09-05.parquet",
+      "2026-09-12.parquet"
     ],
-    "rows": 2510,
+    "rows": 3765,
     "source": "yfinance GLD",
-    "written_at": "2026-09-05T07:24:36.784713+00:00"
+    "written_at": "2026-09-12T07:41:40.793599+00:00"
   },
   "bronze/stock_goog": {
-    "bytes": 212206,
+    "bytes": 283034,
     "columns": [
       "date",
       "open",
@@ -397,16 +402,17 @@
       "knowable_at",
       "retrieved_at"
     ],
-    "hash": "726708cbea112f70",
-    "note": "partitioned \u00b7 3 partitions",
+    "hash": "7485878a4582a7f0",
+    "note": "partitioned \u00b7 4 partitions",
     "partitions": [
       "2026-08-26.parquet",
       "2026-08-29.parquet",
-      "2026-09-05.parquet"
+      "2026-09-05.parquet",
+      "2026-09-12.parquet"
     ],
-    "rows": 3764,
+    "rows": 5019,
     "source": "yfinance GOOG",
-    "written_at": "2026-09-05T07:24:08.762372+00:00"
+    "written_at": "2026-09-12T07:41:08.577902+00:00"
   },
   "bronze/stock_hpe": {
     "bytes": 70076,
@@ -434,7 +440,7 @@
     "written_at": "2026-08-26T22:08:11.663599+00:00"
   },
   "bronze/stock_iwm": {
-    "bytes": 142198,
+    "bytes": 213312,
     "columns": [
       "date",
       "open",
@@ -450,18 +456,19 @@
       "knowable_at",
       "retrieved_at"
     ],
-    "hash": "4bc19604a4296691",
-    "note": "partitioned \u00b7 2 partitions",
+    "hash": "e02aee8a5ea78866",
+    "note": "partitioned \u00b7 3 partitions",
     "partitions": [
       "2026-08-29.parquet",
-      "2026-09-05.parquet"
+      "2026-09-05.parquet",
+      "2026-09-12.parquet"
     ],
-    "rows": 2510,
+    "rows": 3765,
     "source": "yfinance IWM",
-    "written_at": "2026-09-05T07:24:34.853244+00:00"
+    "written_at": "2026-09-12T07:41:38.602418+00:00"
   },
   "bronze/stock_jpm": {
-    "bytes": 210631,
+    "bytes": 280862,
     "columns": [
       "date",
       "open",
@@ -476,19 +483,20 @@
       "knowable_at",
       "retrieved_at"
     ],
-    "hash": "44a53524ffb26307",
-    "note": "partitioned \u00b7 3 partitions",
+    "hash": "be16686f3035ca28",
+    "note": "partitioned \u00b7 4 partitions",
     "partitions": [
       "2026-08-26.parquet",
       "2026-08-29.parquet",
-      "2026-09-05.parquet"
+      "2026-09-05.parquet",
+      "2026-09-12.parquet"
     ],
-    "rows": 3764,
+    "rows": 5019,
     "source": "yfinance JPM",
-    "written_at": "2026-09-05T07:24:16.839067+00:00"
+    "written_at": "2026-09-12T07:41:17.890996+00:00"
   },
   "bronze/stock_lly": {
-    "bytes": 140244,
+    "bytes": 210347,
     "columns": [
       "date",
       "open",
@@ -503,18 +511,19 @@
       "knowable_at",
       "retrieved_at"
     ],
-    "hash": "d29519b14445b060",
-    "note": "partitioned \u00b7 2 partitions",
+    "hash": "b00c4e789f34f57a",
+    "note": "partitioned \u00b7 3 partitions",
     "partitions": [
       "2026-08-29.parquet",
-      "2026-09-05.parquet"
+      "2026-09-05.parquet",
+      "2026-09-12.parquet"
     ],
-    "rows": 2510,
+    "rows": 3765,
     "source": "yfinance LLY",
-    "written_at": "2026-09-05T07:24:25.115695+00:00"
+    "written_at": "2026-09-12T07:41:27.453952+00:00"
   },
   "bronze/stock_meta": {
-    "bytes": 212525,
+    "bytes": 283329,
     "columns": [
       "date",
       "open",
@@ -529,19 +538,20 @@
       "knowable_at",
       "retrieved_at"
     ],
-    "hash": "c74f151837f394b5",
-    "note": "partitioned \u00b7 3 partitions",
+    "hash": "d4c0277fc8cc0bbb",
+    "note": "partitioned \u00b7 4 partitions",
     "partitions": [
       "2026-08-26.parquet",
       "2026-08-29.parquet",
-      "2026-09-05.parquet"
+      "2026-09-05.parquet",
+      "2026-09-12.parquet"
     ],
-    "rows": 3764,
+    "rows": 5019,
     "source": "yfinance META",
-    "written_at": "2026-09-05T07:24:12.644823+00:00"
+    "written_at": "2026-09-12T07:41:12.936395+00:00"
   },
   "bronze/stock_msft": {
-    "bytes": 212369,
+    "bytes": 283183,
     "columns": [
       "date",
       "open",
@@ -556,16 +566,17 @@
       "knowable_at",
       "retrieved_at"
     ],
-    "hash": "54c27d5e2d052bd2",
-    "note": "partitioned \u00b7 3 partitions",
+    "hash": "9ce756f20f1417af",
+    "note": "partitioned \u00b7 4 partitions",
     "partitions": [
       "2026-08-26.parquet",
       "2026-08-29.parquet",
-      "2026-09-05.parquet"
+      "2026-09-05.parquet",
+      "2026-09-12.parquet"
     ],
-    "rows": 3764,
+    "rows": 5019,
     "source": "yfinance MSFT",
-    "written_at": "2026-09-05T07:24:04.759962+00:00"
+    "written_at": "2026-09-12T07:41:03.959617+00:00"
   },
   "bronze/stock_mu": {
     "bytes": 71121,
@@ -643,7 +654,7 @@
     "written_at": "2026-08-26T22:08:22.998295+00:00"
   },
   "bronze/stock_nvda": {
-    "bytes": 214698,
+    "bytes": 286428,
     "columns": [
       "date",
       "open",
@@ -658,16 +669,17 @@
       "knowable_at",
       "retrieved_at"
     ],
-    "hash": "4289e748a29f90cb",
-    "note": "partitioned \u00b7 3 partitions",
+    "hash": "e85d649bc6e2b5fc",
+    "note": "partitioned \u00b7 4 partitions",
     "partitions": [
       "2026-08-26.parquet",
       "2026-08-29.parquet",
-      "2026-09-05.parquet"
+      "2026-09-05.parquet",
+      "2026-09-12.parquet"
     ],
-    "rows": 3764,
+    "rows": 5019,
     "source": "yfinance NVDA",
-    "written_at": "2026-09-05T07:24:06.798202+00:00"
+    "written_at": "2026-09-12T07:41:06.304043+00:00"
   },
   "bronze/stock_oklo": {
     "bytes": 46810,
@@ -720,7 +732,7 @@
     "written_at": "2026-08-26T22:08:21.274576+00:00"
   },
   "bronze/stock_qqq": {
-    "bytes": 142781,
+    "bytes": 214124,
     "columns": [
       "date",
       "open",
@@ -736,15 +748,16 @@
       "knowable_at",
       "retrieved_at"
     ],
-    "hash": "067e97419ff07a64",
-    "note": "partitioned \u00b7 2 partitions",
+    "hash": "c23c4df402d473af",
+    "note": "partitioned \u00b7 3 partitions",
     "partitions": [
       "2026-08-29.parquet",
-      "2026-09-05.parquet"
+      "2026-09-05.parquet",
+      "2026-09-12.parquet"
     ],
-    "rows": 2510,
+    "rows": 3765,
     "source": "yfinance QQQ",
-    "written_at": "2026-09-05T07:24:32.884659+00:00"
+    "written_at": "2026-09-12T07:41:36.360305+00:00"
   },
   "bronze/stock_rgti": {
     "bytes": 49836,
@@ -822,7 +835,7 @@
     "written_at": "2026-08-26T22:08:07.971257+00:00"
   },
   "bronze/stock_spy": {
-    "bytes": 142584,
+    "bytes": 213931,
     "columns": [
       "date",
       "open",
@@ -838,18 +851,19 @@
       "knowable_at",
       "retrieved_at"
     ],
-    "hash": "903d2140edbbd025",
-    "note": "partitioned \u00b7 2 partitions",
+    "hash": "bcb8b10d9a9d2d5c",
+    "note": "partitioned \u00b7 3 partitions",
     "partitions": [
       "2026-08-29.parquet",
-      "2026-09-05.parquet"
+      "2026-09-05.parquet",
+      "2026-09-12.parquet"
     ],
-    "rows": 2510,
+    "rows": 3765,
     "source": "yfinance SPY",
-    "written_at": "2026-09-05T07:24:30.936347+00:00"
+    "written_at": "2026-09-12T07:41:34.110451+00:00"
   },
   "bronze/stock_tlt": {
-    "bytes": 142364,
+    "bytes": 213689,
     "columns": [
       "date",
       "open",
@@ -865,18 +879,19 @@
       "knowable_at",
       "retrieved_at"
     ],
-    "hash": "984d78340e138c64",
-    "note": "partitioned \u00b7 2 partitions",
+    "hash": "d26b9aba9ec1c215",
+    "note": "partitioned \u00b7 3 partitions",
     "partitions": [
       "2026-08-29.parquet",
-      "2026-09-05.parquet"
+      "2026-09-05.parquet",
+      "2026-09-12.parquet"
     ],
-    "rows": 2510,
+    "rows": 3765,
     "source": "yfinance TLT",
-    "written_at": "2026-09-05T07:24:38.818545+00:00"
+    "written_at": "2026-09-12T07:41:43.151846+00:00"
   },
   "bronze/stock_tsla": {
-    "bytes": 167072,
+    "bytes": 222771,
     "columns": [
       "date",
       "open",
@@ -891,16 +906,17 @@
       "knowable_at",
       "retrieved_at"
     ],
-    "hash": "e54e3374b53d124a",
-    "note": "partitioned \u00b7 3 partitions",
+    "hash": "88bb2c3ce31bf248",
+    "note": "partitioned \u00b7 4 partitions",
     "partitions": [
       "2026-08-26.parquet",
       "2026-08-29.parquet",
-      "2026-09-05.parquet"
+      "2026-09-05.parquet",
+      "2026-09-12.parquet"
     ],
-    "rows": 3764,
+    "rows": 5019,
     "source": "yfinance TSLA",
-    "written_at": "2026-09-05T07:24:14.643300+00:00"
+    "written_at": "2026-09-12T07:41:15.251520+00:00"
   },
   "bronze/stock_uec": {
     "bytes": 46135,
@@ -928,7 +944,7 @@
     "written_at": "2026-08-26T22:08:15.188192+00:00"
   },
   "bronze/stock_unh": {
-    "bytes": 139462,
+    "bytes": 209381,
     "columns": [
       "date",
       "open",
@@ -943,18 +959,19 @@
       "knowable_at",
       "retrieved_at"
     ],
-    "hash": "7e6331a895d68668",
-    "note": "partitioned \u00b7 2 partitions",
+    "hash": "98589ba278d465e5",
+    "note": "partitioned \u00b7 3 partitions",
     "partitions": [
       "2026-08-29.parquet",
-      "2026-09-05.parquet"
+      "2026-09-05.parquet",
+      "2026-09-12.parquet"
     ],
-    "rows": 2510,
+    "rows": 3765,
     "source": "yfinance UNH",
-    "written_at": "2026-09-05T07:24:20.994101+00:00"
+    "written_at": "2026-09-12T07:41:22.615736+00:00"
   },
   "bronze/stock_v": {
-    "bytes": 139800,
+    "bytes": 209679,
     "columns": [
       "date",
       "open",
@@ -969,18 +986,19 @@
       "knowable_at",
       "retrieved_at"
     ],
-    "hash": "0034c5b3953cb0d3",
-    "note": "partitioned \u00b7 2 partitions",
+    "hash": "1d0adcd4c1c3c5bf",
+    "note": "partitioned \u00b7 3 partitions",
     "partitions": [
       "2026-08-29.parquet",
-      "2026-09-05.parquet"
+      "2026-09-05.parquet",
+      "2026-09-12.parquet"
     ],
-    "rows": 2510,
+    "rows": 3765,
     "source": "yfinance V",
-    "written_at": "2026-09-05T07:24:18.849630+00:00"
+    "written_at": "2026-09-12T07:41:20.192593+00:00"
   },
   "bronze/stock_xom": {
-    "bytes": 141098,
+    "bytes": 211736,
     "columns": [
       "date",
       "open",
@@ -995,15 +1013,16 @@
       "knowable_at",
       "retrieved_at"
     ],
-    "hash": "1dc55ae4642d0e8f",
-    "note": "partitioned \u00b7 2 partitions",
+    "hash": "cf8b3e99828865d8",
+    "note": "partitioned \u00b7 3 partitions",
     "partitions": [
       "2026-08-29.parquet",
-      "2026-09-05.parquet"
+      "2026-09-05.parquet",
+      "2026-09-12.parquet"
     ],
-    "rows": 2510,
+    "rows": 3765,
     "source": "yfinance XOM",
-    "written_at": "2026-09-05T07:24:23.008421+00:00"
+    "written_at": "2026-09-12T07:41:24.887606+00:00"
   },
   "bronze/vix_daily": {
     "bytes": 4341528,
