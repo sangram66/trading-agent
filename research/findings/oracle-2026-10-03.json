@@ -1,0 +1,1936 @@
+{
+  "run_at": "2026-10-03T09:01:20.590164+00:00",
+  "findings": [
+    {
+      "dataset": "bronze/sp500_daily",
+      "n_obs": 145898,
+      "n_sim": 500,
+      "garch": {
+        "alpha": 0.15846668803649983,
+        "beta": 0.8306651743379682,
+        "persistence": 0.989131862374468
+      },
+      "survives_all_nulls": [
+        "ACF |r| lag 22",
+        "Ljung-Box Q(22) on |r|",
+        "Same-band rate",
+        "Lift over independence",
+        "Cramer's V",
+        "Regression R2"
+      ],
+      "statistics": {
+        "Ann. volatility": {
+          "real": 0.2472576853971143,
+          "p_garch": 0.10778443113772455
+        },
+        "Excess kurtosis": {
+          "real": 846.3515288790876,
+          "p_garch": 0.49101796407185627
+        },
+        "ACF |r| lag 1": {
+          "real": 0.11540216182466119,
+          "p_garch": 0.003992015968063872
+        },
+        "ACF |r| lag 22": {
+          "real": 0.12206083685665245,
+          "p_garch": 0.011976047904191617
+        },
+        "ACF |r| lag 66": {
+          "real": 0.0625990716143164,
+          "p_garch": 0.3153692614770459
+        },
+        "ACF r lag 1": {
+          "real": -0.054157739623773044,
+          "p_garch": 0.13972055888223553
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 56600.307203928016,
+          "p_garch": 0.003992015968063872
+        },
+        "Same-band rate": {
+          "real": 0.7036209331340746,
+          "p_garch": 0.003992015968063872
+        },
+        "Lift over independence": {
+          "real": 50.362093347243274,
+          "p_garch": 0.003992015968063872
+        },
+        "Cramer's V": {
+          "real": 0.6619858983383325,
+          "p_garch": 0.003992015968063872
+        },
+        "Regression R2": {
+          "real": 0.8680581038310187,
+          "p_garch": 0.003992015968063872
+        }
+      }
+    },
+    {
+      "dataset": "bronze/stock_aapl",
+      "n_obs": 8782,
+      "n_sim": 500,
+      "garch": {
+        "alpha": 1e-08,
+        "beta": 1e-08,
+        "persistence": 2e-08
+      },
+      "survives_all_nulls": [],
+      "statistics": {
+        "Ann. volatility": {
+          "real": 0.44055283722905253,
+          "p_garch": 0.8622754491017964
+        },
+        "Excess kurtosis": {
+          "real": 536.1931659016279,
+          "p_garch": 0.7784431137724551
+        },
+        "ACF |r| lag 1": {
+          "real": 0.05173386161660828,
+          "p_garch": 0.007984031936127744
+        },
+        "ACF |r| lag 22": {
+          "real": 0.0213338768650694,
+          "p_garch": 0.03592814371257485
+        },
+        "ACF |r| lag 66": {
+          "real": 0.006019334472886462,
+          "p_garch": 0.39520958083832336
+        },
+        "ACF r lag 1": {
+          "real": 0.012330114733421927,
+          "p_garch": 0.12375249500998003
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 98.08521954980668,
+          "p_garch": 0.07984031936127745
+        },
+        "Same-band rate": {
+          "real": 0.554692852249372,
+          "p_garch": 0.003992015968063872
+        },
+        "Lift over independence": {
+          "real": 35.46924715580564,
+          "p_garch": 0.003992015968063872
+        },
+        "Cramer's V": {
+          "real": 0.5214991826310402,
+          "p_garch": 0.003992015968063872
+        },
+        "Regression R2": {
+          "real": 0.663308948248635,
+          "p_garch": 0.003992015968063872
+        }
+      }
+    },
+    {
+      "dataset": "bronze/stock_amd",
+      "n_obs": 1253,
+      "n_sim": 500,
+      "garch": {
+        "alpha": 0.05662249272872688,
+        "beta": 0.8198367125968357,
+        "persistence": 0.8764592053255625
+      },
+      "survives_all_nulls": [
+        "Same-band rate",
+        "Lift over independence",
+        "Cramer's V"
+      ],
+      "statistics": {
+        "Ann. volatility": {
+          "real": 0.5662339248526054,
+          "p_garch": 0.8702594810379242
+        },
+        "Excess kurtosis": {
+          "real": 3.545377944414101,
+          "p_garch": 0.9900199600798403
+        },
+        "ACF |r| lag 1": {
+          "real": 0.05262921718014989,
+          "p_garch": 0.7904191616766467
+        },
+        "ACF |r| lag 22": {
+          "real": 0.020692628118566318,
+          "p_garch": 0.5828343313373253
+        },
+        "ACF |r| lag 66": {
+          "real": 0.057086812605355836,
+          "p_garch": 0.031936127744510975
+        },
+        "ACF r lag 1": {
+          "real": -0.023509022977698076,
+          "p_garch": 0.4870259481037924
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 80.67823436737834,
+          "p_garch": 0.21157684630738524
+        },
+        "Same-band rate": {
+          "real": 0.597233523189585,
+          "p_garch": 0.01996007984031936
+        },
+        "Lift over independence": {
+          "real": 39.723762795104214,
+          "p_garch": 0.015968063872255488
+        },
+        "Cramer's V": {
+          "real": 0.5462825327322504,
+          "p_garch": 0.007984031936127744
+        },
+        "Regression R2": {
+          "real": 0.652528246837616,
+          "p_garch": 0.5668662674650699
+        }
+      }
+    },
+    {
+      "dataset": "bronze/stock_amzn",
+      "n_obs": 8782,
+      "n_sim": 500,
+      "garch": {
+        "alpha": 0.1898774108321656,
+        "beta": 1e-08,
+        "persistence": 0.1898774208321656
+      },
+      "survives_all_nulls": [
+        "ACF |r| lag 66",
+        "Same-band rate",
+        "Lift over independence",
+        "Cramer's V"
+      ],
+      "statistics": {
+        "Ann. volatility": {
+          "real": 0.40164609824701725,
+          "p_garch": 0.7744510978043913
+        },
+        "Excess kurtosis": {
+          "real": 51.57282949680736,
+          "p_garch": 0.6307385229540918
+        },
+        "ACF |r| lag 1": {
+          "real": 0.10255274314971383,
+          "p_garch": 0.023952095808383235
+        },
+        "ACF |r| lag 22": {
+          "real": 0.026562378283618623,
+          "p_garch": 0.03592814371257485
+        },
+        "ACF |r| lag 66": {
+          "real": 0.04813457711833059,
+          "p_garch": 0.003992015968063872
+        },
+        "ACF r lag 1": {
+          "real": 0.00470446227124813,
+          "p_garch": 0.9421157684630739
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 432.89248200097154,
+          "p_garch": 0.37524950099800397
+        },
+        "Same-band rate": {
+          "real": 0.6051609956611098,
+          "p_garch": 0.003992015968063872
+        },
+        "Lift over independence": {
+          "real": 40.51607714182801,
+          "p_garch": 0.003992015968063872
+        },
+        "Cramer's V": {
+          "real": 0.55206439994326,
+          "p_garch": 0.003992015968063872
+        },
+        "Regression R2": {
+          "real": 0.642943050867264,
+          "p_garch": 0.003992015968063872
+        }
+      }
+    },
+    {
+      "dataset": "bronze/stock_avgo",
+      "n_obs": 7528,
+      "n_sim": 500,
+      "garch": {
+        "alpha": 1e-08,
+        "beta": 1e-08,
+        "persistence": 2e-08
+      },
+      "survives_all_nulls": [
+        "Same-band rate",
+        "Lift over independence",
+        "Cramer's V"
+      ],
+      "statistics": {
+        "Ann. volatility": {
+          "real": 0.9576237803534753,
+          "p_garch": 0.9860279441117764
+        },
+        "Excess kurtosis": {
+          "real": 934.778538020932,
+          "p_garch": 0.9740518962075848
+        },
+        "ACF |r| lag 1": {
+          "real": 0.015065138331019039,
+          "p_garch": 0.043912175648702596
+        },
+        "ACF |r| lag 22": {
+          "real": 0.0033137871528469667,
+          "p_garch": 0.4750499001996008
+        },
+        "ACF |r| lag 66": {
+          "real": -0.0018438119513359118,
+          "p_garch": 0.9101796407185628
+        },
+        "ACF r lag 1": {
+          "real": -0.00570021191637977,
+          "p_garch": 0.45109780439121755
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 8.277153963445087,
+          "p_garch": 0.499001996007984
+        },
+        "Same-band rate": {
+          "real": 0.6024786780383795,
+          "p_garch": 0.003992015968063872
+        },
+        "Lift over independence": {
+          "real": 40.24787881431253,
+          "p_garch": 0.003992015968063872
+        },
+        "Cramer's V": {
+          "real": 0.5443747111951206,
+          "p_garch": 0.003992015968063872
+        },
+        "Regression R2": {
+          "real": 0.5864843311192056,
+          "p_garch": 0.06387225548902195
+        }
+      }
+    },
+    {
+      "dataset": "bronze/stock_cost",
+      "n_obs": 7528,
+      "n_sim": 500,
+      "garch": {
+        "alpha": 1e-08,
+        "beta": 1e-08,
+        "persistence": 2e-08
+      },
+      "survives_all_nulls": [
+        "ACF |r| lag 66",
+        "Same-band rate",
+        "Lift over independence",
+        "Cramer's V"
+      ],
+      "statistics": {
+        "Ann. volatility": {
+          "real": 0.38540312540340543,
+          "p_garch": 1.0
+        },
+        "Excess kurtosis": {
+          "real": 620.0605443261065,
+          "p_garch": 0.8822355289421158
+        },
+        "ACF |r| lag 1": {
+          "real": 0.020226708904634072,
+          "p_garch": 0.04790419161676647
+        },
+        "ACF |r| lag 22": {
+          "real": 0.00389533184964641,
+          "p_garch": 0.49101796407185627
+        },
+        "ACF |r| lag 66": {
+          "real": 0.01848663573710189,
+          "p_garch": 0.023952095808383235
+        },
+        "ACF r lag 1": {
+          "real": 0.009051635020650883,
+          "p_garch": 0.3153692614770459
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 28.71140390883959,
+          "p_garch": 0.18363273453093812
+        },
+        "Same-band rate": {
+          "real": 0.5812899786780383,
+          "p_garch": 0.003992015968063872
+        },
+        "Lift over independence": {
+          "real": 38.12899999886343,
+          "p_garch": 0.003992015968063872
+        },
+        "Cramer's V": {
+          "real": 0.5317042653856738,
+          "p_garch": 0.003992015968063872
+        },
+        "Regression R2": {
+          "real": 0.624540515038304,
+          "p_garch": 0.003992015968063872
+        }
+      }
+    },
+    {
+      "dataset": "bronze/stock_gld",
+      "n_obs": 7528,
+      "n_sim": 500,
+      "garch": {
+        "alpha": 1e-08,
+        "beta": 1e-08,
+        "persistence": 2e-08
+      },
+      "survives_all_nulls": [
+        "Same-band rate",
+        "Lift over independence",
+        "Cramer's V"
+      ],
+      "statistics": {
+        "Ann. volatility": {
+          "real": 0.4107640488825601,
+          "p_garch": 0.9860279441117764
+        },
+        "Excess kurtosis": {
+          "real": 935.5768694679027,
+          "p_garch": 0.998003992015968
+        },
+        "ACF |r| lag 1": {
+          "real": 0.012542214207420563,
+          "p_garch": 0.04790419161676647
+        },
+        "ACF |r| lag 22": {
+          "real": 0.018819110609763528,
+          "p_garch": 0.015968063872255488
+        },
+        "ACF |r| lag 66": {
+          "real": 0.009140728732532083,
+          "p_garch": 0.11976047904191617
+        },
+        "ACF r lag 1": {
+          "real": -0.006111228061435606,
+          "p_garch": 0.4550898203592814
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 62.30463094110828,
+          "p_garch": 0.16367265469061876
+        },
+        "Same-band rate": {
+          "real": 0.6144722814498934,
+          "p_garch": 0.003992015968063872
+        },
+        "Lift over independence": {
+          "real": 41.447233827814934,
+          "p_garch": 0.003992015968063872
+        },
+        "Cramer's V": {
+          "real": 0.5771023730397318,
+          "p_garch": 0.003992015968063872
+        },
+        "Regression R2": {
+          "real": 0.7099548845428134,
+          "p_garch": 0.003992015968063872
+        }
+      }
+    },
+    {
+      "dataset": "bronze/stock_goog",
+      "n_obs": 8782,
+      "n_sim": 500,
+      "garch": {
+        "alpha": 1e-08,
+        "beta": 1e-08,
+        "persistence": 2e-08
+      },
+      "survives_all_nulls": [
+        "Same-band rate",
+        "Lift over independence",
+        "Cramer's V"
+      ],
+      "statistics": {
+        "Ann. volatility": {
+          "real": 0.4864614252256732,
+          "p_garch": 0.8662674650698603
+        },
+        "Excess kurtosis": {
+          "real": 474.05594688743395,
+          "p_garch": 0.7465069860279441
+        },
+        "ACF |r| lag 1": {
+          "real": -0.0005404003415660688,
+          "p_garch": 0.9221556886227545
+        },
+        "ACF |r| lag 22": {
+          "real": 0.004722353024645362,
+          "p_garch": 0.47904191616766467
+        },
+        "ACF |r| lag 66": {
+          "real": 0.014136169276457932,
+          "p_garch": 0.08383233532934131
+        },
+        "ACF r lag 1": {
+          "real": 0.006080227392504089,
+          "p_garch": 0.5189620758483033
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 22.53296873171375,
+          "p_garch": 0.20758483033932135
+        },
+        "Same-band rate": {
+          "real": 0.5955697647864809,
+          "p_garch": 0.003992015968063872
+        },
+        "Lift over independence": {
+          "real": 39.55698012911276,
+          "p_garch": 0.003992015968063872
+        },
+        "Cramer's V": {
+          "real": 0.5420895870983374,
+          "p_garch": 0.003992015968063872
+        },
+        "Regression R2": {
+          "real": 0.5724610776887911,
+          "p_garch": 0.09580838323353294
+        }
+      }
+    },
+    {
+      "dataset": "bronze/stock_hpe",
+      "n_obs": 1253,
+      "n_sim": 500,
+      "garch": {
+        "alpha": 0.16191402349780912,
+        "beta": 0.6493797488658839,
+        "persistence": 0.811293772363693
+      },
+      "survives_all_nulls": [
+        "ACF |r| lag 22"
+      ],
+      "statistics": {
+        "Ann. volatility": {
+          "real": 0.4019738297958675,
+          "p_garch": 0.8502994011976048
+        },
+        "Excess kurtosis": {
+          "real": 6.612734563943864,
+          "p_garch": 0.8383233532934131
+        },
+        "ACF |r| lag 1": {
+          "real": 0.19118191749027263,
+          "p_garch": 0.6706586826347305
+        },
+        "ACF |r| lag 22": {
+          "real": 0.11602928534489713,
+          "p_garch": 0.003992015968063872
+        },
+        "ACF |r| lag 66": {
+          "real": 0.0313166871495149,
+          "p_garch": 0.2554890219560878
+        },
+        "ACF r lag 1": {
+          "real": 0.05542488929751239,
+          "p_garch": 0.16367265469061876
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 214.14725093994073,
+          "p_garch": 0.3592814371257485
+        },
+        "Same-band rate": {
+          "real": 0.5516680227827502,
+          "p_garch": 0.9620758483033932
+        },
+        "Lift over independence": {
+          "real": 35.16688172527096,
+          "p_garch": 0.9461077844311377
+        },
+        "Cramer's V": {
+          "real": 0.4977169685109644,
+          "p_garch": 0.9620758483033932
+        },
+        "Regression R2": {
+          "real": 0.6726972881658984,
+          "p_garch": 0.4111776447105788
+        }
+      }
+    },
+    {
+      "dataset": "bronze/stock_iwm",
+      "n_obs": 7528,
+      "n_sim": 500,
+      "garch": {
+        "alpha": 0.012484560823564781,
+        "beta": 1e-08,
+        "persistence": 0.012484570823564781
+      },
+      "survives_all_nulls": [],
+      "statistics": {
+        "Ann. volatility": {
+          "real": 0.26103908703898804,
+          "p_garch": 0.9860279441117764
+        },
+        "Excess kurtosis": {
+          "real": 107.32070031538241,
+          "p_garch": 1.0
+        },
+        "ACF |r| lag 1": {
+          "real": 0.04334322140006548,
+          "p_garch": 0.37924151696606784
+        },
+        "ACF |r| lag 22": {
+          "real": 0.026180111376857357,
+          "p_garch": 0.027944111776447105
+        },
+        "ACF |r| lag 66": {
+          "real": 0.015699404264782724,
+          "p_garch": 0.1277445109780439
+        },
+        "ACF r lag 1": {
+          "real": -0.009072339266258419,
+          "p_garch": 0.5548902195608783
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 149.19971065166848,
+          "p_garch": 0.01996007984031936
+        },
+        "Same-band rate": {
+          "real": 0.5393123667377399,
+          "p_garch": 0.003992015968063872
+        },
+        "Lift over independence": {
+          "real": 33.93124768424857,
+          "p_garch": 0.003992015968063872
+        },
+        "Cramer's V": {
+          "real": 0.5208955737649957,
+          "p_garch": 0.003992015968063872
+        },
+        "Regression R2": {
+          "real": 0.6110858779432813,
+          "p_garch": 0.011976047904191617
+        }
+      }
+    },
+    {
+      "dataset": "bronze/stock_jpm",
+      "n_obs": 8782,
+      "n_sim": 500,
+      "garch": {
+        "alpha": 1e-08,
+        "beta": 1e-08,
+        "persistence": 2e-08
+      },
+      "survives_all_nulls": [
+        "Same-band rate",
+        "Lift over independence",
+        "Cramer's V"
+      ],
+      "statistics": {
+        "Ann. volatility": {
+          "real": 0.4499291071626949,
+          "p_garch": 0.9341317365269461
+        },
+        "Excess kurtosis": {
+          "real": 734.3980835379324,
+          "p_garch": 0.93812375249501
+        },
+        "ACF |r| lag 1": {
+          "real": 0.01770589773959462,
+          "p_garch": 0.01996007984031936
+        },
+        "ACF |r| lag 22": {
+          "real": 0.016745103821487282,
+          "p_garch": 0.03592814371257485
+        },
+        "ACF |r| lag 66": {
+          "real": -0.001120004313400378,
+          "p_garch": 0.9620758483033932
+        },
+        "ACF r lag 1": {
+          "real": 0.0074178705550654285,
+          "p_garch": 0.31137724550898205
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 15.506131666179536,
+          "p_garch": 0.23952095808383234
+        },
+        "Same-band rate": {
+          "real": 0.5840374514729391,
+          "p_garch": 0.003992015968063872
+        },
+        "Lift over independence": {
+          "real": 38.40374619028381,
+          "p_garch": 0.003992015968063872
+        },
+        "Cramer's V": {
+          "real": 0.5293421343701659,
+          "p_garch": 0.003992015968063872
+        },
+        "Regression R2": {
+          "real": 0.6145147904831002,
+          "p_garch": 0.003992015968063872
+        }
+      }
+    },
+    {
+      "dataset": "bronze/stock_lly",
+      "n_obs": 7528,
+      "n_sim": 500,
+      "garch": {
+        "alpha": 1e-08,
+        "beta": 1e-08,
+        "persistence": 2e-08
+      },
+      "survives_all_nulls": [],
+      "statistics": {
+        "Ann. volatility": {
+          "real": 0.7460093833337044,
+          "p_garch": 1.0
+        },
+        "Excess kurtosis": {
+          "real": 984.021817627711,
+          "p_garch": 0.9700598802395209
+        },
+        "ACF |r| lag 1": {
+          "real": 0.008573822578430692,
+          "p_garch": 0.1437125748502994
+        },
+        "ACF |r| lag 22": {
+          "real": 0.005458110267892104,
+          "p_garch": 0.21956087824351297
+        },
+        "ACF |r| lag 66": {
+          "real": 0.014166657601006315,
+          "p_garch": 0.023952095808383235
+        },
+        "ACF r lag 1": {
+          "real": 0.009042099025255174,
+          "p_garch": 0.18762475049900199
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 3.860482115894876,
+          "p_garch": 0.7225548902195609
+        },
+        "Same-band rate": {
+          "real": 0.539045842217484,
+          "p_garch": 0.11177644710578842
+        },
+        "Lift over independence": {
+          "real": 33.904588128690996,
+          "p_garch": 0.11177644710578842
+        },
+        "Cramer's V": {
+          "real": 0.48887720562454134,
+          "p_garch": 0.011976047904191617
+        },
+        "Regression R2": {
+          "real": 0.5727754033997426,
+          "p_garch": 0.17165668662674652
+        }
+      }
+    },
+    {
+      "dataset": "bronze/stock_meta",
+      "n_obs": 8782,
+      "n_sim": 500,
+      "garch": {
+        "alpha": 1e-08,
+        "beta": 1e-08,
+        "persistence": 2e-08
+      },
+      "survives_all_nulls": [
+        "ACF |r| lag 66",
+        "Same-band rate",
+        "Lift over independence",
+        "Cramer's V"
+      ],
+      "statistics": {
+        "Ann. volatility": {
+          "real": 0.5161846791370822,
+          "p_garch": 0.8702594810379242
+        },
+        "Excess kurtosis": {
+          "real": 108.32455619945964,
+          "p_garch": 0.810379241516966
+        },
+        "ACF |r| lag 1": {
+          "real": 0.021159438070169224,
+          "p_garch": 0.05588822355289421
+        },
+        "ACF |r| lag 22": {
+          "real": 0.0033856093148640016,
+          "p_garch": 0.7305389221556886
+        },
+        "ACF |r| lag 66": {
+          "real": 0.0873869668463122,
+          "p_garch": 0.003992015968063872
+        },
+        "ACF r lag 1": {
+          "real": -0.003592322271310537,
+          "p_garch": 0.7305389221556886
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 268.7398006600286,
+          "p_garch": 0.003992015968063872
+        },
+        "Same-band rate": {
+          "real": 0.6371317652432062,
+          "p_garch": 0.003992015968063872
+        },
+        "Lift over independence": {
+          "real": 43.71318147852268,
+          "p_garch": 0.003992015968063872
+        },
+        "Cramer's V": {
+          "real": 0.5769902120954743,
+          "p_garch": 0.003992015968063872
+        },
+        "Regression R2": {
+          "real": 0.6313480187482376,
+          "p_garch": 0.003992015968063872
+        }
+      }
+    },
+    {
+      "dataset": "bronze/stock_msft",
+      "n_obs": 8782,
+      "n_sim": 500,
+      "garch": {
+        "alpha": 0.02582489490067308,
+        "beta": 0.970519359305775,
+        "persistence": 0.9963442542064481
+      },
+      "survives_all_nulls": [
+        "Regression R2"
+      ],
+      "statistics": {
+        "Ann. volatility": {
+          "real": 0.36718249042130396,
+          "p_garch": 0.25149700598802394
+        },
+        "Excess kurtosis": {
+          "real": 257.48501508690856,
+          "p_garch": 0.3992015968063872
+        },
+        "ACF |r| lag 1": {
+          "real": 0.039435165371521155,
+          "p_garch": 0.011976047904191617
+        },
+        "ACF |r| lag 22": {
+          "real": 0.026629651812026693,
+          "p_garch": 0.015968063872255488
+        },
+        "ACF |r| lag 66": {
+          "real": 0.021232123832001945,
+          "p_garch": 0.059880239520958084
+        },
+        "ACF r lag 1": {
+          "real": 0.0038513180825987627,
+          "p_garch": 0.9141716566866267
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 196.62687337193987,
+          "p_garch": 0.007984031936127744
+        },
+        "Same-band rate": {
+          "real": 0.6196620232929893,
+          "p_garch": 0.7584830339321357
+        },
+        "Lift over independence": {
+          "real": 41.96620076481407,
+          "p_garch": 0.7584830339321357
+        },
+        "Cramer's V": {
+          "real": 0.5698472293333952,
+          "p_garch": 0.5149700598802395
+        },
+        "Regression R2": {
+          "real": 0.6899585938065482,
+          "p_garch": 0.007984031936127744
+        }
+      }
+    },
+    {
+      "dataset": "bronze/stock_mu",
+      "n_obs": 1253,
+      "n_sim": 500,
+      "garch": {
+        "alpha": 0.06427086671163111,
+        "beta": 0.9225199497414444,
+        "persistence": 0.9867908164530754
+      },
+      "survives_all_nulls": [],
+      "statistics": {
+        "Ann. volatility": {
+          "real": 0.5622841722747757,
+          "p_garch": 0.6986027944111777
+        },
+        "Excess kurtosis": {
+          "real": 3.4381701939206346,
+          "p_garch": 0.8143712574850299
+        },
+        "ACF |r| lag 1": {
+          "real": 0.16898521973192435,
+          "p_garch": 0.5828343313373253
+        },
+        "ACF |r| lag 22": {
+          "real": 0.12488874594394057,
+          "p_garch": 0.5229540918163673
+        },
+        "ACF |r| lag 66": {
+          "real": 0.048457773784938596,
+          "p_garch": 0.6826347305389222
+        },
+        "ACF r lag 1": {
+          "real": -0.006958382840920694,
+          "p_garch": 0.7904191616766467
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 531.3642427481742,
+          "p_garch": 0.5708582834331337
+        },
+        "Same-band rate": {
+          "real": 0.6427990235964198,
+          "p_garch": 0.590818363273453
+        },
+        "Lift over independence": {
+          "real": 44.2803128357877,
+          "p_garch": 0.5668662674650699
+        },
+        "Cramer's V": {
+          "real": 0.6054408296248501,
+          "p_garch": 0.626746506986028
+        },
+        "Regression R2": {
+          "real": 0.8519477966960115,
+          "p_garch": 0.4870259481037924
+        }
+      }
+    },
+    {
+      "dataset": "bronze/stock_mxl",
+      "n_obs": 1253,
+      "n_sim": 500,
+      "garch": {
+        "alpha": 0.19458556042758332,
+        "beta": 0.6990118269247474,
+        "persistence": 0.8935973873523307
+      },
+      "survives_all_nulls": [
+        "ACF |r| lag 66",
+        "Same-band rate",
+        "Lift over independence",
+        "Cramer's V"
+      ],
+      "statistics": {
+        "Ann. volatility": {
+          "real": 0.7971607104647059,
+          "p_garch": 0.5948103792415169
+        },
+        "Excess kurtosis": {
+          "real": 21.53193911125299,
+          "p_garch": 0.47904191616766467
+        },
+        "ACF |r| lag 1": {
+          "real": 0.17469293865112803,
+          "p_garch": 0.4590818363273453
+        },
+        "ACF |r| lag 22": {
+          "real": 0.07474246716403192,
+          "p_garch": 0.0998003992015968
+        },
+        "ACF |r| lag 66": {
+          "real": 0.07351659847166699,
+          "p_garch": 0.023952095808383235
+        },
+        "ACF r lag 1": {
+          "real": 0.003802977672245047,
+          "p_garch": 0.9261477045908184
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 267.4316548382837,
+          "p_garch": 0.9221556886227545
+        },
+        "Same-band rate": {
+          "real": 0.6582587469487388,
+          "p_garch": 0.003992015968063872
+        },
+        "Lift over independence": {
+          "real": 45.826285171019585,
+          "p_garch": 0.003992015968063872
+        },
+        "Cramer's V": {
+          "real": 0.6068631421454737,
+          "p_garch": 0.003992015968063872
+        },
+        "Regression R2": {
+          "real": 0.6979291495634296,
+          "p_garch": 0.9700598802395209
+        }
+      }
+    },
+    {
+      "dataset": "bronze/stock_nok",
+      "n_obs": 1253,
+      "n_sim": 500,
+      "garch": {
+        "alpha": 0.10662104145288237,
+        "beta": 0.8164398812644732,
+        "persistence": 0.9230609227173556
+      },
+      "survives_all_nulls": [
+        "ACF |r| lag 22",
+        "ACF |r| lag 66"
+      ],
+      "statistics": {
+        "Ann. volatility": {
+          "real": 0.3862296881285836,
+          "p_garch": 0.7984031936127745
+        },
+        "Excess kurtosis": {
+          "real": 7.20721663328009,
+          "p_garch": 0.8303393213572854
+        },
+        "ACF |r| lag 1": {
+          "real": 0.15480107895315615,
+          "p_garch": 0.810379241516966
+        },
+        "ACF |r| lag 22": {
+          "real": 0.15774448615409506,
+          "p_garch": 0.011976047904191617
+        },
+        "ACF |r| lag 66": {
+          "real": 0.09746971174070643,
+          "p_garch": 0.003992015968063872
+        },
+        "ACF r lag 1": {
+          "real": -0.0062957253111491284,
+          "p_garch": 0.8502994011976048
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 525.5789468463861,
+          "p_garch": 0.1437125748502994
+        },
+        "Same-band rate": {
+          "real": 0.6004882017900732,
+          "p_garch": 0.4231536926147705
+        },
+        "Lift over independence": {
+          "real": 40.04923065515303,
+          "p_garch": 0.40718562874251496
+        },
+        "Cramer's V": {
+          "real": 0.5480439544164812,
+          "p_garch": 0.5149700598802395
+        },
+        "Regression R2": {
+          "real": 0.6848328818752253,
+          "p_garch": 0.6347305389221557
+        }
+      }
+    },
+    {
+      "dataset": "bronze/stock_nvda",
+      "n_obs": 8782,
+      "n_sim": 500,
+      "garch": {
+        "alpha": 1e-08,
+        "beta": 1e-08,
+        "persistence": 2e-08
+      },
+      "survives_all_nulls": [
+        "Same-band rate",
+        "Lift over independence",
+        "Cramer's V"
+      ],
+      "statistics": {
+        "Ann. volatility": {
+          "real": 1.0973132698212191,
+          "p_garch": 0.8662674650698603
+        },
+        "Excess kurtosis": {
+          "real": 887.913902010887,
+          "p_garch": 0.8942115768463074
+        },
+        "ACF |r| lag 1": {
+          "real": 0.004210951596756648,
+          "p_garch": 0.3473053892215569
+        },
+        "ACF |r| lag 22": {
+          "real": 0.004845021494361445,
+          "p_garch": 0.2954091816367265
+        },
+        "ACF |r| lag 66": {
+          "real": 0.006824730648203104,
+          "p_garch": 0.19161676646706588
+        },
+        "ACF r lag 1": {
+          "real": -0.012995041231442248,
+          "p_garch": 0.08782435129740519
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 5.048465811702005,
+          "p_garch": 0.9500998003992016
+        },
+        "Same-band rate": {
+          "real": 0.6351906828042932,
+          "p_garch": 0.003992015968063872
+        },
+        "Lift over independence": {
+          "real": 43.519045856146356,
+          "p_garch": 0.003992015968063872
+        },
+        "Cramer's V": {
+          "real": 0.5818738453357136,
+          "p_garch": 0.003992015968063872
+        },
+        "Regression R2": {
+          "real": 0.63691742432646,
+          "p_garch": 0.003992015968063872
+        }
+      }
+    },
+    {
+      "dataset": "bronze/stock_oklo",
+      "n_obs": 1253,
+      "n_sim": 500,
+      "garch": {
+        "alpha": 0.08,
+        "beta": 0.9,
+        "persistence": 0.98
+      },
+      "survives_all_nulls": [
+        "ACF |r| lag 22",
+        "ACF |r| lag 66",
+        "Ljung-Box Q(22) on |r|",
+        "Same-band rate",
+        "Lift over independence",
+        "Cramer's V",
+        "Regression R2"
+      ],
+      "statistics": {
+        "Ann. volatility": {
+          "real": 0.8799683613121877,
+          "p_garch": 0.42714570858283435
+        },
+        "Excess kurtosis": {
+          "real": 34.386721758647425,
+          "p_garch": 0.4431137724550898
+        },
+        "ACF |r| lag 1": {
+          "real": 0.41889362950251474,
+          "p_garch": 0.003992015968063872
+        },
+        "ACF |r| lag 22": {
+          "real": 0.3250425561468063,
+          "p_garch": 0.003992015968063872
+        },
+        "ACF |r| lag 66": {
+          "real": 0.25863038938247523,
+          "p_garch": 0.003992015968063872
+        },
+        "ACF r lag 1": {
+          "real": -0.06412665753140337,
+          "p_garch": 0.20758483033932135
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 3240.6309511379336,
+          "p_garch": 0.003992015968063872
+        },
+        "Same-band rate": {
+          "real": 0.7713588283157038,
+          "p_garch": 0.003992015968063872
+        },
+        "Lift over independence": {
+          "real": 57.13629330771609,
+          "p_garch": 0.003992015968063872
+        },
+        "Cramer's V": {
+          "real": 0.7333337429141403,
+          "p_garch": 0.003992015968063872
+        },
+        "Regression R2": {
+          "real": 0.9674425442004803,
+          "p_garch": 0.003992015968063872
+        }
+      }
+    },
+    {
+      "dataset": "bronze/stock_qbts",
+      "n_obs": 1253,
+      "n_sim": 500,
+      "garch": {
+        "alpha": 0.15,
+        "beta": 0.8,
+        "persistence": 0.9500000000000001
+      },
+      "survives_all_nulls": [
+        "ACF |r| lag 66",
+        "Regression R2"
+      ],
+      "statistics": {
+        "Ann. volatility": {
+          "real": 1.2513625438774947,
+          "p_garch": 0.6586826347305389
+        },
+        "Excess kurtosis": {
+          "real": 10.516978658245424,
+          "p_garch": 0.7784431137724551
+        },
+        "ACF |r| lag 1": {
+          "real": 0.2949278079261187,
+          "p_garch": 0.19560878243512975
+        },
+        "ACF |r| lag 22": {
+          "real": 0.15218836191479962,
+          "p_garch": 0.07984031936127745
+        },
+        "ACF |r| lag 66": {
+          "real": 0.08886760472393045,
+          "p_garch": 0.015968063872255488
+        },
+        "ACF r lag 1": {
+          "real": 0.0328285795945305,
+          "p_garch": 0.4550898203592814
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 1311.3238596267845,
+          "p_garch": 0.11177644710578842
+        },
+        "Same-band rate": {
+          "real": 0.6598860862489829,
+          "p_garch": 0.031936127744510975
+        },
+        "Lift over independence": {
+          "real": 45.988820483554136,
+          "p_garch": 0.031936127744510975
+        },
+        "Cramer's V": {
+          "real": 0.6381711401369938,
+          "p_garch": 0.003992015968063872
+        },
+        "Regression R2": {
+          "real": 0.9619217239049553,
+          "p_garch": 0.003992015968063872
+        }
+      }
+    },
+    {
+      "dataset": "bronze/stock_qqq",
+      "n_obs": 7528,
+      "n_sim": 500,
+      "garch": {
+        "alpha": 1e-08,
+        "beta": 1e-08,
+        "persistence": 2e-08
+      },
+      "survives_all_nulls": [
+        "Same-band rate",
+        "Lift over independence",
+        "Cramer's V"
+      ],
+      "statistics": {
+        "Ann. volatility": {
+          "real": 0.3684343743062018,
+          "p_garch": 0.9820359281437125
+        },
+        "Excess kurtosis": {
+          "real": 568.71765640283,
+          "p_garch": 0.6906187624750499
+        },
+        "ACF |r| lag 1": {
+          "real": 0.02357067837799679,
+          "p_garch": 0.027944111776447105
+        },
+        "ACF |r| lag 22": {
+          "real": 0.025762295147909092,
+          "p_garch": 0.015968063872255488
+        },
+        "ACF |r| lag 66": {
+          "real": 0.014868880898786508,
+          "p_garch": 0.08383233532934131
+        },
+        "ACF r lag 1": {
+          "real": -0.013991102225976125,
+          "p_garch": 0.12375249500998003
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 104.80443062367594,
+          "p_garch": 0.10379241516966067
+        },
+        "Same-band rate": {
+          "real": 0.658315565031983,
+          "p_garch": 0.003992015968063872
+        },
+        "Lift over independence": {
+          "real": 45.831523116597936,
+          "p_garch": 0.003992015968063872
+        },
+        "Cramer's V": {
+          "real": 0.6200969800150454,
+          "p_garch": 0.003992015968063872
+        },
+        "Regression R2": {
+          "real": 0.6932643874605109,
+          "p_garch": 0.003992015968063872
+        }
+      }
+    },
+    {
+      "dataset": "bronze/stock_rgti",
+      "n_obs": 1253,
+      "n_sim": 500,
+      "garch": {
+        "alpha": 0.1624864584178752,
+        "beta": 0.8175245582326538,
+        "persistence": 0.980011016650529
+      },
+      "survives_all_nulls": [],
+      "statistics": {
+        "Ann. volatility": {
+          "real": 1.266781426968832,
+          "p_garch": 0.4031936127744511
+        },
+        "Excess kurtosis": {
+          "real": 7.352556988002238,
+          "p_garch": 0.8063872255489022
+        },
+        "ACF |r| lag 1": {
+          "real": 0.22823685741498817,
+          "p_garch": 0.7385229540918163
+        },
+        "ACF |r| lag 22": {
+          "real": 0.09135369738591372,
+          "p_garch": 0.9900199600798403
+        },
+        "ACF |r| lag 66": {
+          "real": -0.014088478183378743,
+          "p_garch": 0.7584830339321357
+        },
+        "ACF r lag 1": {
+          "real": 0.008945275112110742,
+          "p_garch": 0.8702594810379242
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 893.7817922429605,
+          "p_garch": 0.9500998003992016
+        },
+        "Same-band rate": {
+          "real": 0.5850284784377543,
+          "p_garch": 0.20758483033932135
+        },
+        "Lift over independence": {
+          "real": 38.502927290771375,
+          "p_garch": 0.20359281437125748
+        },
+        "Cramer's V": {
+          "real": 0.5427964350642032,
+          "p_garch": 0.17564870259481039
+        },
+        "Regression R2": {
+          "real": 0.8490077126594533,
+          "p_garch": 0.626746506986028
+        }
+      }
+    },
+    {
+      "dataset": "bronze/stock_smci",
+      "n_obs": 1253,
+      "n_sim": 500,
+      "garch": {
+        "alpha": 0.017855890130485445,
+        "beta": 0.9680867385526798,
+        "persistence": 0.9859426286831653
+      },
+      "survives_all_nulls": [],
+      "statistics": {
+        "Ann. volatility": {
+          "real": 0.8849491771627757,
+          "p_garch": 0.8223552894211577
+        },
+        "Excess kurtosis": {
+          "real": 9.207754457119567,
+          "p_garch": 0.4311377245508982
+        },
+        "ACF |r| lag 1": {
+          "real": 0.14764047537577335,
+          "p_garch": 0.01996007984031936
+        },
+        "ACF |r| lag 22": {
+          "real": 0.06583258247031325,
+          "p_garch": 0.2155688622754491
+        },
+        "ACF |r| lag 66": {
+          "real": 0.05137246098540688,
+          "p_garch": 0.19161676646706588
+        },
+        "ACF r lag 1": {
+          "real": 0.0009504774921389833,
+          "p_garch": 0.9101796407185628
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 225.10967743070674,
+          "p_garch": 0.043912175648702596
+        },
+        "Same-band rate": {
+          "real": 0.6200162733930025,
+          "p_garch": 0.1996007984031936
+        },
+        "Lift over independence": {
+          "real": 42.00203781544596,
+          "p_garch": 0.19560878243512975
+        },
+        "Cramer's V": {
+          "real": 0.5607126590052073,
+          "p_garch": 0.29141716566866266
+        },
+        "Regression R2": {
+          "real": 0.71847434264339,
+          "p_garch": 0.25948103792415167
+        }
+      }
+    },
+    {
+      "dataset": "bronze/stock_spce",
+      "n_obs": 1253,
+      "n_sim": 500,
+      "garch": {
+        "alpha": 0.24632807559050543,
+        "beta": 0.5059356753579464,
+        "persistence": 0.7522637509484518
+      },
+      "survives_all_nulls": [
+        "ACF |r| lag 66"
+      ],
+      "statistics": {
+        "Ann. volatility": {
+          "real": 0.9487511579792752,
+          "p_garch": 0.7784431137724551
+        },
+        "Excess kurtosis": {
+          "real": 7.418035049950587,
+          "p_garch": 0.35129740518962077
+        },
+        "ACF |r| lag 1": {
+          "real": 0.22830053821127885,
+          "p_garch": 0.93812375249501
+        },
+        "ACF |r| lag 22": {
+          "real": 0.007189285324736289,
+          "p_garch": 0.7425149700598802
+        },
+        "ACF |r| lag 66": {
+          "real": -0.06772433848510823,
+          "p_garch": 0.011976047904191617
+        },
+        "ACF r lag 1": {
+          "real": 0.002031822284407903,
+          "p_garch": 0.9620758483033932
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 287.95633076977185,
+          "p_garch": 0.3313373253493014
+        },
+        "Same-band rate": {
+          "real": 0.5858421480878763,
+          "p_garch": 0.07584830339321358
+        },
+        "Lift over independence": {
+          "real": 38.58356599165409,
+          "p_garch": 0.07584830339321358
+        },
+        "Cramer's V": {
+          "real": 0.5327727608148864,
+          "p_garch": 0.0718562874251497
+        },
+        "Regression R2": {
+          "real": 0.7072138199890573,
+          "p_garch": 0.06786427145708583
+        }
+      }
+    },
+    {
+      "dataset": "bronze/stock_spy",
+      "n_obs": 7528,
+      "n_sim": 500,
+      "garch": {
+        "alpha": 1e-08,
+        "beta": 1e-08,
+        "persistence": 2e-08
+      },
+      "survives_all_nulls": [
+        "Same-band rate",
+        "Lift over independence",
+        "Cramer's V"
+      ],
+      "statistics": {
+        "Ann. volatility": {
+          "real": 0.30726615769487303,
+          "p_garch": 0.9780439121756487
+        },
+        "Excess kurtosis": {
+          "real": 712.9487382856028,
+          "p_garch": 0.9860279441117764
+        },
+        "ACF |r| lag 1": {
+          "real": 0.027346861447487242,
+          "p_garch": 0.027944111776447105
+        },
+        "ACF |r| lag 22": {
+          "real": 0.019003129110112177,
+          "p_garch": 0.023952095808383235
+        },
+        "ACF |r| lag 66": {
+          "real": 0.006560651926704123,
+          "p_garch": 0.24750499001996007
+        },
+        "ACF r lag 1": {
+          "real": -0.007856581021756274,
+          "p_garch": 0.36327345309381237
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 84.17114075456261,
+          "p_garch": 0.1277445109780439
+        },
+        "Same-band rate": {
+          "real": 0.6375266524520256,
+          "p_garch": 0.003992015968063872
+        },
+        "Lift over independence": {
+          "real": 43.75266737626215,
+          "p_garch": 0.003992015968063872
+        },
+        "Cramer's V": {
+          "real": 0.6058802976869442,
+          "p_garch": 0.003992015968063872
+        },
+        "Regression R2": {
+          "real": 0.6852001710820786,
+          "p_garch": 0.003992015968063872
+        }
+      }
+    },
+    {
+      "dataset": "bronze/stock_tlt",
+      "n_obs": 7528,
+      "n_sim": 500,
+      "garch": {
+        "alpha": 1e-08,
+        "beta": 1e-08,
+        "persistence": 2e-08
+      },
+      "survives_all_nulls": [
+        "ACF |r| lag 66",
+        "Same-band rate",
+        "Lift over independence",
+        "Cramer's V"
+      ],
+      "statistics": {
+        "Ann. volatility": {
+          "real": 0.2328784951509897,
+          "p_garch": 0.9740518962075848
+        },
+        "Excess kurtosis": {
+          "real": 447.43571793954396,
+          "p_garch": 0.5708582834331337
+        },
+        "ACF |r| lag 1": {
+          "real": 0.02290538144402528,
+          "p_garch": 0.03592814371257485
+        },
+        "ACF |r| lag 22": {
+          "real": 0.028844053614067527,
+          "p_garch": 0.015968063872255488
+        },
+        "ACF |r| lag 66": {
+          "real": 0.021460493185224142,
+          "p_garch": 0.027944111776447105
+        },
+        "ACF r lag 1": {
+          "real": -0.025400522977490066,
+          "p_garch": 0.015968063872255488
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 103.53591137106599,
+          "p_garch": 0.10778443113772455
+        },
+        "Same-band rate": {
+          "real": 0.6932302771855011,
+          "p_garch": 0.003992015968063872
+        },
+        "Lift over independence": {
+          "real": 49.3230298496097,
+          "p_garch": 0.003992015968063872
+        },
+        "Cramer's V": {
+          "real": 0.6488730694142429,
+          "p_garch": 0.003992015968063872
+        },
+        "Regression R2": {
+          "real": 0.6939359605151607,
+          "p_garch": 0.003992015968063872
+        }
+      }
+    },
+    {
+      "dataset": "bronze/stock_tsla",
+      "n_obs": 8782,
+      "n_sim": 500,
+      "garch": {
+        "alpha": 0.015642443431554486,
+        "beta": 0.9679472847659407,
+        "persistence": 0.9835897281974952
+      },
+      "survives_all_nulls": [
+        "ACF |r| lag 22",
+        "Ljung-Box Q(22) on |r|",
+        "Same-band rate",
+        "Lift over independence",
+        "Cramer's V"
+      ],
+      "statistics": {
+        "Ann. volatility": {
+          "real": 0.6149283583344475,
+          "p_garch": 0.8662674650698603
+        },
+        "Excess kurtosis": {
+          "real": 7.030063558717215,
+          "p_garch": 0.562874251497006
+        },
+        "ACF |r| lag 1": {
+          "real": 0.014714773936864094,
+          "p_garch": 0.21956087824351297
+        },
+        "ACF |r| lag 22": {
+          "real": 0.0578707971723963,
+          "p_garch": 0.023952095808383235
+        },
+        "ACF |r| lag 66": {
+          "real": -0.0004412316925765707,
+          "p_garch": 0.3073852295409182
+        },
+        "ACF r lag 1": {
+          "real": -0.018710386905064803,
+          "p_garch": 0.1157684630738523
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 451.65536760733914,
+          "p_garch": 0.04790419161676647
+        },
+        "Same-band rate": {
+          "real": 0.5870061657912765,
+          "p_garch": 0.003992015968063872
+        },
+        "Lift over independence": {
+          "real": 38.70059415484467,
+          "p_garch": 0.003992015968063872
+        },
+        "Cramer's V": {
+          "real": 0.5451387201596684,
+          "p_garch": 0.003992015968063872
+        },
+        "Regression R2": {
+          "real": 0.6390905225508625,
+          "p_garch": 0.47105788423153694
+        }
+      }
+    },
+    {
+      "dataset": "bronze/stock_uec",
+      "n_obs": 1253,
+      "n_sim": 500,
+      "garch": {
+        "alpha": 0.02077444335786546,
+        "beta": 0.974457327735746,
+        "persistence": 0.9952317710936115
+      },
+      "survives_all_nulls": [],
+      "statistics": {
+        "Ann. volatility": {
+          "real": 0.7404098009639272,
+          "p_garch": 0.7225548902195609
+        },
+        "Excess kurtosis": {
+          "real": 1.558688926266412,
+          "p_garch": 0.9301397205588823
+        },
+        "ACF |r| lag 1": {
+          "real": 0.04597923669903562,
+          "p_garch": 0.782435129740519
+        },
+        "ACF |r| lag 22": {
+          "real": 0.08432730249714572,
+          "p_garch": 0.19161676646706588
+        },
+        "ACF |r| lag 66": {
+          "real": 0.059667030400285294,
+          "p_garch": 0.2634730538922156
+        },
+        "ACF r lag 1": {
+          "real": 0.0009284484391244247,
+          "p_garch": 0.9500998003992016
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 121.01424644219809,
+          "p_garch": 0.35528942115768464
+        },
+        "Same-band rate": {
+          "real": 0.5907241659886087,
+          "p_garch": 0.3033932135728543
+        },
+        "Lift over independence": {
+          "real": 39.07256225168676,
+          "p_garch": 0.3033932135728543
+        },
+        "Cramer's V": {
+          "real": 0.5461135441731768,
+          "p_garch": 0.36327345309381237
+        },
+        "Regression R2": {
+          "real": 0.7623818458606142,
+          "p_garch": 0.3992015968063872
+        }
+      }
+    },
+    {
+      "dataset": "bronze/stock_unh",
+      "n_obs": 7528,
+      "n_sim": 500,
+      "garch": {
+        "alpha": 0.013555456510563927,
+        "beta": 0.9834193734056335,
+        "persistence": 0.9969748299161973
+      },
+      "survives_all_nulls": [],
+      "statistics": {
+        "Ann. volatility": {
+          "real": 0.33014601786419384,
+          "p_garch": 0.7345309381237525
+        },
+        "Excess kurtosis": {
+          "real": 35.04756680159772,
+          "p_garch": 0.8343313373253493
+        },
+        "ACF |r| lag 1": {
+          "real": 0.1109422318339059,
+          "p_garch": 0.4111776447105788
+        },
+        "ACF |r| lag 22": {
+          "real": 0.03124527439275492,
+          "p_garch": 0.10778443113772455
+        },
+        "ACF |r| lag 66": {
+          "real": 0.040325468621407366,
+          "p_garch": 0.5588822355289421
+        },
+        "ACF r lag 1": {
+          "real": 0.04063364940050734,
+          "p_garch": 0.031936127744510975
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 760.5239154049365,
+          "p_garch": 0.8343313373253493
+        },
+        "Same-band rate": {
+          "real": 0.6103411513859275,
+          "p_garch": 0.5229540918163673
+        },
+        "Lift over independence": {
+          "real": 41.034101286705365,
+          "p_garch": 0.5229540918163673
+        },
+        "Cramer's V": {
+          "real": 0.5574932696277315,
+          "p_garch": 0.5149700598802395
+        },
+        "Regression R2": {
+          "real": 0.7104473060667115,
+          "p_garch": 0.3992015968063872
+        }
+      }
+    },
+    {
+      "dataset": "bronze/stock_v",
+      "n_obs": 7528,
+      "n_sim": 500,
+      "garch": {
+        "alpha": 1e-08,
+        "beta": 1e-08,
+        "persistence": 2e-08
+      },
+      "survives_all_nulls": [
+        "ACF |r| lag 66",
+        "Same-band rate",
+        "Lift over independence",
+        "Cramer's V",
+        "Regression R2"
+      ],
+      "statistics": {
+        "Ann. volatility": {
+          "real": 0.31847383058618156,
+          "p_garch": 0.9660678642714571
+        },
+        "Excess kurtosis": {
+          "real": 352.89606877200185,
+          "p_garch": 0.5229540918163673
+        },
+        "ACF |r| lag 1": {
+          "real": 0.02355048393943512,
+          "p_garch": 0.059880239520958084
+        },
+        "ACF |r| lag 22": {
+          "real": 0.025696998410939913,
+          "p_garch": 0.027944111776447105
+        },
+        "ACF |r| lag 66": {
+          "real": 0.04025912382580305,
+          "p_garch": 0.003992015968063872
+        },
+        "ACF r lag 1": {
+          "real": -0.005117974863646987,
+          "p_garch": 0.5868263473053892
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 172.0284022096201,
+          "p_garch": 0.031936127744510975
+        },
+        "Same-band rate": {
+          "real": 0.6204690831556503,
+          "p_garch": 0.003992015968063872
+        },
+        "Lift over independence": {
+          "real": 42.04690689485863,
+          "p_garch": 0.003992015968063872
+        },
+        "Cramer's V": {
+          "real": 0.5764473469091262,
+          "p_garch": 0.003992015968063872
+        },
+        "Regression R2": {
+          "real": 0.6998552363889194,
+          "p_garch": 0.003992015968063872
+        }
+      }
+    },
+    {
+      "dataset": "bronze/stock_xom",
+      "n_obs": 7528,
+      "n_sim": 500,
+      "garch": {
+        "alpha": 1e-08,
+        "beta": 1e-08,
+        "persistence": 2e-08
+      },
+      "survives_all_nulls": [
+        "Same-band rate",
+        "Lift over independence",
+        "Cramer's V"
+      ],
+      "statistics": {
+        "Ann. volatility": {
+          "real": 0.5655192962828101,
+          "p_garch": 0.9620758483033932
+        },
+        "Excess kurtosis": {
+          "real": 915.6089176429371,
+          "p_garch": 0.9940119760479041
+        },
+        "ACF |r| lag 1": {
+          "real": -0.0010695920624824717,
+          "p_garch": 0.9820359281437125
+        },
+        "ACF |r| lag 22": {
+          "real": 0.008488762985470308,
+          "p_garch": 0.1277445109780439
+        },
+        "ACF |r| lag 66": {
+          "real": 0.004175898008603834,
+          "p_garch": 0.3313373253493014
+        },
+        "ACF r lag 1": {
+          "real": 0.011194954212209429,
+          "p_garch": 0.1437125748502994
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 19.638032618284026,
+          "p_garch": 0.17564870259481039
+        },
+        "Same-band rate": {
+          "real": 0.5999466950959488,
+          "p_garch": 0.003992015968063872
+        },
+        "Lift over independence": {
+          "real": 39.99466453712248,
+          "p_garch": 0.003992015968063872
+        },
+        "Cramer's V": {
+          "real": 0.5612302518076802,
+          "p_garch": 0.003992015968063872
+        },
+        "Regression R2": {
+          "real": 0.6615732212663782,
+          "p_garch": 0.003992015968063872
+        }
+      }
+    },
+    {
+      "dataset": "bronze/vix_daily",
+      "n_obs": 268823,
+      "n_sim": 500,
+      "garch": {
+        "alpha": 0.14385304358042533,
+        "beta": 0.7276593660312372,
+        "persistence": 0.8715124096116624
+      },
+      "survives_all_nulls": [
+        "ACF |r| lag 22",
+        "ACF |r| lag 66",
+        "Same-band rate",
+        "Lift over independence",
+        "Cramer's V",
+        "Regression R2"
+      ],
+      "statistics": {
+        "Ann. volatility": {
+          "real": 1.0805427782413282,
+          "p_garch": 0.9740518962075848
+        },
+        "Excess kurtosis": {
+          "real": 6.6966016513968185,
+          "p_garch": 0.003992015968063872
+        },
+        "ACF |r| lag 1": {
+          "real": 0.2004456175658146,
+          "p_garch": 0.3273453093812375
+        },
+        "ACF |r| lag 22": {
+          "real": 0.04051511860885709,
+          "p_garch": 0.003992015968063872
+        },
+        "ACF |r| lag 66": {
+          "real": 0.028911770835813876,
+          "p_garch": 0.003992015968063872
+        },
+        "ACF r lag 1": {
+          "real": -0.08322011988195509,
+          "p_garch": 0.003992015968063872
+        },
+        "Ljung-Box Q(22) on |r|": {
+          "real": 49410.322574873215,
+          "p_garch": 0.25948103792415167
+        },
+        "Same-band rate": {
+          "real": 0.6018102745917954,
+          "p_garch": 0.003992015968063872
+        },
+        "Lift over independence": {
+          "real": 40.181027189571,
+          "p_garch": 0.003992015968063872
+        },
+        "Cramer's V": {
+          "real": 0.553126062867566,
+          "p_garch": 0.003992015968063872
+        },
+        "Regression R2": {
+          "real": 0.728778733344308,
+          "p_garch": 0.003992015968063872
+        }
+      }
+    }
+  ]
+}
