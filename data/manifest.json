@@ -1,6 +1,6 @@
 {
   "bronze/cftc_cot": {
-    "bytes": 88342076,
+    "bytes": 90851284,
     "columns": [
       "market_and_exchange_names",
       "as_of_date_in_form_yymmdd",
@@ -135,8 +135,8 @@
       "knowable_at",
       "retrieved_at"
     ],
-    "hash": "0d042480d475a687",
-    "note": "partitioned \u00b7 39 partitions",
+    "hash": "215ab38d01e3ac0d",
+    "note": "partitioned \u00b7 40 partitions",
     "partitions": [
       "2026-08-26.parquet",
       "2026-08-27.parquet",
@@ -176,21 +176,22 @@
       "2026-10-15.parquet",
       "2026-10-16.parquet",
       "2026-10-17.parquet",
-      "2026-10-20.parquet"
+      "2026-10-20.parquet",
+      "2026-10-21.parquet"
     ],
-    "rows": 515393,
+    "rows": 530188,
     "source": "CFTC Commitments of Traders",
-    "written_at": "2026-10-20T01:08:37.157657+00:00"
+    "written_at": "2026-10-21T00:43:16.199634+00:00"
   },
   "bronze/edgar_tickers": {
-    "bytes": 8405545,
+    "bytes": 8615822,
     "columns": [
       "cik",
       "ticker",
       "title"
     ],
-    "hash": "18163e179d670f98",
-    "note": "partitioned \u00b7 40 partitions",
+    "hash": "bdbc77d626a1d742",
+    "note": "partitioned \u00b7 41 partitions",
     "partitions": [
       "2026-08-26.parquet",
       "2026-08-27.parquet",
@@ -231,14 +232,15 @@
       "2026-10-15.parquet",
       "2026-10-16.parquet",
       "2026-10-17.parquet",
-      "2026-10-20.parquet"
+      "2026-10-20.parquet",
+      "2026-10-21.parquet"
     ],
-    "rows": 416983,
+    "rows": 427426,
     "source": "SEC EDGAR company_tickers.json",
-    "written_at": "2026-10-20T01:08:37.532738+00:00"
+    "written_at": "2026-10-21T00:43:16.306588+00:00"
   },
   "bronze/sp500_daily": {
-    "bytes": 10683560,
+    "bytes": 10950649,
     "columns": [
       "symbol",
       "date",
@@ -252,8 +254,8 @@
       "knowable_at",
       "retrieved_at"
     ],
-    "hash": "8f365e74cb6c7f19",
-    "note": "partitioned \u00b7 40 partitions",
+    "hash": "89b8eb214484aeb9",
+    "note": "partitioned \u00b7 41 partitions",
     "partitions": [
       "2026-08-26.parquet",
       "2026-08-27.parquet",
@@ -294,11 +296,12 @@
       "2026-10-15.parquet",
       "2026-10-16.parquet",
       "2026-10-17.parquet",
-      "2026-10-20.parquet"
+      "2026-10-20.parquet",
+      "2026-10-21.parquet"
     ],
-    "rows": 201240,
+    "rows": 206271,
     "source": "arch package (bundled)",
-    "written_at": "2026-10-20T01:08:35.087169+00:00"
+    "written_at": "2026-10-21T00:43:14.562379+00:00"
   },
   "bronze/stock_aapl": {
     "bytes": 637851,
@@ -1197,7 +1200,7 @@
     "written_at": "2026-10-17T07:31:44.232390+00:00"
   },
   "bronze/vix_daily": {
-    "bytes": 12414584,
+    "bytes": 12725116,
     "columns": [
       "symbol",
       "date",
@@ -1209,8 +1212,8 @@
       "knowable_at",
       "retrieved_at"
     ],
-    "hash": "8ba7c0d464af389b",
-    "note": "partitioned \u00b7 40 partitions",
+    "hash": "4cf0ff5e8ee9e377",
+    "note": "partitioned \u00b7 41 partitions",
     "partitions": [
       "2026-08-26.parquet",
       "2026-08-27.parquet",
@@ -1251,10 +1254,11 @@
       "2026-10-15.parquet",
       "2026-10-16.parquet",
       "2026-10-17.parquet",
-      "2026-10-20.parquet"
+      "2026-10-20.parquet",
+      "2026-10-21.parquet"
     ],
-    "rows": 370882,
+    "rows": 380160,
     "source": "CBOE via GitHub mirror",
-    "written_at": "2026-10-20T01:08:33.857753+00:00"
+    "written_at": "2026-10-21T00:43:13.554784+00:00"
   }
 }
